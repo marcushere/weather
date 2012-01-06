@@ -1,0 +1,908 @@
+error 2011-09-28 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:205)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-09-29 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:205)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-05 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:205)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-12 23218
+java.io.IOException: Server returned HTTP response code: 503 for URL: http://www.weather.com/weather/pastweather/23218
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:197)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+Server returned HTTP response code: 503 for URL: http://www.weather.com/weather/pastweather/23218
+error 2011-10-26 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:205)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-27 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:205)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-28 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-28 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-28 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-28 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.net.UnknownHostException: www.wunderground.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:32)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+www.wunderground.com
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:46)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:54)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:174)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:36)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:128)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:34)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+0
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:183)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:36)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-10-29 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:183)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:36)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-11-01 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:234)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-11-08 
+java.net.UnknownHostException: www.wunderground.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:33)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+www.wunderground.com
+error 2011-11-08 
+java.net.UnknownHostException: www.wunderground.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:33)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+www.wunderground.com
+error 2011-12-13 96801
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:234)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastPrecip(DataFetcher.java:150)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:47)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:184)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:48)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastPrecip(DataFetcher.java:150)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:47)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastPrecip(DataFetcher.java:150)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:47)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:53)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastPrecip(DataFetcher.java:151)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:47)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:105)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:34)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-14 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:53)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:184)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:48)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:53)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:148)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:184)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:48)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:107)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:46)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:59)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:60)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:33)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:60)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-15 
+java.lang.NullPointerException
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:60)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-17 59601
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:106)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-17 59601
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:46)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-17 87501
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:106)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-17 87501
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:46)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-18 08601
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:106)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-18 08601
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:46)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-19 03301
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:106)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:45)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-19 03301
+java.lang.Exception
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:146)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:168)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:46)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:149)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+null
+error 2011-12-22 
+java.io.FileNotFoundException: datatest\55123.dat (The system cannot find the path specified)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileOutputStream.<init>(Unknown Source)
+	at java.io.FileWriter.<init>(Unknown Source)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:102)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:157)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:28)
+datatest\55123.dat (The system cannot find the path specified)
+error 2011-12-23 85001
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:375)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:37)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02108
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02108
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02108
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02901
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-27 02108
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:394)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 85001
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 55123
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 52101
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 94203
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 80201
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 50301
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 66601
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 70801
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 55101
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 59601
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 68501
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 89701
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 87501
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 73101
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 57501
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 73301
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 84101
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 53701
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 82001
+java.lang.StringIndexOutOfBoundsException: String index out of range: 26
+	at java.lang.String.charAt(Unknown Source)
+	at org.marcus.weather.DataFetcher.getOverallPast(DataFetcher.java:392)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:39)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:150)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:26)
+String index out of range: 26
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: This driver is not configured for integrated authentication.
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:1352)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:2329)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1905)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$000(SQLServerConnection.java:41)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:1893)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1045)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:817)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.HourlyPredTable.updateDB(HourlyPredTable.java:77)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:116)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:165)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Caused by: java.lang.UnsatisfiedLinkError: no sqljdbc_auth in java.library.path
+	at java.lang.ClassLoader.loadLibrary(Unknown Source)
+	at java.lang.Runtime.loadLibrary0(Unknown Source)
+	at java.lang.System.loadLibrary(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.AuthenticationJNI.<clinit>(AuthenticationJNI.java:32)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1902)
+	... 14 more
+This driver is not configured for integrated authentication.
+error 2011-12-28 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.HourlyPredTable.updateDB(HourlyPredTable.java:93)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:116)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:165)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+0
+error 2011-12-28 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.HourlyPredTable.updateDB(HourlyPredTable.java:93)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:116)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:165)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+0
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: Incorrect syntax near ':'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:775)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:676)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeQuery(SQLServerStatement.java:611)
+	at org.marcus.weather.DailyPredTable.updateDB(DailyPredTable.java:58)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:117)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:165)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Incorrect syntax near ':'.
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: Incorrect syntax near ':'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:775)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:676)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeQuery(SQLServerStatement.java:611)
+	at org.marcus.weather.DailyPredTable.updateDB(DailyPredTable.java:67)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:117)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:165)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Incorrect syntax near ':'.
+error 2011-12-28 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:116)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:167)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+0
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: Incorrect syntax near ':'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:775)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:676)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeQuery(SQLServerStatement.java:611)
+	at org.marcus.weather.DailyPredTable.updateDB(DailyPredTable.java:67)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:120)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:168)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Incorrect syntax near ':'.
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: The statement did not return a result set.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:171)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:783)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:676)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeQuery(SQLServerStatement.java:611)
+	at org.marcus.weather.DailyPredTable.updateDB(DailyPredTable.java:79)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:120)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:168)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+The statement did not return a result set.
+error 2011-12-28 
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid object name 'weather.dbo.tempHA'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.doExecuteStatement(SQLServerStatement.java:775)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement$StmtExecCmd.doExecute(SQLServerStatement.java:676)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeUpdate(SQLServerStatement.java:633)
+	at org.marcus.weather.HourlyActualTable.updateDB(HourlyActualTable.java:81)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:121)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:168)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Invalid object name 'weather.dbo.tempHA'.
+error 2011-12-28 
+java.lang.ArrayIndexOutOfBoundsException: 24
+	at org.marcus.weather.HourlyActualTable.updateDB(HourlyActualTable.java:90)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:121)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:168)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+24
+error 2012-01-02 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.HourlyPredTable.<init>(HourlyPredTable.java:36)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:91)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:172)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:31)
+0
+error 2012-01-02 
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at org.marcus.weather.HourlyPredTable.<init>(HourlyPredTable.java:36)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:91)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:172)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:31)
+0
+error 2012-01-02 
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at sun.net.www.http.ChunkedInputStream.fastRead(Unknown Source)
+	at sun.net.www.http.ChunkedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection$HttpInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source)
+	at sun.nio.cs.StreamDecoder.read(Unknown Source)
+	at java.io.InputStreamReader.read(Unknown Source)
+	at java.io.BufferedReader.fill(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at org.marcus.weather.DataFetcher$LineReader.readLine(DataFetcher.java:29)
+	at org.marcus.weather.DataFetcher$LineReader.access$0(DataFetcher.java:28)
+	at org.marcus.weather.DataFetcher.getPastWData(DataFetcher.java:816)
+	at org.marcus.weather.DataFetcher.wundergroundPast(DataFetcher.java:665)
+	at org.marcus.weather.DataFetcher.wundergroundPast(DataFetcher.java:646)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:89)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:48)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:164)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:28)
+Connection reset
+error 2012-01-04 
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:30)
+	at org.marcus.weather.MakeURL.hourlyURL(MakeURL.java:22)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:187)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:179)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:35)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:170)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+null
+error 2012-01-04 
+java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.net.SocketInputStream.read(Unknown Source)
+	at java.io.BufferedInputStream.fill(Unknown Source)
+	at java.io.BufferedInputStream.read1(Unknown Source)
+	at java.io.BufferedInputStream.read(Unknown Source)
+	at sun.net.www.http.ChunkedInputStream.fastRead(Unknown Source)
+	at sun.net.www.http.ChunkedInputStream.read(Unknown Source)
+	at java.io.FilterInputStream.read(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection$HttpInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+	at sun.nio.cs.StreamDecoder.implRead(Unknown Source)
+	at sun.nio.cs.StreamDecoder.read(Unknown Source)
+	at java.io.InputStreamReader.read(Unknown Source)
+	at java.io.BufferedReader.fill(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at java.io.BufferedReader.readLine(Unknown Source)
+	at org.marcus.weather.DataFetcher$LineReader.readLine(DataFetcher.java:29)
+	at org.marcus.weather.DataFetcher$LineReader.skipTo(DataFetcher.java:47)
+	at org.marcus.weather.DataFetcher.getPastWData(DataFetcher.java:731)
+	at org.marcus.weather.DataFetcher.wundergroundPast(DataFetcher.java:671)
+	at org.marcus.weather.DataFetcher.wundergroundPast(DataFetcher.java:647)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:90)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:34)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:170)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Connection reset
+error 2012-01-04 
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:30)
+	at org.marcus.weather.MakeURL.hourlyURL(MakeURL.java:22)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:187)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:179)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:35)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:170)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+null
+error 2012-01-04 
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:30)
+	at org.marcus.weather.MakeURL.hourlyURL(MakeURL.java:22)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:187)
+	at org.marcus.weather.DataFetcher.getForecastTimes(DataFetcher.java:179)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:35)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:170)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+null

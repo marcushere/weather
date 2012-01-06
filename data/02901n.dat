@@ -1,0 +1,14 @@
+hourlyPred; 2011-08-28; 2011-08-29; 2; 0; 40; 5; 61; 40; 8; 63; 40; 11; 74; 10; 2; 0; 10; 5; 0; 10; 8; 0; 10; 11; 65; 10; 
+dailyPred; 2011-08-28; 2011-08-29; 79; 0; 
+hourlyActual; 2011-08-28; 2011-08-27; 2; 69;  Partly Cloudy ; 5; 67;  Mostly Cloudy ; 8; 71;  Cloudy ; 11; 76;  Cloudy ; 2; 75;  Light Rain ; 5; 76;  Light Rain ; 8; 75;  Light Rain ; 11; 75;  Cloudy ; 
+dailyActual; 2011-08-28; 2011-08-27; 77; 0; 
+hourlyPred; 2011-08-28; 2011-08-31; 2; 65; 10; 8; 67; 10; 2; 77; 10; 8; 70; 10; 
+dailyPred; 2011-08-28; 2011-08-31; 79; 10; 
+#finished 2011-08-28T06:28:08.565
+hourlyPred; 2011-08-29; 2011-08-30; 2; 61; 10; 5; 61; 10; 8; 67; 10; 11; 76; 0; 2; 81; 0; 5; 79; 0; 8; 70; 0; 11; 67; 0; 
+dailyPred; 2011-08-29; 2011-08-30; 83; 0; 
+hourlyActual; 2011-08-29; 2011-08-28; 2; 75;  Light Rain ; 5; 77;  Cloudy and Windy ; 8; 76;  Light Rain and Windy ; 11; 72;  Cloudy and Windy ; 2; 70;  Light Rain and Windy ; 5; 70;  Cloudy and Windy ; 8; 68;  Cloudy and Windy ; 11; 67;  Mostly Cloudy and Windy ; 
+dailyActual; 2011-08-29; 2011-08-28; 79; 0; 
+hourlyPred; 2011-08-29; 2011-09-01; 2; 61; 20; 8; 65; 20; 2; 76; 20; 8; 70; 20; 
+dailyPred; 2011-08-29; 2011-09-01; 79; 20; 
+#finished 2011-08-29T09:40:25.068

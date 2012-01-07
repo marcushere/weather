@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Date;
 
+import org.marcus.weather.ForecastData;
+
 public class DBStore {
 
 	private Connection con;
@@ -23,6 +25,10 @@ public class DBStore {
 		insertDA = con
 				.prepareStatement("INSERT INTO weather.dbo.daily_actual (zip,collected_time,collected_date,occurred_date,high,precip_amount) VALUES (?,?,?,?,?,?)");
 
+	}
+	
+	public void storeForecast(ForecastData fd){
+		
 	}
 
 	public void storeHA(String zip, Date timestamp, String todayDate,

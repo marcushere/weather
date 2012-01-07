@@ -971,3 +971,10 @@ dailyActual; 2012-01-05; 2012-01-04; 47; 0;
 hourlyPred; 2012-01-05; 2012-01-08; 12; 31; 0; 6; 27; 0; 12; 36; 0; 6; 34; 0; 
 dailyPred; 2012-01-05; 2012-01-08; 40; 0; 
 #finished 2012-01-05T08:29:09.949
+hourlyPred; 2012-01-06; 2012-01-07; 12; 34; 0; 3; 31; 0; 6; 31; 0; 9; 31; 0; 12; 40; 0; 3; 43; 0; 6; 38; 0; 9; 34; 0; 
+dailyPred; 2012-01-06; 2012-01-07; 45; 0; 
+hourlyActual; 2012-01-06; 2012-01-05; 12; 38;  Clear ; 1; 38;  Clear ; 2; 39;  Clear ; 3; 36;  Clear ; 4; 34;  Clear ; 5; 34;  Clear ; 6; 34;  Clear ; 7; 33;  Fair ; 8; 33;  Mostly Cloudy ; 9; 36;  Cloudy ; 10; 42;  Mostly Cloudy ; 11; 51;  Partly Cloudy ; 12; 57;  Partly Cloudy ; 1; 62;  Mostly Cloudy ; 2; 64;  Partly Cloudy ; 3; 64;  Fair ; 4; 62;  Fair ; 5; 56;  Fair ; 6; 55;  Fair ; 7; 51;  Clear ; 8; 51;  Fair ; 9; 50;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-06; 2012-01-05; 64; 0; 
+hourlyPred; 2012-01-06; 2012-01-09; 12; 31; 0; 6; 29; 0; 12; 40; 0; 6; 40; 0; 
+dailyPred; 2012-01-06; 2012-01-09; 47; 0; 
+#finished 2012-01-06T08:30:56.020

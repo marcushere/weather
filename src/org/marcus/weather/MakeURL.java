@@ -11,7 +11,8 @@ import java.util.Date;
 
 public class MakeURL {
 
-	public static String hourlyURL(String zip, Integer futureDays) throws IOException {
+	public static String hourlyURL(String zip, Integer futureDays)
+			throws IOException {
 		Calendar cal = Calendar.getInstance();
 		int day = 0;
 		if (cal.get(Calendar.DAY_OF_YEAR) - 1 + futureDays > 364) {
@@ -19,7 +20,7 @@ public class MakeURL {
 		} else {
 			day = cal.get(Calendar.DAY_OF_YEAR) - 1 + futureDays;
 		}
-		return overallURL(zip)+"&hourly=1" + "&yday=" + day;
+		return overallURL(zip) + "&hourly=1" + "&yday=" + day;
 	}
 
 	public static String overallURL(String zip) throws IOException {
@@ -59,7 +60,20 @@ public class MakeURL {
 		URL url = new URL(url1);
 		URLConnection con = url.openConnection();
 		con = makeCon(con);
-		return "http://www.wunderground.com" + con.getHeaderField("location");
+		URL url2 = new URL("http://www.wunderground.com"
+				+ con.getHeaderField("location"));
+		BufferedReader br = new BufferedReader(new InputStreamReader(
+				url2.openStream()));
+		try {
+			while (!br.readLine().contains("not official NWS values"));
+		} catch (NullPointerException e) {
+			return "http://www.wunderground.com"
+					+ con.getHeaderField("location");
+		}
+		String line = br.readLine();
+		int index = line.indexOf("href=\"") + 6;
+		return "http://www.wunderground.com"
+				+ line.substring(index, line.lastIndexOf("\">"));
 	}
 
 	private static URLConnection makeCon(URLConnection con) {

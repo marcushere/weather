@@ -58,12 +58,28 @@ public class DataFetcher {
 			return null;
 		}
 
+		public String getStuffToWhite() {
+			String s = this.getStuff();
+			return s.split(" ")[0];
+		}
+
+		public Integer getIntStuff() {
+			String stuff = getStuff();
+			try {
+				return Integer.valueOf(stuff);
+			} catch (NumberFormatException e) {
+
+			}
+			return null;
+		}
+
 	}
 
 	int dayNumber1;
 	int dayNumber3;
 	public String zip;
-	private String date;
+	public String date;
+	public String time;
 	public ForecastData forecast1;
 	public ForecastData forecast3;
 	public PastData past;
@@ -81,18 +97,23 @@ public class DataFetcher {
 		zip = zipCode;
 		this.date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar
 				.getInstance().getTime());
+		this.time = new SimpleDateFormat("kk:mm:ss").format(Calendar
+				.getInstance().getTime());
 		Calendar cal = Calendar.getInstance();
 		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR);
 		dayNumber3 = dayNumber1 + 2;
 		wundergroundFuture();
 		wundergroundPast();
+
 		valid = true;
 	}
 
 	private void wundergroundFuture() throws IOException, InterruptedException {
 		getOverallForecast();
-		getHourlyForecast(this.dayNumber1, false);
-		getHourlyForecast(this.dayNumber3, true);
+		getHourlyForecast(this.dayNumber1, this.hf1,
+				MakeURL.hourlyURL(this.zip, 1));
+		getHourlyForecast(this.dayNumber3, this.hf3,
+				MakeURL.hourlyURL(this.zip, 3));
 
 		this.forecast1 = new ForecastData(this.zip, this.date, this.of1,
 				this.hf1);
@@ -100,8 +121,105 @@ public class DataFetcher {
 				this.hf3);
 	}
 
-	private void getHourlyForecast(int dayNumber, boolean threeDay) {
+	private void getHourlyForecast(int dayNumber, HourlyForecast[] hf,
+			String surl) throws IOException {
+		for (int tries = 0; tries < 7; tries++) {
+			File outFile;
+			FileWriter fileWriter;
+			SimpleDateFormat format = new SimpleDateFormat(
+					"yyyyMMdd'T'kkmmssSSS");
+			outFile = new File("test/test"
+					+ format.format(Calendar.getInstance().getTime())
+					+ "overall.html");
+			fileWriter = new FileWriter(outFile, false);
+			PrintWriter out = new PrintWriter(fileWriter, true);
+			out.println(MakeURL.overallURL(this.zip));
+			InputStreamReader webStream = null;
+			try {
+				URL url = new URL(surl);
+				webStream = new InputStreamReader(url.openStream());
+				LineReader lineReader = new LineReader(webStream, out);
 
+				// get hours-store in times
+
+				lineReader.skipTo("contentTable borderTop");
+				lineReader.skipTo("taC");
+				Integer[] times = new Integer[20];
+				int timesLen = 0;
+				while (lineReader.line.contains("taC")) {
+					String s = lineReader.getStuff();
+					try {
+						times[timesLen] = Integer.valueOf(lineReader.line
+								.split("&")[0]);
+						if (times[timesLen] == 12)
+							times[timesLen] = 0;
+						if (s.endsWith("PM"))
+							times[timesLen] = times[timesLen] + 12;
+						timesLen++;
+					} catch (NumberFormatException e) {
+
+					}
+					lineReader.readLine();
+				}
+				hf = new HourlyForecast[timesLen];
+
+				int i = 0;
+				lineReader.skipTo("tbody");
+				lineReader.skipTo("taC");
+				Integer[] temps = new Integer[20];
+				while (lineReader.line.contains("taC")) {
+					lineReader.readLine();
+					try {
+						temps[i] = Integer.parseInt(lineReader
+								.getStuffToWhite());
+					} catch (NumberFormatException e) {
+						temps[i] = null;
+					}
+					lineReader.skipTo("/td");
+					lineReader.readLine();
+				}
+
+				i = 0;
+				lineReader.skipTo("Probability of Precipitation");
+				lineReader.readLine();
+				lineReader.readLine();
+				Integer[] precips = new Integer[20];
+				while (lineReader.line.contains("taC")) {
+					lineReader.readLine();
+					String s = lineReader.line.trim();
+					try {
+						if (s.endsWith("%"))
+							precips[i] = Integer.parseInt(s.substring(0,
+									s.length() - 1));
+					} catch (NumberFormatException e) {
+						precips[i] = null;
+					}
+					i++;
+					lineReader.readLine();
+					lineReader.readLine();
+				}
+
+				for (i = 0; i < timesLen; i++) {
+					hf[i] = new HourlyForecast(times[i], temps[i], precips[i]);
+				}
+
+				out.close();
+				fileWriter.close();
+				outFile.delete();
+				webStream.close();
+				return;
+			} catch (NullPointerException e) {
+				if (tries != 6) {
+					out.close();
+					fileWriter.close();
+					webStream.close();
+					System.out.println("Reading hourly forecast failed for "
+							+ this.zip + " for day " + dayNumber + ".");
+					if (hf == null)
+						hf = new HourlyForecast[0];
+				}
+			}
+		}
 	}
 
 	private void getOverallForecast() throws IOException {
@@ -124,9 +242,24 @@ public class DataFetcher {
 
 				lineReader.skipTo(this.zip);
 				lineReader.readLine();
-				while (lineReader.line.contains("</div>")) {
-					lineReader.skipTo("fct_day_" + dayNumber1);
-					
+				lineReader.skipTo("fct_day_" + dayNumber1);
+				lineReader.skipTo("class=\"b");
+				this.of1.high = lineReader.getIntStuff();
+				lineReader.skipTo("popValue");
+				String stuff = lineReader.getStuff();
+				if (stuff.indexOf(stuff.length() - 1) == '%') {
+					this.of1.PoP = Integer.valueOf(stuff.substring(0,
+							stuff.length() - 1));
+				}
+
+				lineReader.skipTo("fct_day_" + dayNumber3);
+				lineReader.skipTo("class=\"b");
+				this.of3.high = lineReader.getIntStuff();
+				lineReader.skipTo("popValue");
+				stuff = lineReader.getStuff();
+				if (stuff.indexOf(stuff.length() - 1) == '%') {
+					this.of3.PoP = Integer.valueOf(stuff.substring(0,
+							stuff.length() - 1));
 				}
 
 				out.close();
@@ -135,7 +268,17 @@ public class DataFetcher {
 				webStream.close();
 				return;
 			} catch (NullPointerException e) {
-
+				if (tries != 6) {
+					out.close();
+					fileWriter.close();
+					webStream.close();
+					System.out.println("Reading overall forecast failed for "
+							+ this.zip + ".");
+					if (of1 == null)
+						of1 = new OverallForecast();
+					if (of3 == null)
+						of3 = new OverallForecast();
+				}
 			}
 		}
 	}
@@ -181,7 +324,8 @@ public class DataFetcher {
 			} catch (NullPointerException e) {
 				if (webStream != null)
 					webStream.close();
-				System.out.println("Failed to read");
+				System.out.println("Reading past weather data failed for "
+						+ this.zip + ".");
 				out.close();
 				fileWriter.close();
 				Thread.sleep(1000);

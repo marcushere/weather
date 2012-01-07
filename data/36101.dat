@@ -978,3 +978,10 @@ dailyActual; 2012-01-05; 2012-01-04; 56; 0;
 hourlyPred; 2012-01-05; 2012-01-08; 12; 54; 40; 6; 50; 40; 12; 67; 30; 6; 63; 30; 
 dailyPred; 2012-01-05; 2012-01-08; 70; 30; 
 #finished 2012-01-05T08:28:54.796
+hourlyPred; 2012-01-06; 2012-01-07; 
+dailyPred; 2012-01-06; 2012-01-07; ; ; 
+hourlyActual; 2012-01-06; 2012-01-05; 12; 41;  Cloudy ; 1; 43;  Partly Cloudy ; 2; 43;  Partly Cloudy ; 3; 39;  Clear ; 4; 37;  Clear ; 5; 36;  Clear ; 6; 34;  Clear ; 7; 33;  Fog ; 8; 39;  Fair ; 9; 48;  Sunny ; 10; 52;  Sunny ; 11; 56;  Sunny ; 12; 59;  Fair ; 1; 62;  Sunny ; 2; 63;  Sunny ; 3; 64;  Fair ; 4; 63;  Sunny ; 5; 58;  Fair ; 6; 48;  Clear ; 7; 46;  Clear ; 8; 43;  Clear ; 9; 40;  Clear ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-06; 2012-01-05; 64; 0; 
+hourlyPred; 2012-01-06; 2012-01-09; 12; 56; 30; 6; 54; 30; 12; 67; 40; 6; 61; 40; 
+dailyPred; 2012-01-06; 2012-01-09; 72; 40; 
+#finished 2012-01-06T08:30:35.454

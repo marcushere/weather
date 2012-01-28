@@ -24,19 +24,23 @@ public class MakeURL {
 	}
 
 	public static String overallURL(String zip) throws IOException {
-		URL url1 = new URL(pastWundergroundURL(zip));
+		String pastWundergroundURL = pastWundergroundURL(zip);
+		System.out.println(pastWundergroundURL);
+		URL url1 = new URL(pastWundergroundURL);
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				url1.openStream()));
 		String line = br.readLine();
-		while (!line.contains("View Current Conditions")) {
-			line = br.readLine();
+		try {
+			while (!line.contains("View Current Conditions")) {
+				line = br.readLine();
+			}
+			return "http://www.wunderground.com"
+					+ line.substring((line.indexOf("href=\"") + 6),
+							line.indexOf("\">View"));
+		} catch (NullPointerException e) {
+			return "http://www.wunderground.com/cgi-bin/findweather/getForecast?query="
+					+ zip;
 		}
-		return "http://www.wunderground.com"
-				+ line.substring((line.indexOf("href=\"") + 6),
-						line.indexOf("\">View"));
-		// return
-		// "http://www.wunderground.com/cgi-bin/findweather/getForecast?query="
-		// + zip;
 	}
 
 	public static String pastOverallURL(String zip) {
@@ -65,7 +69,8 @@ public class MakeURL {
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				url2.openStream()));
 		try {
-			while (!br.readLine().contains("not official NWS values"));
+			while (!br.readLine().contains("not official NWS values"))
+				;
 		} catch (NullPointerException e) {
 			return "http://www.wunderground.com"
 					+ con.getHeaderField("location");

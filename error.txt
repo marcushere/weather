@@ -906,3 +906,220 @@ java.lang.NullPointerException
 	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:170)
 	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
 null
+error 2012-01-06 36101
+com.microsoft.sqlserver.jdbc.SQLServerException: This driver is not configured for integrated authentication.
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:1352)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:2329)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1905)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$000(SQLServerConnection.java:41)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:1893)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1045)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:817)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.DBStore.open(DBStore.java:21)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:32)
+Caused by: java.lang.UnsatisfiedLinkError: no sqljdbc_auth in java.library.path
+	at java.lang.ClassLoader.loadLibrary(Unknown Source)
+	at java.lang.Runtime.loadLibrary0(Unknown Source)
+	at java.lang.System.loadLibrary(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.AuthenticationJNI.<clinit>(AuthenticationJNI.java:32)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1902)
+	... 12 more
+This driver is not configured for integrated authentication.
+error 2012-01-06 36101
+com.microsoft.sqlserver.jdbc.SQLServerException: This driver is not configured for integrated authentication.
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:1352)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.sendLogon(SQLServerConnection.java:2329)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1905)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.access$000(SQLServerConnection.java:41)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$LogonCommand.doExecute(SQLServerConnection.java:1893)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1045)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:817)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.DBStore.open(DBStore.java:21)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:32)
+Caused by: java.lang.UnsatisfiedLinkError: no sqljdbc_auth in java.library.path
+	at java.lang.ClassLoader.loadLibrary(Unknown Source)
+	at java.lang.Runtime.loadLibrary0(Unknown Source)
+	at java.lang.System.loadLibrary(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.AuthenticationJNI.<clinit>(AuthenticationJNI.java:32)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.logon(SQLServerConnection.java:1902)
+	... 12 more
+This driver is not configured for integrated authentication.
+error 2012-01-06 36101
+java.lang.NullPointerException
+	at org.marcus.weather.DBStore.storeForecast(DBStore.java:34)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:48)
+null
+error 2012-01-06 
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:31)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:236)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:112)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:105)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:46)
+null
+error 2012-01-07 36101
+com.microsoft.sqlserver.jdbc.SQLServerException: Violation of PRIMARY KEY constraint 'tempHA_pk'. Cannot insert duplicate key in object 'dbo.tempHA'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:390)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:340)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:308)
+	at org.marcus.weather.DBStore.storePast(DBStore.java:98)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:51)
+Violation of PRIMARY KEY constraint 'tempHA_pk'. Cannot insert duplicate key in object 'dbo.tempHA'.
+error 2012-01-07 
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:31)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:237)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:112)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:105)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:47)
+null
+error 2012-01-07 80201
+java.lang.NullPointerException
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:31)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:237)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:112)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:105)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:47)
+null
+error 2012-01-07 
+java.lang.NullPointerException
+	at org.marcus.weather.DBStore.storePast(DBStore.java:115)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:51)
+null
+error 2012-01-07 80201
+java.lang.NullPointerException
+	at org.marcus.weather.DBStore.storePast(DBStore.java:123)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:51)
+null
+error 2012-01-07 04330
+java.net.MalformedURLException: For input string: " 1px solid "
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:27)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:238)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:112)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:105)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:47)
+Caused by: java.lang.NumberFormatException: For input string: " 1px solid "
+	at java.lang.NumberFormatException.forInputString(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.net.URLStreamHandler.parseURL(Unknown Source)
+	... 8 more
+For input string: " 1px solid "
+error 2012-01-11 
+com.microsoft.sqlserver.jdbc.SQLServerException: The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption. Error: "Connection reset by peer: socket write error".
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:1352)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.enableSSL(IOBuffer.java:1533)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1042)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:817)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.HourlyPredTable.updateDB(HourlyPredTable.java:78)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:119)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:167)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Caused by: java.io.IOException: Connection reset by peer: socket write error
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.ensureSSLPayload(IOBuffer.java:594)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.readInternal(IOBuffer.java:664)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.read(IOBuffer.java:656)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.readInternal(IOBuffer.java:851)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.read(IOBuffer.java:839)
+	at sun.security.ssl.InputRecord.readFully(Unknown Source)
+	at sun.security.ssl.InputRecord.read(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.enableSSL(IOBuffer.java:1483)
+	... 10 more
+The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption. Error: "Connection reset by peer: socket write error".
+error 2012-01-11 
+com.microsoft.sqlserver.jdbc.SQLServerException: The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption. Error: "Connection reset by peer: socket write error".
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.terminate(SQLServerConnection.java:1352)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.enableSSL(IOBuffer.java:1533)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectHelper(SQLServerConnection.java:1042)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:817)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.HourlyPredTable.updateDB(HourlyPredTable.java:78)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:119)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:167)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+Caused by: java.io.IOException: Connection reset by peer: socket write error
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.ensureSSLPayload(IOBuffer.java:594)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.readInternal(IOBuffer.java:664)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$SSLHandshakeInputStream.read(IOBuffer.java:656)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.readInternal(IOBuffer.java:851)
+	at com.microsoft.sqlserver.jdbc.TDSChannel$ProxyInputStream.read(IOBuffer.java:839)
+	at sun.security.ssl.InputRecord.readFully(Unknown Source)
+	at sun.security.ssl.InputRecord.read(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)
+	at com.microsoft.sqlserver.jdbc.TDSChannel.enableSSL(IOBuffer.java:1483)
+	... 10 more
+The driver could not establish a secure connection to SQL Server by using Secure Sockets Layer (SSL) encryption. Error: "Connection reset by peer: socket write error".
+error 2012-01-12 
+com.microsoft.sqlserver.jdbc.SQLServerException: The connection to the host MARCUSHANPC, named instance sqlexpress has failed. Error: "java.net.SocketTimeoutException: Receive timed out". Verify the server and instance names, check that no firewall is blocking UDP traffic to port 1434, and for SQL Server 2005 or later verify that the SQL Server Browser Service is running on the host.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDriverError(SQLServerException.java:171)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.getInstancePort(SQLServerConnection.java:3174)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.primaryPermissionCheck(SQLServerConnection.java:937)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.login(SQLServerConnection.java:800)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connect(SQLServerConnection.java:700)
+	at com.microsoft.sqlserver.jdbc.SQLServerDriver.connect(SQLServerDriver.java:842)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at org.marcus.weather.DailyActualTable.updateDB(DailyActualTable.java:76)
+	at org.marcus.weather.WeatherRecorder.updateFile(WeatherRecorder.java:122)
+	at org.marcus.weather.WeatherRecorder.recordFiles(WeatherRecorder.java:167)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:29)
+The connection to the host MARCUSHANPC, named instance sqlexpress has failed. Error: "java.net.SocketTimeoutException: Receive timed out". Verify the server and instance names, check that no firewall is blocking UDP traffic to port 1434, and for SQL Server 2005 or later verify that the SQL Server Browser Service is running on the host.
+error 2012-01-16 
+java.net.UnknownHostException: www.wunderground.com
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at java.net.URL.openStream(Unknown Source)
+	at org.marcus.weather.DataFetcher.getHourlyForecastTemps(DataFetcher.java:126)
+	at org.marcus.weather.DataFetcher.getHourlyForecastPrecip(DataFetcher.java:254)
+	at org.marcus.weather.WeatherData.<init>(WeatherData.java:36)
+	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:160)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:27)
+www.wunderground.com

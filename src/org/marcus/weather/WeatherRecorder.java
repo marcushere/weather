@@ -17,6 +17,17 @@ public class WeatherRecorder {
 	private static final String ERROR_NAME = "error.txt";
 
 	public static void main(String[] args) {
+		CheckKeyboard ck = new CheckKeyboard();
+		Thread thread = new Thread(ck);
+		thread.start();
+		boolean useDB = true;
+		if (args.length > 0) {
+			for (int i = 0; i < args.length; i++) {
+				if (args[i].equals("-csv")) {
+					useDB = false;
+				}
+			}
+		}
 		try {
 			String[] zips;
 			try {
@@ -27,7 +38,14 @@ public class WeatherRecorder {
 				return;
 			}
 			int i = 0;
-			DBStore db = new DBStore();
+
+			DBStore db = null;
+			if (useDB)
+				db = new DBStore();
+			CSVStore csv = null;
+			if (!useDB)
+				csv = new CSVStore();
+
 			try {
 				db.open();
 			} catch (Exception e) {
@@ -42,19 +60,24 @@ public class WeatherRecorder {
 				return;
 			}
 			try {
-				for (i = 0; i < zips.length; i++) {
+				for (i = 0; i < zips.length && !ck.isStop(); i++) {
+					System.out.println(zips[i]);
 					DataFetcher df = new DataFetcher(zips[i]);
-					if (df.valid) {
+					if (df.valid && useDB) {
 						db.storeForecast(df.forecast1);
 						db.storeForecast(df.forecast3);
 						db.storePast(df.past);
 						db.commit();
+					} else if (df.valid && !useDB) {
+						csv.storeForecast(df.forecast1);
+						csv.storeForecast(df.forecast3);
+						csv.storePast(df.past);
 					}
 				}
 				db.close();
 				FileWriter fileWriter = new FileWriter(LOG_NAME, false);
 				PrintWriter out = new PrintWriter(fileWriter, true);
-				out.print("ok "+getDateFormatter().format(new Date()));
+				out.print("ok " + getYMDFormatter().format(new Date()));
 				out.close();
 				fileWriter.close();
 			} catch (Exception e) {
@@ -65,7 +88,7 @@ public class WeatherRecorder {
 					fileWriter = new FileWriter(LOG_NAME, false);
 					PrintWriter out = new PrintWriter(fileWriter, true);
 
-					SimpleDateFormat format = getDateFormatter();
+					SimpleDateFormat format = getYMDFormatter();
 
 					out.print("error " + format.format(new Date()) + " "
 							+ zips[i]);
@@ -155,7 +178,7 @@ public class WeatherRecorder {
 		fileWriter = new FileWriter(ERROR_NAME, true);
 		out = new PrintWriter(fileWriter, true);
 
-		out.print("error " + getYMDFormatter().format(new Date()) + " " + zip);
+		out.print("error " + getDateFormatter().format(new Date()) + " " + zip);
 		out.println();
 		e.printStackTrace(out);
 		out.print(e.getMessage());

@@ -978,3 +978,157 @@ dailyActual; 2012-01-06; 2012-01-05; 64; 0;
 hourlyPred; 2012-01-06; 2012-01-09; 
 dailyPred; 2012-01-06; 2012-01-09; ; ; 
 #finished 2012-01-06T08:30:51.177
+hourlyPred; 2012-01-07; 2012-01-08; 
+dailyPred; 2012-01-07; 2012-01-08; ; ; 
+hourlyActual; 2012-01-07; 2012-01-06; 12; 39;  Mostly Cloudy ; 1; 39;  Mostly Cloudy ; 2; 41;  Mostly Cloudy ; 3; 43;  Mostly Cloudy ; 4; 50;  Mostly Cloudy ; 5; 43;  Mostly Cloudy ; 6; 45;  Mostly Cloudy ; 7; 39;  Mostly Cloudy ; 8; 41;  Mostly Cloudy ; 9; 37;  Mostly Cloudy ; 10; 37;  Partly Cloudy ; 11; 41;  Partly Cloudy ; 12; 39;  Partly Cloudy ; 1; 37;  Mostly Cloudy ; 2; 39;  Mostly Cloudy ; 3; 37;  Mostly Cloudy ; 4; 36;  Mostly Cloudy ; 5; 32;  Partly Cloudy ; 6; 28;  Partly Cloudy ; 7; 27;  Fair ; 8; 28;  Fair ; 9; 27;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-07; 2012-01-06; 53; 0; 
+hourlyPred; 2012-01-07; 2012-01-10; 
+dailyPred; 2012-01-07; 2012-01-10; ; ; 
+#finished 2012-01-07T10:02:27.617
+hourlyPred; 2012-01-08; 2012-01-09; 
+dailyPred; 2012-01-08; 2012-01-09; ; ; 
+hourlyActual; 2012-01-08; 2012-01-07; 12; 25;  Mostly Cloudy ; 1; 27;  Mostly Cloudy ; 2; 27;  Mostly Cloudy ; 3; 28;  Mostly Cloudy ; 4; 28;  Mostly Cloudy ; 5; 27;  Mostly Cloudy ; 6; 25;  Mostly Cloudy ; 7; 23;  Mostly Cloudy ; 8; 23;  Mostly Cloudy ; 9; 27;  Partly Cloudy ; 10; 30;  Mostly Cloudy ; 11; 32;  Mostly Cloudy ; 12; 32;  Mostly Cloudy ; 1; 37;  Mostly Cloudy ; 2; 37;  Showers in the Vicinity ; 3; 32;  Light Snow Shower ; 4; 32;  Light Snow Shower ; 5; 28;  Light Snow ; 6; 28;  Light Snow ; 7; 28;  Light Snow ; 8; 28;  Light Snow ; 9; 25;  Mostly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-08; 2012-01-07; 37; 0.08; 
+hourlyPred; 2012-01-08; 2012-01-11; 
+dailyPred; 2012-01-08; 2012-01-11; ; ; 
+#finished 2012-01-08T11:05:18.349
+hourlyPred; 2012-01-09; 2012-01-10; 
+dailyPred; 2012-01-09; 2012-01-10; ; ; 
+hourlyActual; 2012-01-09; 2012-01-08; 12; 23;  Partly Cloudy ; 1; 21;  Partly Cloudy ; 2; 19;  Partly Cloudy ; 3; 16;  Mostly Cloudy ; 4; 16;  Partly Cloudy ; 5; 16;  Partly Cloudy ; 6; 14;  Partly Cloudy ; 7; 14;  Fair ; 8; 16;  Fair ; 9; 19;  Sunny ; 10; 25;  Sunny ; 11; 28;  Fair ; 12; 32;  Fair ; 1; 32;  Fair ; 2; 34;  Fair ; 3; 36;  Fair ; 4; 34;  Fair ; 5; 30;  Fair ; 6; 28;  Fair ; 7; 23;  Fair ; 8; 23;  Fair ; 9; 23;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-09; 2012-01-08; 36; 0; 
+hourlyPred; 2012-01-09; 2012-01-12; 
+dailyPred; 2012-01-09; 2012-01-12; ; ; 
+#finished 2012-01-09T08:34:52.317
+hourlyPred; 2012-01-10; 2012-01-11; 
+dailyPred; 2012-01-10; 2012-01-11; ; ; 
+hourlyActual; 2012-01-10; 2012-01-09; 12; 23;  Mostly Cloudy ; 1; 23;  Partly Cloudy ; 2; 25;  Partly Cloudy ; 3; 24;  Partly Cloudy ; 4; 23;  Partly Cloudy ; 5; 23;  Partly Cloudy ; 6; 23;  Partly Cloudy ; 7; 25;  Partly Cloudy ; 8; 25;  Mostly Cloudy ; 9; 32;  Partly Cloudy ; 10; 36;  Partly Cloudy ; 11; 39;  Partly Cloudy ; 12; 43;  Partly Cloudy ; 1; 46;  Partly Cloudy ; 2; 46;  Partly Cloudy ; 3; 46;  Partly Cloudy ; 4; 46;  Partly Cloudy ; 5; 39;  Fair ; 6; 37;  Partly Cloudy ; 7; 36;  Fair ; 8; 34;  Fair ; 9; 34;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-10; 2012-01-09; 47; 0; 
+hourlyPred; 2012-01-10; 2012-01-13; 
+dailyPred; 2012-01-10; 2012-01-13; ; ; 
+#finished 2012-01-10T09:29:26.696
+hourlyPred; 2012-01-11; 2012-01-12; 
+dailyPred; 2012-01-11; 2012-01-12; ; ; 
+hourlyActual; 2012-01-11; 2012-01-10; 12; 32;  Fair ; 1; 32;  Fair ; 2; 32;  Fair ; 3; 32;  Fair ; 4; 32;  Fair ; 5; 34;  Fair ; 6; 32;  Fair ; 7; 32;  Fair ; 8; 32;  Fair ; 9; 39;  Fair ; 10; 45;  Fair ; 11; 48;  Fair ; 12; 54;  Partly Cloudy ; 1; 55;  Partly Cloudy ; 2; 57;  Fair ; 3; 59;  Fair ; 4; 59;  Mostly Cloudy ; 5; 54;  Mostly Cloudy ; 6; 46;  Mostly Cloudy ; 7; 45;  Mostly Cloudy ; 8; 41;  Mostly Cloudy ; 9; 37;  Mostly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-11; 2012-01-10; 59; 0; 
+hourlyPred; 2012-01-11; 2012-01-14; 
+dailyPred; 2012-01-11; 2012-01-14; ; ; 
+#finished 2012-01-11T10:37:50.575
+hourlyPred; 2012-01-12; 2012-01-13; 
+dailyPred; 2012-01-12; 2012-01-13; ; ; 
+hourlyActual; 2012-01-12; 2012-01-11; 12; 45;  Mostly Cloudy ; 1; 41;  Mostly Cloudy ; 2; 37;  Mostly Cloudy ; 3; 34;  Mostly Cloudy ; 4; 32;  Mostly Cloudy ; 5; 28;  Showers in the Vicinity ; 6; 23;  Light Snow ; 7; 23;  Snow and Windy ; 8; 21;  Light Snow ; 9; 19;  Light Snow ; 10; 19;  Light Snow ; 11; 18;  Light Snow ; 12; 18;  Light Snow ; 1; 18;  Light Snow ; 2; 18;  Light Snow ; 3; 16;  Mostly Cloudy ; 4; 14;  Mostly Cloudy ; 5; 12;  Mostly Cloudy ; 6; 9;  Mostly Cloudy ; 7; 9;  Mostly Cloudy ; 8; 5;  Partly Cloudy ; 9; 3;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-12; 2012-01-11; 47; 0.17; 
+hourlyPred; 2012-01-12; 2012-01-15; 
+dailyPred; 2012-01-12; 2012-01-15; ; ; 
+#finished 2012-01-12T09:45:26.795
+hourlyPred; 2012-01-13; 2012-01-14; 
+dailyPred; 2012-01-13; 2012-01-14; ; ; 
+hourlyActual; 2012-01-13; 2012-01-12; 12; 5;  Fair ; 1; 5;  Partly Cloudy ; 2; 3;  Partly Cloudy ; 3; 7;  Fair ; 4; 9;  Partly Cloudy ; 5; 15;  Partly Cloudy ; 6; 14;  Partly Cloudy ; 7; 18;  Fair ; 8; 19;  Partly Cloudy ; 9; 19;  Fair ; 10; 25;  Fair ; 11; 32;  Fair ; 12; 34;  Mostly Cloudy ; 1; 37;  Mostly Cloudy ; 2; 36;  Mostly Cloudy ; 3; 32;  Mostly Cloudy ; 4; 32;  Mostly Cloudy ; 5; 28;  Mostly Cloudy ; 6; 27;  Mostly Cloudy ; 7; 25;  Mostly Cloudy ; 8; 23;  Mostly Cloudy ; 9; 25;  Mostly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-13; 2012-01-12; 38; 0; 
+hourlyPred; 2012-01-13; 2012-01-16; 
+dailyPred; 2012-01-13; 2012-01-16; ; ; 
+#finished 2012-01-13T10:12:23.229
+hourlyPred; 2012-01-14; 2012-01-15; 
+dailyPred; 2012-01-14; 2012-01-15; ; ; 
+hourlyActual; 2012-01-14; 2012-01-13; 12; 19;  Mostly Cloudy ; 1; 19;  Mostly Cloudy ; 2; 21;  Mostly Cloudy ; 3; 23;  Mostly Cloudy ; 4; 23;  Mostly Cloudy ; 5; 27;  Mostly Cloudy ; 6; 27;  Mostly Cloudy ; 7; 28;  Mostly Cloudy ; 8; 32;  Mostly Cloudy ; 9; 34;  Mostly Cloudy ; 10; 36;  Mostly Cloudy ; 11; 39;  Mostly Cloudy ; 12; 41;  Mostly Cloudy ; 1; 41;  Mostly Cloudy and Windy ; 2; 43;  Mostly Cloudy ; 3; 43;  Partly Cloudy ; 4; 43;  Partly Cloudy ; 5; 39;  Partly Cloudy ; 6; 36;  Fair ; 7; 36;  Partly Cloudy ; 8; 37;  Fair ; 9; 30;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-14; 2012-01-13; 43; 0; 
+hourlyPred; 2012-01-14; 2012-01-17; 
+dailyPred; 2012-01-14; 2012-01-17; ; ; 
+#finished 2012-01-14T07:19:37.331
+hourlyPred; 2012-01-15; 2012-01-16; 
+dailyPred; 2012-01-15; 2012-01-16; ; ; 
+hourlyActual; 2012-01-15; 2012-01-14; 12; 34;  Fair ; 1; 36;  Partly Cloudy ; 2; 28;  Partly Cloudy ; 3; 30;  Partly Cloudy ; 4; 28;  Partly Cloudy ; 5; 30;  Partly Cloudy ; 6; 34;  Partly Cloudy ; 7; 32;  Partly Cloudy ; 8; 30;  Partly Cloudy ; 9; 36;  Partly Cloudy ; 10; 41;  Partly Cloudy ; 11; 46;  Mostly Cloudy ; 12; 48;  Mostly Cloudy ; 1; 52;  Mostly Cloudy ; 2; 54;  Mostly Cloudy ; 3; 52;  Mostly Cloudy ; 4; 52;  Mostly Cloudy ; 5; 45;  Partly Cloudy ; 6; 43;  Partly Cloudy ; 7; 45;  Partly Cloudy ; 8; 45;  Partly Cloudy ; 9; 45;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-15; 2012-01-14; 54; 0; 
+hourlyPred; 2012-01-15; 2012-01-18; 
+dailyPred; 2012-01-15; 2012-01-18; ; ; 
+#finished 2012-01-15T12:37:09.094
+hourlyPred; 2012-01-16; 2012-01-17; 
+dailyPred; 2012-01-16; 2012-01-17; ; ; 
+hourlyActual; 2012-01-16; 2012-01-15; 12; 39;  Partly Cloudy ; 1; 36;  Mostly Cloudy ; 2; 39;  Mostly Cloudy ; 3; 36;  Mostly Cloudy ; 4; 37;  Mostly Cloudy ; 5; 37;  Partly Cloudy ; 6; 37;  Partly Cloudy ; 7; 36;  Mostly Cloudy ; 8; 39;  Mostly Cloudy ; 9; 45;  Mostly Cloudy ; 10; 50;  Mostly Cloudy ; 11; 54;  Mostly Cloudy ; 12; 55;  Mostly Cloudy ; 1; 55;  Mostly Cloudy ; 2; 54;  Mostly Cloudy ; 3; 48;  Mostly Cloudy ; 4; 46;  Mostly Cloudy ; 5; 46;  Mostly Cloudy ; 6; 43;  Mostly Cloudy ; 7; 39;  Mostly Cloudy ; 8; 39;  Partly Cloudy ; 9; 39;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-16; 2012-01-15; 57; 0; 
+hourlyPred; 2012-01-16; 2012-01-19; 
+dailyPred; 2012-01-16; 2012-01-19; ; ; 
+#finished 2012-01-16T09:30:52.488
+hourlyPred; 2012-01-17; 2012-01-18; 
+dailyPred; 2012-01-17; 2012-01-18; ; ; 
+hourlyActual; 2012-01-17; 2012-01-16; 12; 39;  Partly Cloudy ; 1; 37;  Partly Cloudy ; 2; 34;  Partly Cloudy ; 3; 32;  Partly Cloudy ; 4; 32;  Partly Cloudy ; 5; 32;  Partly Cloudy ; 6; 23;  Partly Cloudy ; 7; 19;  Partly Cloudy ; 8; 19;  Mostly Cloudy ; 9; 23;  Fair ; 10; 25;  Partly Cloudy ; 11; 27;  Mostly Cloudy ; 12; 28;  Mostly Cloudy ; 1; 30;  Fair ; 2; 32;  Fair ; 3; 32;  Showers in the Vicinity ; 4; 28;  Mostly Cloudy ; 5; 27;  Mostly Cloudy ; 6; 23;  Light Snow ; 7; 21;  Light Snow ; 8; 21;  Light Snow ; 9; 19;  Light Snow ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-17; 2012-01-16; 40; 0.05; 
+hourlyPred; 2012-01-17; 2012-01-20; 
+dailyPred; 2012-01-17; 2012-01-20; ; ; 
+#finished 2012-01-17T09:26:58.511
+hourlyPred; 2012-01-18; 2012-01-19; 
+dailyPred; 2012-01-18; 2012-01-19; ; ; 
+hourlyActual; 2012-01-18; 2012-01-17; 12; 12;  Light Snow ; 1; 10;  Partly Cloudy ; 2; 7;  Partly Cloudy ; 3; 5;  Fair ; 4; 7;  Fair ; 5; 7;  Fair ; 6; 9;  Fair ; 7; 9;  Fair ; 8; 10;  Fair ; 9; 14;  Fair ; 10; 18;  Fair ; 11; 19;  Fair ; 12; 23;  Fair ; 1; 23;  Fair ; 2; 27;  Fair ; 3; 27;  Fair ; 4; 27;  Fair ; 5; 23;  Clear ; 6; 19;  Fair ; 7; 19;  Fair ; 8; 18;  Fair ; 9; 18;  Clear ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-18; 2012-01-17; 28; 0; 
+hourlyPred; 2012-01-18; 2012-01-21; 
+dailyPred; 2012-01-18; 2012-01-21; ; ; 
+#finished 2012-01-18T10:13:09.218
+hourlyPred; 2012-01-19; 2012-01-20; 
+dailyPred; 2012-01-19; 2012-01-20; ; ; 
+hourlyActual; 2012-01-19; 2012-01-18; 12; 25;  Fair ; 1; 21;  Fair ; 2; 19;  Fair ; 3; 21;  Partly Cloudy ; 4; 23;  Partly Cloudy ; 5; 25;  Mostly Cloudy ; 6; 27;  Mostly Cloudy ; 7; 28;  Mostly Cloudy ; 8; 28;  Mostly Cloudy ; 9; 32;  Cloudy ; 10; 36;  Mostly Cloudy ; 11; 41;  Mostly Cloudy ; 12; 43;  Mostly Cloudy ; 1; 43;  Mostly Cloudy ; 2; 41;  Mostly Cloudy ; 3; 41;  Mostly Cloudy ; 4; 41;  Mostly Cloudy ; 5; 39;  Mostly Cloudy ; 6; 36;  Mostly Cloudy ; 7; 32;  Mostly Cloudy ; 8; 43;  Partly Cloudy ; 9; 41;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-19; 2012-01-18; 47; 0; 
+hourlyPred; 2012-01-19; 2012-01-22; 
+dailyPred; 2012-01-19; 2012-01-22; ; ; 
+#finished 2012-01-19T10:05:40.858
+hourlyPred; 2012-01-20; 2012-01-21; 
+dailyPred; 2012-01-20; 2012-01-21; ; ; 
+hourlyActual; 2012-01-20; 2012-01-19; 12; 46;  Partly Cloudy ; 1; 48;  Partly Cloudy and Windy ; 2; 44;  Fair ; 3; 43;  Partly Cloudy ; 4; 41;  Fair ; 5; 39;  Fair ; 6; 43;  Fair ; 7; 50;  Mostly Cloudy ; 8; 50;  Mostly Cloudy ; 9; 54;  Mostly Cloudy ; 10; 55;  Mostly Cloudy ; 11; 54;  Mostly Cloudy ; 12; 55;  Mostly Cloudy ; 1; 59;  Mostly Cloudy ; 2; 61;  Mostly Cloudy ; 3; 63;  Mostly Cloudy ; 4; 61;  Mostly Cloudy ; 5; 54;  Partly Cloudy ; 6; 48;  Partly Cloudy ; 7; 52;  Partly Cloudy ; 8; 50;  Partly Cloudy ; 9; 52;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-20; 2012-01-19; 63; 0; 
+hourlyPred; 2012-01-20; 2012-01-23; 
+dailyPred; 2012-01-20; 2012-01-23; ; ; 
+#finished 2012-01-20T07:23:02.534
+hourlyPred; 2012-01-21; 2012-01-22; 
+dailyPred; 2012-01-21; 2012-01-22; ; ; 
+hourlyActual; 2012-01-21; 2012-01-20; 12; 48;  Mostly Cloudy ; 1; 52;  Partly Cloudy ; 2; 50;  Partly Cloudy ; 3; 46;  Partly Cloudy ; 4; 43;  Mostly Cloudy ; 5; 46;  Mostly Cloudy ; 6; 46;  Partly Cloudy ; 7; 41;  Mostly Cloudy ; 8; 45;  Mostly Cloudy ; 9; 41;  Partly Cloudy ; 10; 50;  Fair ; 11; 54;  Partly Cloudy ; 12; 54;  Mostly Cloudy ; 1; 54;  Partly Cloudy ; 2; 48;  Mostly Cloudy and Windy ; 3; 50;  Partly Cloudy ; 4; 50;  Partly Cloudy ; 5; 46;  Fair ; 6; 41;  Fair ; 7; 41;  Fair ; 8; 39;  Partly Cloudy ; 9; 37;  Partly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-21; 2012-01-20; 54; 0; 
+hourlyPred; 2012-01-21; 2012-01-24; 
+dailyPred; 2012-01-21; 2012-01-24; ; ; 
+#finished 2012-01-21T10:09:13.417
+hourlyPred; 2012-01-22; 2012-01-23; 
+dailyPred; 2012-01-22; 2012-01-23; ; ; 
+hourlyActual; 2012-01-22; 2012-01-21; 12; 37;  Mostly Cloudy ; 1; 37;  Mostly Cloudy ; 2; 37;  Mostly Cloudy ; 3; 40;  Fair ; 4; 39;  Partly Cloudy ; 5; 41;  Partly Cloudy ; 6; 41;  Partly Cloudy ; 7; 41;  Mostly Cloudy ; 8; 41;  Mostly Cloudy ; 9; 46;  Mostly Cloudy ; 10; 50;  Mostly Cloudy ; 11; 52;  Mostly Cloudy ; 12; 57;  Mostly Cloudy ; 1; 61;  Mostly Cloudy ; 2; 63;  Mostly Cloudy ; 3; 63;  Mostly Cloudy ; 4; 61;  Mostly Cloudy ; 5; 59;  Mostly Cloudy ; 6; 54;  Mostly Cloudy ; 7; 50;  Mostly Cloudy ; 8; 50;  Mostly Cloudy ; 9; 46;  Mostly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-22; 2012-01-21; 63; 0; 
+hourlyPred; 2012-01-22; 2012-01-25; 
+dailyPred; 2012-01-22; 2012-01-25; ; ; 
+#finished 2012-01-22T10:38:36.710
+hourlyPred; 2012-01-23; 2012-01-24; 
+dailyPred; 2012-01-23; 2012-01-24; ; ; 
+hourlyActual; 2012-01-23; 2012-01-22; 12; 37;  Mostly Cloudy ; 1; 39;  Mostly Cloudy ; 2; 37;  Mostly Cloudy ; 3; 37;  Partly Cloudy ; 4; 39;  Mostly Cloudy ; 5; 39;  Showers in the Vicinity ; 6; 37;  Showers in the Vicinity ; 7; 39;  Cloudy ; 8; 39;  Showers in the Vicinity ; 9; 37;  Showers in the Vicinity ; 10; 39;  Showers in the Vicinity ; 11; 41;  Mostly Cloudy ; 12; 43;  Mostly Cloudy and Windy ; 1; 45;  Fair ; 2; 45;  Fair ; 3; 43;  Fair and Windy ; 4; 39;  Fair ; 5; 37;  Fair and Windy ; 6; 36;  Fair ; 7; 34;  Clear ; 8; 34;  Fair ; 9; 32;  Clear ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-23; 2012-01-22; 45; 0; 
+hourlyPred; 2012-01-23; 2012-01-26; 
+dailyPred; 2012-01-23; 2012-01-26; ; ; 
+#finished 2012-01-23T09:30:51.820
+hourlyPred; 2012-01-24; 2012-01-25; 
+dailyPred; 2012-01-24; 2012-01-25; ; ; 
+hourlyActual; 2012-01-24; 2012-01-23; 12; 27;  Fair ; 1; 27;  Partly Cloudy ; 2; 28;  Partly Cloudy ; 3; 32;  Partly Cloudy ; 4; 28;  Fair ; 5; 28;  Fair ; 6; 32;  Partly Cloudy ; 7; 32;  Partly Cloudy ; 8; 32;  Mostly Cloudy ; 9; 34;  Mostly Cloudy ; 10; 41;  Mostly Cloudy ; 11; 46;  Mostly Cloudy ; 12; 46;  Mostly Cloudy ; 1; 45;  Mostly Cloudy ; 2; 48;  Mostly Cloudy ; 3; 48;  Partly Cloudy ; 4; 46;  Partly Cloudy ; 5; 46;  Fair ; 6; 36;  Fair ; 7; 32;  Fair ; 8; 32;  Fair ; 9; 32;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-24; 2012-01-23; 48; 0; 
+hourlyPred; 2012-01-24; 2012-01-27; 
+dailyPred; 2012-01-24; 2012-01-27; ; ; 
+#finished 2012-01-24T08:30:50.797
+hourlyPred; 2012-01-25; 2012-01-26; 
+dailyPred; 2012-01-25; 2012-01-26; ; ; 
+hourlyActual; 2012-01-25; 2012-01-24; 12; 32;  Mostly Cloudy ; 1; 32;  Mostly Cloudy ; 2; 32;  Mostly Cloudy ; 3; 32;  Mostly Cloudy ; 4; 32;  Mostly Cloudy ; 5; 32;  Cloudy ; 6; 32;  Cloudy ; 7; 32;  Cloudy ; 8; 32;  Mostly Cloudy ; 9; 32;  Showers in the Vicinity ; 10; 32;  Light Snow ; 11; 30;  Light Snow ; 12; 30;  Light Snow ; 1; 32;  Cloudy ; 2; 32;  Cloudy ; 3; 32;  Cloudy ; 4; 32;  Cloudy ; 5; 32;  Mostly Cloudy ; 6; 32;  Mostly Cloudy ; 7; 28;  Partly Cloudy ; 8; 27;  Fair ; 9; 23;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-25; 2012-01-24; 34; 0; 
+hourlyPred; 2012-01-25; 2012-01-28; 
+dailyPred; 2012-01-25; 2012-01-28; ; ; 
+#finished 2012-01-25T09:20:06.304
+hourlyPred; 2012-01-26; 2012-01-27; 
+dailyPred; 2012-01-26; 2012-01-27; ; ; 
+hourlyActual; 2012-01-26; 2012-01-25; 12; 21;  Fair ; 1; 21;  Clear ; 2; 21;  Clear ; 3; 23;  Clear ; 4; 25;  Fair ; 5; 25;  Fair ; 6; 25;  Fair ; 7; 25;  Partly Cloudy ; 8; 27;  Mostly Cloudy ; 9; 34;  Mostly Cloudy ; 10; 43;  Mostly Cloudy ; 11; 50;  Mostly Cloudy ; 12; 57;  Partly Cloudy ; 1; 59;  Partly Cloudy ; 2; 61;  Mostly Cloudy ; 3; 61;  Mostly Cloudy ; 4; 59;  Mostly Cloudy ; 5; 55;  Mostly Cloudy and Windy ; 6; 50;  Mostly Cloudy ; 7; 48;  Partly Cloudy ; 8; 46;  Partly Cloudy ; 9; 45;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-26; 2012-01-25; 61; 0; 
+hourlyPred; 2012-01-26; 2012-01-29; 
+dailyPred; 2012-01-26; 2012-01-29; ; ; 
+#finished 2012-01-26T09:37:59.357
+hourlyPred; 2012-01-27; 2012-01-28; 
+dailyPred; 2012-01-27; 2012-01-28; ; ; 
+hourlyActual; 2012-01-27; 2012-01-26; 12; 45;  Partly Cloudy ; 1; 43;  Partly Cloudy ; 2; 41;  Fair ; 3; 41;  Fair ; 4; 41;  Fair ; 5; 41;  Fair ; 6; 39;  Fair ; 7; 39;  Fair ; 8; 37;  Fair ; 9; 43;  Fair ; 10; 45;  Fair ; 11; 50;  Fair ; 12; 52;  Fair ; 1; 54;  Fair ; 2; 54;  Mostly Cloudy ; 3; 55;  Mostly Cloudy ; 4; 55;  Mostly Cloudy ; 5; 50;  Mostly Cloudy ; 6; 43;  Mostly Cloudy ; 7; 41;  Mostly Cloudy ; 8; 36;  Mostly Cloudy ; 9; 36;  Mostly Cloudy ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-27; 2012-01-26; 55; 0; 
+hourlyPred; 2012-01-27; 2012-01-30; 
+dailyPred; 2012-01-27; 2012-01-30; ; ; 
+#finished 2012-01-27T10:24:01.287
+hourlyPred; 2012-01-28; 2012-01-29; 
+dailyPred; 2012-01-28; 2012-01-29; ; ; 
+hourlyActual; 2012-01-28; 2012-01-27; 12; 41;  Partly Cloudy ; 1; 37;  Mostly Cloudy ; 2; 39;  Cloudy ; 3; 38;  Partly Cloudy ; 4; 41;  Partly Cloudy ; 5; 38;  Partly Cloudy ; 6; 34;  Fair ; 7; 28;  Mostly Cloudy ; 8; 28;  Mostly Cloudy ; 9; 28;  Light Snow ; 10; 27;  Light Snow ; 11; 27;  Light Snow ; 12; 28;  Light Snow ; 1; 27;  Light Snow ; 2; 28;  Mostly Cloudy ; 3; 28;  Mostly Cloudy ; 4; 28;  Partly Cloudy ; 5; 27;  Partly Cloudy ; 6; 23;  Partly Cloudy ; 7; 23;  Partly Cloudy ; 8; 21;  Fair ; 9; 18;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-28; 2012-01-27; 43; 0.08; 
+hourlyPred; 2012-01-28; 2012-01-31; 
+dailyPred; 2012-01-28; 2012-01-31; ; ; 
+#finished 2012-01-28T01:27:50.016

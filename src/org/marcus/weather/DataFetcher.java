@@ -110,9 +110,9 @@ public class DataFetcher {
 
 	private void wundergroundFuture() throws IOException, InterruptedException {
 		getOverallForecast();
-		getHourlyForecast(this.dayNumber1, this.hf1,
+		this.hf1 = getHourlyForecast(this.dayNumber1,
 				MakeURL.hourlyURL(this.zip, 1));
-		getHourlyForecast(this.dayNumber3, this.hf3,
+		this.hf1 = getHourlyForecast(this.dayNumber3,
 				MakeURL.hourlyURL(this.zip, 3));
 
 		this.forecast1 = new ForecastData(this.zip, this.date, this.of1,
@@ -121,36 +121,39 @@ public class DataFetcher {
 				this.hf3);
 	}
 
-	private void getHourlyForecast(int dayNumber, HourlyForecast[] hf,
-			String surl) throws IOException {
+	private HourlyForecast[] getHourlyForecast(int dayNumber, String surl)
+			throws IOException {
+		HourlyForecast[] hf = null;
 		for (int tries = 0; tries < 7; tries++) {
 			File outFile;
 			FileWriter fileWriter;
 			SimpleDateFormat format = new SimpleDateFormat(
 					"yyyyMMdd'T'kkmmssSSS");
+			
 			outFile = new File("test/test"
 					+ format.format(Calendar.getInstance().getTime())
 					+ "overall.html");
 			fileWriter = new FileWriter(outFile, false);
 			PrintWriter out = new PrintWriter(fileWriter, true);
 			out.println(MakeURL.overallURL(this.zip));
+			
 			InputStreamReader webStream = null;
 			try {
 				URL url = new URL(surl);
 				webStream = new InputStreamReader(url.openStream());
 				LineReader lineReader = new LineReader(webStream, out);
-
+				
 				// get hours-store in times
 
 				lineReader.skipTo("contentTable borderTop");
 				lineReader.skipTo("taC");
 				Integer[] times = new Integer[20];
 				int timesLen = 0;
+				
 				while (lineReader.line.contains("taC")) {
 					String s = lineReader.getStuff();
 					try {
-						times[timesLen] = Integer.valueOf(lineReader.line
-								.split("&")[0]);
+						times[timesLen] = Integer.valueOf(s.split("&")[0]);
 						if (times[timesLen] == 12)
 							times[timesLen] = 0;
 						if (s.endsWith("PM"))
@@ -161,6 +164,7 @@ public class DataFetcher {
 					}
 					lineReader.readLine();
 				}
+				
 				hf = new HourlyForecast[timesLen];
 
 				int i = 0;
@@ -177,12 +181,12 @@ public class DataFetcher {
 					}
 					lineReader.skipTo("/td");
 					lineReader.readLine();
+					i++;
 				}
-
+				
 				i = 0;
 				lineReader.skipTo("Probability of Precipitation");
-				lineReader.readLine();
-				lineReader.readLine();
+				lineReader.skipTo("taC");
 				Integer[] precips = new Integer[20];
 				while (lineReader.line.contains("taC")) {
 					lineReader.readLine();
@@ -198,7 +202,7 @@ public class DataFetcher {
 					lineReader.readLine();
 					lineReader.readLine();
 				}
-
+				
 				for (i = 0; i < timesLen; i++) {
 					hf[i] = new HourlyForecast(times[i], temps[i], precips[i]);
 				}
@@ -207,7 +211,8 @@ public class DataFetcher {
 				fileWriter.close();
 				outFile.delete();
 				webStream.close();
-				return;
+				return hf;
+
 			} catch (NullPointerException e) {
 				if (tries != 6) {
 					out.close();
@@ -217,9 +222,11 @@ public class DataFetcher {
 							+ this.zip + " for day " + dayNumber + ".");
 					if (hf == null)
 						hf = new HourlyForecast[0];
+					return hf;
 				}
 			}
 		}
+		return hf;
 	}
 
 	private void getOverallForecast() throws IOException {
@@ -233,39 +240,44 @@ public class DataFetcher {
 					+ "overall.html");
 			fileWriter = new FileWriter(outFile, false);
 			PrintWriter out = new PrintWriter(fileWriter, true);
-			out.println(MakeURL.overallURL(this.zip));
+			String overallURL = MakeURL.overallURL(this.zip);
+			out.println(overallURL);
+
 			InputStreamReader webStream = null;
 			try {
-				URL url = new URL(MakeURL.overallURL(this.zip));
+				URL url = new URL(overallURL);
 				webStream = new InputStreamReader(url.openStream());
 				LineReader lineReader = new LineReader(webStream, out);
-
-				lineReader.skipTo(this.zip);
-				lineReader.readLine();
+				
+				of1 = new OverallForecast();
+				of3 = new OverallForecast();
+				
+				lineReader.skipTo("7-Day Weather");
 				lineReader.skipTo("fct_day_" + dayNumber1);
 				lineReader.skipTo("class=\"b");
 				this.of1.high = lineReader.getIntStuff();
 				lineReader.skipTo("popValue");
 				String stuff = lineReader.getStuff();
-				if (stuff.indexOf(stuff.length() - 1) == '%') {
+				if (stuff.endsWith("%")) {
 					this.of1.PoP = Integer.valueOf(stuff.substring(0,
 							stuff.length() - 1));
 				}
-
+				
 				lineReader.skipTo("fct_day_" + dayNumber3);
 				lineReader.skipTo("class=\"b");
 				this.of3.high = lineReader.getIntStuff();
 				lineReader.skipTo("popValue");
 				stuff = lineReader.getStuff();
-				if (stuff.indexOf(stuff.length() - 1) == '%') {
+				if (stuff.endsWith("%")) {
 					this.of3.PoP = Integer.valueOf(stuff.substring(0,
 							stuff.length() - 1));
 				}
-
+				
 				out.close();
 				fileWriter.close();
 				outFile.delete();
 				webStream.close();
+				
 				return;
 			} catch (NullPointerException e) {
 				if (tries != 6) {
@@ -337,16 +349,15 @@ public class DataFetcher {
 	}
 
 	private void getPastWData(LineReader reader) throws IOException, Exception {
-
 		for (int i = 0; i < 24; i++) {
 			this.hp[i] = new HourlyPast(i);
 		}
 		this.op = new OverallPast();
-
+		
 		Float snow = null;
 
 		reader.skipTo("contentData");
-
+		
 		reader.skipTo("<tbody>");
 		reader.readLine();
 		while (reader.line.contains("<tr")) {
@@ -371,7 +382,7 @@ public class DataFetcher {
 			reader.skipTo("/tr");
 			reader.readLine();
 		}
-
+		
 		if ((this.op.precip != null && snow != null)) {
 			this.op.precip = this.op.precip + snow;
 		} else if (this.op.precip != null) {

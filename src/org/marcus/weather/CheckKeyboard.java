@@ -25,8 +25,10 @@ public class CheckKeyboard implements Runnable {
 			line = br.readLine();
 		} catch (IOException e) {
 		}
-		if (line.equalsIgnoreCase("c"))
-			setStopProgram(false);
+		if (line.equalsIgnoreCase("c")){
+			setStopProgram(true);
+			System.out.println("quitting...");
+		}
 	}
 
 }

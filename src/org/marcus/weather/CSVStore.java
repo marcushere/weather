@@ -90,10 +90,10 @@ public class CSVStore {
 					str = str + past.hourlyPast[i].temp.toString();
 				str = str + ",";
 				if (past.hourlyPast[i].conditions != null)
-					str = past.hourlyPast[i].conditions;
+					str = str + past.hourlyPast[i].conditions;
 				str = str + ",";
 				if (past.hourlyPast[i].precip != null)
-					str = past.hourlyPast[i].precip.toString();
+					str = str + past.hourlyPast[i].precip.toString();
 				str = str + ",";
 				HAout.println(str);
 			}

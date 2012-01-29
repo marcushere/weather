@@ -100,11 +100,12 @@ public class DataFetcher {
 
 	public DataFetcher() throws Exception {
 		Calendar cal = Calendar.getInstance();
-		this.date = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		this.date = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*1);
-		this.date1 = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		this.date1 = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*2);
-		this.date3 = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		this.date3 = format.format(cal.getTime());
 		cal = Calendar.getInstance();
 		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
 		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR);
@@ -344,7 +345,7 @@ public class DataFetcher {
 
 	private void wundergroundPast() throws Exception {
 		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(cal.getTimeInMillis() - 1000 * 3600 * 24);
+		cal.setTimeInMillis(cal.getTimeInMillis() - DAY_IN_MILLIS);
 		wundergroundPast(cal.getTime());
 	}
 
@@ -366,7 +367,7 @@ public class DataFetcher {
 
 				webStream = new InputStreamReader(url.openStream());
 				getPastWData(new LineReader(webStream, out));
-				this.past = new PastData(this.zip, this.date, this.op, this.hp);
+				this.past = new PastData(this.zip, new SimpleDateFormat("yyyy-MM-dd").format(date), this.op, this.hp);
 
 				webStream.close();
 				out.close();

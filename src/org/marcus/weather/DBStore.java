@@ -33,6 +33,7 @@ public class DBStore {
 	public void storeForecast(ForecastData forecast) throws Exception {
 		try {
 			if (forecast.hourlyForecast != null) {
+				if (forecast.zip.equalsIgnoreCase("denver,co")) forecast.zip = "80201";
 				for (int i = 0; i < forecast.hourlyForecast.length; i++) {
 					insertHF.setString(1, forecast.zip);
 					insertHF.setTime(2, new java.sql.Time(Calendar
@@ -93,6 +94,7 @@ public class DBStore {
 	public void storePast(PastData past) throws Exception {
 		try {
 			if (past.hourlyPast != null) {
+				if (past.zip.equalsIgnoreCase("denver,co")) past.zip = "80201";
 				for (int i = 0; i < past.hourlyPast.length; i++) {
 					insertHA.setString(1, past.zip);
 					insertHA.setTime(2, new java.sql.Time(Calendar

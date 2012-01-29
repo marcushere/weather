@@ -26,14 +26,18 @@ public class WeatherRecorder {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("-csv")) {
 					useDB = false;
+				} else if (args[i].equals("help")) {
+					System.out
+							.println("Arguments are: -csv to write to csv files");
 				}
 			}
 		}
-		if (debug) System.out.println(1);
+		if (debug)
+			System.out.println(1);
 		try {
 			String[] zips = null;
 			try {
-				if (hasRunToday()){
+				if (hasRunToday()) {
 					System.exit(0);
 				}
 				zips = getZips();
@@ -41,8 +45,9 @@ public class WeatherRecorder {
 				System.exit(1);
 			}
 			int i = 0;
-			
-			if (debug) System.out.println(2);
+
+			if (debug)
+				System.out.println(2);
 
 			DBStore db = null;
 			if (useDB)
@@ -50,11 +55,13 @@ public class WeatherRecorder {
 			CSVStore csv = null;
 			if (!useDB)
 				csv = new CSVStore();
-			
-			if (debug) System.out.println(3);
+
+			if (debug)
+				System.out.println(3);
 
 			try {
-				db.open();
+				if (useDB)
+					db.open();
 			} catch (Exception e) {
 				FileWriter fileWriter;
 				fileWriter = new FileWriter(LOG_NAME, false);
@@ -66,9 +73,10 @@ public class WeatherRecorder {
 				printError(e, zips[i]);
 				System.exit(2);
 			}
-			
-			if (debug) System.out.println(4);
-			
+
+			if (debug)
+				System.out.println(4);
+
 			try {
 				DataFetcher df = new DataFetcher(debug);
 				for (i = 0; i < zips.length; i++) {
@@ -89,10 +97,12 @@ public class WeatherRecorder {
 						throw new NullPointerException();
 					}
 				}
-				
-				if (debug) System.out.println(5);
-				
-				db.close();
+
+				if (debug)
+					System.out.println(5);
+
+				if (useDB)
+					db.close();
 				FileWriter fileWriter = new FileWriter(LOG_NAME, false);
 				PrintWriter out = new PrintWriter(fileWriter, true);
 				out.print("ok " + getYMDFormatter().format(new Date()));
@@ -102,8 +112,10 @@ public class WeatherRecorder {
 			} catch (Exception e) {
 				FileWriter fileWriter;
 				try {
-					db.commit();
-					db.close();
+					if (useDB) {
+						db.commit();
+						db.close();
+					}
 					fileWriter = new FileWriter(LOG_NAME, false);
 					PrintWriter out = new PrintWriter(fileWriter, true);
 
@@ -141,7 +153,7 @@ public class WeatherRecorder {
 		if (pieces.length == 2 && pieces[0].equals("ok")) {
 			String now = getYMDFormatter().format(new Date());
 			if (pieces[1].equals(now)) {
-//				return true;
+				 return true;
 			} else if (hour > 4) {
 				return false;
 			}
@@ -152,12 +164,18 @@ public class WeatherRecorder {
 	private static String[] getZips() throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(LOG_NAME));
 		String line = br.readLine();
-		String[] splitted = line.split(" ");
 		String lastZip = "";
-		if (splitted.length > 2)
-			lastZip = splitted[2];
-		if (splitted[1].equals(getYMDFormatter().format(new Date())))
+		if (line == null) {
 			lastZip = "";
+		} else {
+			String[] splitted = line.split(" ");
+
+			if (splitted.length > 2) {
+				lastZip = splitted[2];
+			} else if (splitted[1].equals(getYMDFormatter().format(new Date()))) {
+				lastZip = "";
+			}
+		}
 
 		boolean pastLastZip = false;
 		br = new BufferedReader(new FileReader(ZIPS_FILE));
@@ -177,8 +195,10 @@ public class WeatherRecorder {
 					line = line + " " + read;
 				}
 			} else if (!lastZip.isEmpty() && !pastLastZip) {
-				if (line.contains(lastZip))
+				if (read.equals(lastZip)){
 					pastLastZip = true;
+					line = read;
+				}
 			}
 			read = br.readLine();
 		}

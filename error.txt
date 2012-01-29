@@ -1174,3 +1174,57 @@ Caused by: java.lang.NumberFormatException: For input string: " 1px solid "
 	at java.net.URLStreamHandler.parseURL(Unknown Source)
 	... 8 more
 For input string: " 1px solid "
+error 2012-01-29T13:28:01.731 denver,co
+com.microsoft.sqlserver.jdbc.SQLServerException: String or binary data would be truncated.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:390)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:340)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:308)
+	at org.marcus.weather.DBStore.storeForecast(DBStore.java:53)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:78)
+String or binary data would be truncated.
+error 2012-01-29T14:03:03.435 36101
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:59)
+null
+error 2012-01-29T14:03:13.916 36101
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:59)
+null
+error 2012-01-29T14:03:26.178 36101
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:59)
+null
+error 2012-01-29T14:08:45.971 99801
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:09:08.381 99801
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:18:30.417 85001
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:19:32.401 55123
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:27:40.645 32301
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:31:22.501 04330
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T14:34:01.487 39201
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null

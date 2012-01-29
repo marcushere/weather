@@ -92,37 +92,59 @@ public class DataFetcher {
 	private OverallForecast of1;
 	private HourlyForecast[] hf3;
 	private OverallForecast of3;
+	private String date1;
+	private String date3;
+	private boolean debug = false;
+	
+	private static final int DAY_IN_MILLIS = 3600*24*1000;
 
-	public DataFetcher(String zipCode) throws Exception {
-		zip = zipCode;
-		this.date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar
-				.getInstance().getTime());
-		this.time = new SimpleDateFormat("kk:mm:ss").format(Calendar
-				.getInstance().getTime());
+	public DataFetcher() throws Exception {
 		Calendar cal = Calendar.getInstance();
+		this.date = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*1);
+		this.date1 = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*2);
+		this.date3 = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		cal = Calendar.getInstance();
+		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
 		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR);
 		dayNumber3 = dayNumber1 + 2;
+	}
+
+	public DataFetcher (boolean debug) throws Exception {
+		this();
+		this.debug  = debug;
+	}
+
+	public void load(String zipCode) throws IOException, InterruptedException,
+			Exception {
+		zip = zipCode;
 		wundergroundFuture();
 		wundergroundPast();
 
 		valid = true;
 	}
-
+	
 	private void wundergroundFuture() throws IOException, InterruptedException {
+		if(debug) System.out.println("1");
 		getOverallForecast();
+		if(debug) System.out.println("2");
 		this.hf1 = getHourlyForecast(this.dayNumber1,
 				MakeURL.hourlyURL(this.zip, 1));
-		this.hf1 = getHourlyForecast(this.dayNumber3,
+		if(debug) System.out.println("3");
+		this.hf3 = getHourlyForecast(this.dayNumber3,
 				MakeURL.hourlyURL(this.zip, 3));
+		if(debug) System.out.println("4");
 
-		this.forecast1 = new ForecastData(this.zip, this.date, this.of1,
+		this.forecast1 = new ForecastData(this.zip, this.date1, this.of1,
 				this.hf1);
-		this.forecast3 = new ForecastData(this.zip, this.date, this.of3,
+		this.forecast3 = new ForecastData(this.zip, this.date3, this.of3,
 				this.hf3);
 	}
 
 	private HourlyForecast[] getHourlyForecast(int dayNumber, String surl)
 			throws IOException {
+		if(debug) System.out.println("2.1");
 		HourlyForecast[] hf = null;
 		for (int tries = 0; tries < 7; tries++) {
 			File outFile;
@@ -137,11 +159,15 @@ public class DataFetcher {
 			PrintWriter out = new PrintWriter(fileWriter, true);
 			out.println(MakeURL.overallURL(this.zip));
 			
+			if(debug) System.out.println("2.2");
+			
 			InputStreamReader webStream = null;
 			try {
 				URL url = new URL(surl);
 				webStream = new InputStreamReader(url.openStream());
 				LineReader lineReader = new LineReader(webStream, out);
+				
+				if(debug) System.out.println("2.3");
 				
 				// get hours-store in times
 
@@ -149,6 +175,8 @@ public class DataFetcher {
 				lineReader.skipTo("taC");
 				Integer[] times = new Integer[20];
 				int timesLen = 0;
+				
+				if(debug) System.out.println("2.4");
 				
 				while (lineReader.line.contains("taC")) {
 					String s = lineReader.getStuff();
@@ -164,6 +192,8 @@ public class DataFetcher {
 					}
 					lineReader.readLine();
 				}
+				
+				if(debug) System.out.println("2.5");
 				
 				hf = new HourlyForecast[timesLen];
 
@@ -184,6 +214,8 @@ public class DataFetcher {
 					i++;
 				}
 				
+				if(debug) System.out.println("2.6");
+				
 				i = 0;
 				lineReader.skipTo("Probability of Precipitation");
 				lineReader.skipTo("taC");
@@ -203,6 +235,8 @@ public class DataFetcher {
 					lineReader.readLine();
 				}
 				
+				if(debug) System.out.println("2.7");
+				
 				for (i = 0; i < timesLen; i++) {
 					hf[i] = new HourlyForecast(times[i], temps[i], precips[i]);
 				}
@@ -211,6 +245,9 @@ public class DataFetcher {
 				fileWriter.close();
 				outFile.delete();
 				webStream.close();
+				
+				if(debug) System.out.println("2.8");
+				
 				return hf;
 
 			} catch (NullPointerException e) {
@@ -231,6 +268,7 @@ public class DataFetcher {
 
 	private void getOverallForecast() throws IOException {
 		for (int tries = 0; tries < 7; tries++) {
+			if(debug) System.out.println("1.1");
 			File outFile;
 			FileWriter fileWriter;
 			SimpleDateFormat format = new SimpleDateFormat(
@@ -240,9 +278,12 @@ public class DataFetcher {
 					+ "overall.html");
 			fileWriter = new FileWriter(outFile, false);
 			PrintWriter out = new PrintWriter(fileWriter, true);
+			if(debug) System.out.println("1.1.1");
 			String overallURL = MakeURL.overallURL(this.zip);
 			out.println(overallURL);
 
+			if(debug) System.out.println("1.2");
+			
 			InputStreamReader webStream = null;
 			try {
 				URL url = new URL(overallURL);
@@ -251,6 +292,8 @@ public class DataFetcher {
 				
 				of1 = new OverallForecast();
 				of3 = new OverallForecast();
+				
+				if(debug) System.out.println("1.3");
 				
 				lineReader.skipTo("7-Day Weather");
 				lineReader.skipTo("fct_day_" + dayNumber1);
@@ -263,6 +306,8 @@ public class DataFetcher {
 							stuff.length() - 1));
 				}
 				
+				if(debug) System.out.println("1.4");
+				
 				lineReader.skipTo("fct_day_" + dayNumber3);
 				lineReader.skipTo("class=\"b");
 				this.of3.high = lineReader.getIntStuff();
@@ -272,6 +317,8 @@ public class DataFetcher {
 					this.of3.PoP = Integer.valueOf(stuff.substring(0,
 							stuff.length() - 1));
 				}
+				
+				if(debug) System.out.println("1.5");
 				
 				out.close();
 				fileWriter.close();
@@ -320,12 +367,6 @@ public class DataFetcher {
 				webStream = new InputStreamReader(url.openStream());
 				getPastWData(new LineReader(webStream, out));
 				this.past = new PastData(this.zip, this.date, this.op, this.hp);
-
-				// System.out.println(op.high + ", " + op.precip);
-				// for (int i = 0; i < 24; i++) {
-				// System.out.println(hp[i].hour + ", " + hp[i].temp
-				// + ", " + hp[i].precip + ", " + hp[i].conditions);
-				// }
 
 				webStream.close();
 				out.close();

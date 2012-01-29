@@ -1132,3 +1132,10 @@ dailyActual; 2012-01-28; 2012-01-27; 60; 0;
 hourlyPred; 2012-01-28; 2012-01-31; 12; 49; 10; 6; 45; 10; 12; 58; 30; 6; 58; 30; 
 dailyPred; 2012-01-28; 2012-01-31; 63; 30; 
 #finished 2012-01-28T01:27:46.303
+hourlyPred; 2012-01-29; 2012-01-30; 12; 43; 0; 3; 40; 0; 6; 40; 0; 9; 45; 0; 12; 58; 0; 3; 65; 0; 6; 59; 0; 9; 54; 10; 
+dailyPred; 2012-01-29; 2012-01-30; 65; 0; 
+hourlyActual; 2012-01-29; 2012-01-28; 12; 50;  Cloudy ; 1; 48;  Partly Cloudy ; 2; 45;  Fair ; 3; 50;  Clear ; 4; 47;  Fair ; 5; 44;  Mostly Cloudy ; 6; 42;  Partly Cloudy ; 7; 40;  Mostly Cloudy ; 8; 39;  Mostly Cloudy ; 9; 40;  Mostly Cloudy ; 10; 44;  Mostly Cloudy ; 11; 46;  Mostly Cloudy ; 12; 49;  Mostly Cloudy ; 1; 50;  Mostly Cloudy ; 2; 51;  Mostly Cloudy ; 3; 52;  Cloudy ; 4; 50;  Mostly Cloudy ; 5; 48;  Mostly Cloudy ; 6; 46;  Mostly Cloudy ; 7; 41;  Partly Cloudy ; 8; 36;  Fair ; 9; 37;  Fair ; 10; ;  ; 11; ;  ; 
+dailyActual; 2012-01-29; 2012-01-28; 52; 0; 
+hourlyPred; 2012-01-29; 2012-02-01; 12; 58; 30; 6; 56; 30; 12; 63; 30; 6; 61; 30; 
+dailyPred; 2012-01-29; 2012-02-01; 67; 30; 
+#finished 2012-01-29T11:17:50.082

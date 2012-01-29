@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 
 public class CheckKeyboard implements Runnable {
 
-	private volatile boolean stop = false;
+	private volatile boolean stopProgram = false;
 
-	public synchronized boolean isStop() {
-		return stop;
+	public synchronized boolean isStopProgram() {
+		return stopProgram;
 	}
 
-	private synchronized void setStop(boolean stop) {
-		this.stop = stop;
+	private synchronized void setStopProgram(boolean stop) {
+		this.stopProgram = stop;
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class CheckKeyboard implements Runnable {
 		} catch (IOException e) {
 		}
 		if (line.equalsIgnoreCase("c"))
-			setStop(false);
+			setStopProgram(false);
 	}
 
 }

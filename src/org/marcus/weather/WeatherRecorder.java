@@ -15,6 +15,7 @@ public class WeatherRecorder {
 	private static final String LOG_NAME = "log.txt";
 	private static final String ZIPS_FILE = "zips.txt";
 	private static final String ERROR_NAME = "error.txt";
+	private static final boolean debug = false;
 
 	public static void main(String[] args) {
 		CheckKeyboard ck = new CheckKeyboard();
@@ -28,16 +29,20 @@ public class WeatherRecorder {
 				}
 			}
 		}
+		if (debug) System.out.println(1);
 		try {
-			String[] zips;
+			String[] zips = null;
 			try {
-				if (hasRunToday())
-					return;
+				if (hasRunToday()){
+					System.exit(0);
+				}
 				zips = getZips();
 			} catch (IOException e) {
-				return;
+				System.exit(1);
 			}
 			int i = 0;
+			
+			if (debug) System.out.println(2);
 
 			DBStore db = null;
 			if (useDB)
@@ -45,6 +50,8 @@ public class WeatherRecorder {
 			CSVStore csv = null;
 			if (!useDB)
 				csv = new CSVStore();
+			
+			if (debug) System.out.println(3);
 
 			try {
 				db.open();
@@ -57,12 +64,16 @@ public class WeatherRecorder {
 
 				out.close();
 				printError(e, zips[i]);
-				return;
+				System.exit(2);
 			}
+			
+			if (debug) System.out.println(4);
+			
 			try {
-				for (i = 0; i < zips.length && !ck.isStop(); i++) {
+				DataFetcher df = new DataFetcher(debug);
+				for (i = 0; i < zips.length; i++) {
 					System.out.println(zips[i]);
-					DataFetcher df = new DataFetcher(zips[i]);
+					df.load(zips[i]);
 					if (df.valid && useDB) {
 						db.storeForecast(df.forecast1);
 						db.storeForecast(df.forecast3);
@@ -73,13 +84,21 @@ public class WeatherRecorder {
 						csv.storeForecast(df.forecast3);
 						csv.storePast(df.past);
 					}
+					if (ck.isStopProgram()) {
+						i++;
+						throw new NullPointerException();
+					}
 				}
+				
+				if (debug) System.out.println(5);
+				
 				db.close();
 				FileWriter fileWriter = new FileWriter(LOG_NAME, false);
 				PrintWriter out = new PrintWriter(fileWriter, true);
 				out.print("ok " + getYMDFormatter().format(new Date()));
 				out.close();
 				fileWriter.close();
+				System.exit(0);
 			} catch (Exception e) {
 				FileWriter fileWriter;
 				try {
@@ -101,10 +120,12 @@ public class WeatherRecorder {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				System.exit(3);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(4);
 		}
 
 	}
@@ -120,7 +141,7 @@ public class WeatherRecorder {
 		if (pieces.length == 2 && pieces[0].equals("ok")) {
 			String now = getYMDFormatter().format(new Date());
 			if (pieces[1].equals(now)) {
-				return true;
+//				return true;
 			} else if (hour > 4) {
 				return false;
 			}

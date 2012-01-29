@@ -1123,3 +1123,54 @@ java.net.UnknownHostException: www.wunderground.com
 	at org.marcus.weather.WeatherRecorder.grabData(WeatherRecorder.java:160)
 	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:27)
 www.wunderground.com
+error 2012-01-28T12:09:18.131 04330
+java.net.MalformedURLException: For input string: " 1px solid "
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:29)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:243)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:112)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:105)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:75)
+Caused by: java.lang.NumberFormatException: For input string: " 1px solid "
+	at java.lang.NumberFormatException.forInputString(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.net.URLStreamHandler.parseURL(Unknown Source)
+	... 8 more
+For input string: " 1px solid "
+error 2012-01-28T12:25:50.870 04330
+java.net.MalformedURLException: For input string: " 1px solid "
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:29)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:250)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:119)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:112)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:75)
+Caused by: java.lang.NumberFormatException: For input string: " 1px solid "
+	at java.lang.NumberFormatException.forInputString(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.net.URLStreamHandler.parseURL(Unknown Source)
+	... 8 more
+For input string: " 1px solid "
+error 2012-01-28T12:37:04.143 04330
+java.net.MalformedURLException: For input string: " 1px solid "
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at java.net.URL.<init>(Unknown Source)
+	at org.marcus.weather.MakeURL.overallURL(MakeURL.java:28)
+	at org.marcus.weather.DataFetcher.getOverallForecast(DataFetcher.java:250)
+	at org.marcus.weather.DataFetcher.wundergroundFuture(DataFetcher.java:119)
+	at org.marcus.weather.DataFetcher.<init>(DataFetcher.java:112)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:75)
+Caused by: java.lang.NumberFormatException: For input string: " 1px solid "
+	at java.lang.NumberFormatException.forInputString(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.net.URLStreamHandler.parseURL(Unknown Source)
+	... 8 more
+For input string: " 1px solid "

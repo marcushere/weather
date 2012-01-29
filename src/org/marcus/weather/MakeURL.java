@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Calendar;
@@ -25,7 +26,6 @@ public class MakeURL {
 
 	public static String overallURL(String zip) throws IOException {
 		String pastWundergroundURL = pastWundergroundURL(zip);
-		System.out.println(pastWundergroundURL);
 		URL url1 = new URL(pastWundergroundURL);
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				url1.openStream()));
@@ -77,6 +77,13 @@ public class MakeURL {
 		}
 		String line = br.readLine();
 		int index = line.indexOf("href=\"") + 6;
+		try{
+			url = new URL("http://www.wunderground.com"
+				+ line.substring(index, line.lastIndexOf("\">")));
+		} catch(MalformedURLException e){
+			return "http://www.wunderground.com"
+					+ con.getHeaderField("location");
+		}
 		return "http://www.wunderground.com"
 				+ line.substring(index, line.lastIndexOf("\">"));
 	}

@@ -37,6 +37,7 @@ public class CSVStore {
 	}
 
 	public void storeForecast(ForecastData forecast) {
+		if (forecast.zip.equalsIgnoreCase("denver,co")) forecast.zip="80201";
 		String prefix = forecast.zip + "," + timeFormat.format(forecast.date)
 				+ "," + forecast.today + "," + forecast.forecastDate;
 		if (forecast.overallForecast.high != null
@@ -48,6 +49,7 @@ public class CSVStore {
 			str = str + ",";
 			if (forecast.overallForecast.PoP != null)
 				str = str + forecast.overallForecast.PoP.toString();
+			str = str + ",";
 			DFout.println(str);
 		}
 
@@ -68,8 +70,9 @@ public class CSVStore {
 	}
 
 	public void storePast(PastData past) {
+		if (past.zip.equalsIgnoreCase("denver,co")) past.zip="80201";
 		String prefix = past.zip + "," + timeFormat.format(past.date) + ","
-				+ past.today + "," + past.forecastDate;
+				+ past.today + "," + past.occurredDate;
 		if (past.overallPast.high != null || past.overallPast.precip != null) {
 			String str = prefix;
 			str = str + ",";
@@ -78,6 +81,7 @@ public class CSVStore {
 			str = str + ",";
 			if (past.overallPast.precip != null)
 				str = str + past.overallPast.precip.toString();
+			str = str + ",";
 			DAout.println(str);
 		}
 

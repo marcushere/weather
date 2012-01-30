@@ -12,8 +12,8 @@ import java.sql.Statement;
 
 public class ExportTableAsCSV {
 
-	static String query = "select * from weather.dbo.hourly_forecast";
-	static String filename = "hourly_forecast.csv";
+	static String query = "select * from weather.dbo.daily_actual";
+	static String filename = "daily_actual.csv";
 	static boolean titles = false;
 
 	/**
@@ -60,6 +60,7 @@ public class ExportTableAsCSV {
 					line = line + ",";
 				}
 			}
+			line = line + ",";
 			out.println(line);
 			line = "";
 		}

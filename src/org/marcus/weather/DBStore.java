@@ -23,11 +23,11 @@ public class DBStore {
 		insertHA = con
 				.prepareStatement("INSERT INTO weather.dbo.tempHA (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		insertDA = con
-				.prepareStatement("INSERT INTO weather.dbo.tempDA (zip,collected_time,collected_date,occurred_date,high,precip_amount) VALUES (?,?,?,?,?,?)");
+				.prepareStatement("INSERT INTO weather.dbo.tempDA (zip,collected_time,collected_date,occurred_date,high,precip_amount,delta_high) VALUES (?,?,?,?,?,?,?)");
 		insertHF = con
 				.prepareStatement("INSERT INTO weather.dbo.tempHF (zip,collected_time,collected_date,forecast_date,hour,temp,precip_chance) VALUES (?,?,?,?,?,?,?)");
 		insertDF = con
-				.prepareStatement("INSERT INTO weather.dbo.tempDF (zip,collected_time,collected_date,forecast_date,high,precip_chance) VALUES (?,?,?,?,?,?)");
+				.prepareStatement("INSERT INTO weather.dbo.tempDF (zip,collected_time,collected_date,forecast_date,high,precip_chance,delta_high) VALUES (?,?,?,?,?,?,?)");
 	}
 
 	public void storeForecast(ForecastData forecast) throws Exception {
@@ -79,6 +79,7 @@ public class DBStore {
 			} else {
 				insertDF.setInt(6, forecast.overallForecast.PoP);
 			}
+			insertDF.setNull(7, java.sql.Types.BOOLEAN);
 			insertDF.executeUpdate();
 		} catch (Exception e) {
 			if (e.getMessage()!=null) {
@@ -100,7 +101,7 @@ public class DBStore {
 					insertHA.setTime(2, new java.sql.Time(Calendar
 							.getInstance().getTime().getTime()));
 					insertHA.setString(3, past.today);
-					insertHA.setString(4, past.forecastDate);
+					insertHA.setString(4, past.occurredDate);
 					insertHA.setInt(5, past.hourlyPast[i].hour);
 					if (past.hourlyPast[i].temp == null) {
 						insertHA.setNull(6, Types.NUMERIC);
@@ -136,7 +137,7 @@ public class DBStore {
 			insertDA.setTime(2, new java.sql.Time(Calendar.getInstance()
 					.getTime().getTime()));
 			insertDA.setString(3, past.today);
-			insertDA.setString(4, past.forecastDate);
+			insertDA.setString(4, past.occurredDate);
 			if (past.overallPast.high != null) {
 				insertDA.setFloat(5, past.overallPast.high);
 			} else {
@@ -148,7 +149,7 @@ public class DBStore {
 			} else {
 				insertDA.setNull(6, java.sql.Types.FLOAT);
 			}
-
+			insertDA.setNull(7, java.sql.Types.BOOLEAN);
 			insertDA.executeUpdate();
 		} catch (Exception e) {
 			if (e.getMessage()!=null) {

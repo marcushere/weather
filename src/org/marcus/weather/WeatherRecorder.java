@@ -11,6 +11,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class WeatherRecorder {
+	
+	private static class EarlyTerminationException extends Exception {
+		private static final long serialVersionUID = 7107342102877398736L;
+	}
 
 	private static final String LOG_NAME = "log.txt";
 	private static final String ZIPS_FILE = "zips.txt";
@@ -94,7 +98,7 @@ public class WeatherRecorder {
 					}
 					if (ck.isStopProgram()) {
 						i++;
-						throw new NullPointerException();
+						throw new EarlyTerminationException();
 					}
 				}
 
@@ -135,7 +139,6 @@ public class WeatherRecorder {
 				System.exit(3);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(4);
 		}

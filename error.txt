@@ -1228,3 +1228,21 @@ error 2012-01-29T14:34:01.487 39201
 java.lang.NullPointerException
 	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
 null
+error 2012-01-29T19:15:42.770 37201
+java.lang.NullPointerException
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:97)
+null
+error 2012-01-29T19:24:42.028 37201
+com.microsoft.sqlserver.jdbc.SQLServerException: Invalid column name 'delta'.
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:197)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.getNextResult(SQLServerStatement.java:1493)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.doExecutePreparedStatement(SQLServerPreparedStatement.java:390)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement$PrepStmtExecCmd.doExecute(SQLServerPreparedStatement.java:340)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:4575)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1400)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeCommand(SQLServerStatement.java:179)
+	at com.microsoft.sqlserver.jdbc.SQLServerStatement.executeStatement(SQLServerStatement.java:154)
+	at com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement.executeUpdate(SQLServerPreparedStatement.java:308)
+	at org.marcus.weather.DBStore.storeForecast(DBStore.java:83)
+	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:86)
+Invalid column name 'delta'.

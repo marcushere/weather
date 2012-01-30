@@ -12,7 +12,7 @@ public class PastData {
 	public Date date;
 	
 	public String today;
-	public String forecastDate;
+	public String occurredDate;
 	
 	public String zip;
 	
@@ -21,7 +21,7 @@ public class PastData {
 		Calendar cal = Calendar.getInstance();
 		date = cal.getTime();
 		today = (new SimpleDateFormat("yyyy-MM-dd")).format(date);
-		forecastDate = pDate;
+		occurredDate = pDate;
 		overallPast = op;
 		hourlyPast = hp;
 	}

@@ -21,13 +21,13 @@ public class DBStore {
 		con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 		insertHA = con
-				.prepareStatement("INSERT INTO weather.dbo.tempHA (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+				.prepareStatement("INSERT INTO weather.dbo.hourly_actual (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		insertDA = con
-				.prepareStatement("INSERT INTO weather.dbo.tempDA (zip,collected_time,collected_date,occurred_date,high,precip_amount,delta_high) VALUES (?,?,?,?,?,?,?)");
+				.prepareStatement("INSERT INTO weather.dbo.daily_actual (zip,collected_time,collected_date,occurred_date,high,precip_amount,delta_high) VALUES (?,?,?,?,?,?,?)");
 		insertHF = con
-				.prepareStatement("INSERT INTO weather.dbo.tempHF (zip,collected_time,collected_date,forecast_date,hour,temp,precip_chance) VALUES (?,?,?,?,?,?,?)");
+				.prepareStatement("INSERT INTO weather.dbo.hourly_forecast (zip,collected_time,collected_date,forecast_date,hour,temp,precip_chance) VALUES (?,?,?,?,?,?,?)");
 		insertDF = con
-				.prepareStatement("INSERT INTO weather.dbo.tempDF (zip,collected_time,collected_date,forecast_date,high,precip_chance,delta_high) VALUES (?,?,?,?,?,?,?)");
+				.prepareStatement("INSERT INTO weather.dbo.daily_forecast (zip,collected_time,collected_date,forecast_date,high,precip_chance,delta_high) VALUES (?,?,?,?,?,?,?)");
 	}
 
 	public void storeForecast(ForecastData forecast) throws Exception {

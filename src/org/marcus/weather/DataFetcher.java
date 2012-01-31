@@ -95,16 +95,16 @@ public class DataFetcher {
 	private String date1;
 	private String date3;
 	private boolean debug = false;
-	
-	private static final int DAY_IN_MILLIS = 3600*24*1000;
+
+	private static final int DAY_IN_MILLIS = 3600 * 24 * 1000;
 
 	public DataFetcher() throws Exception {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		this.date = format.format(cal.getTime());
-		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*1);
+		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 1);
 		this.date1 = format.format(cal.getTime());
-		cal.setTimeInMillis(cal.getTimeInMillis()+DAY_IN_MILLIS*2);
+		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 2);
 		this.date3 = format.format(cal.getTime());
 		cal = Calendar.getInstance();
 		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
@@ -112,9 +112,9 @@ public class DataFetcher {
 		dayNumber3 = dayNumber1 + 2;
 	}
 
-	public DataFetcher (boolean debug) throws Exception {
+	public DataFetcher(boolean debug) throws Exception {
 		this();
-		this.debug  = debug;
+		this.debug = debug;
 	}
 
 	public void load(String zipCode) throws IOException, InterruptedException,
@@ -125,17 +125,21 @@ public class DataFetcher {
 
 		valid = true;
 	}
-	
+
 	private void wundergroundFuture() throws IOException, InterruptedException {
-		if(debug) System.out.println("1");
+		if (debug)
+			System.out.println("1");
 		getOverallForecast();
-		if(debug) System.out.println("2");
+		if (debug)
+			System.out.println("2");
 		this.hf1 = getHourlyForecast(this.dayNumber1,
 				MakeURL.hourlyURL(this.zip, 1));
-		if(debug) System.out.println("3");
+		if (debug)
+			System.out.println("3");
 		this.hf3 = getHourlyForecast(this.dayNumber3,
 				MakeURL.hourlyURL(this.zip, 3));
-		if(debug) System.out.println("4");
+		if (debug)
+			System.out.println("4");
 
 		this.forecast1 = new ForecastData(this.zip, this.date1, this.of1,
 				this.hf1);
@@ -145,40 +149,47 @@ public class DataFetcher {
 
 	private HourlyForecast[] getHourlyForecast(int dayNumber, String surl)
 			throws IOException {
-		if(debug) System.out.println("2.1");
+		if (debug)
+			System.out.println("2.1");
 		HourlyForecast[] hf = null;
 		for (int tries = 0; tries < 7; tries++) {
-			File outFile;
-			FileWriter fileWriter;
-			SimpleDateFormat format = new SimpleDateFormat(
-					"yyyyMMdd'T'kkmmssSSS");
-			
-			outFile = new File("test/test"
-					+ format.format(Calendar.getInstance().getTime())
-					+ "overall.html");
-			fileWriter = new FileWriter(outFile, false);
-			PrintWriter out = new PrintWriter(fileWriter, true);
-			out.println(MakeURL.overallURL(this.zip));
-			
-			if(debug) System.out.println("2.2");
-			
+			File outFile = null;
+			FileWriter fileWriter = null;
+			PrintWriter out = null;
+			if (debug) {
+				SimpleDateFormat format = new SimpleDateFormat(
+						"yyyyMMdd'T'kkmmssSSS");
+
+				outFile = new File("test/test"
+						+ format.format(Calendar.getInstance().getTime())
+						+ "overall.html");
+				fileWriter = new FileWriter(outFile, false);
+				out = new PrintWriter(fileWriter, true);
+				out.println(MakeURL.overallURL(this.zip));
+			}
+
+			if (debug)
+				System.out.println("2.2");
+
 			InputStreamReader webStream = null;
 			try {
 				URL url = new URL(surl);
 				webStream = new InputStreamReader(url.openStream());
 				LineReader lineReader = new LineReader(webStream, out);
-				
-				if(debug) System.out.println("2.3");
-				
+
+				if (debug)
+					System.out.println("2.3");
+
 				// get hours-store in times
 
 				lineReader.skipTo("contentTable borderTop");
 				lineReader.skipTo("taC");
 				Integer[] times = new Integer[20];
 				int timesLen = 0;
-				
-				if(debug) System.out.println("2.4");
-				
+
+				if (debug)
+					System.out.println("2.4");
+
 				while (lineReader.line.contains("taC")) {
 					String s = lineReader.getStuff();
 					try {
@@ -193,9 +204,10 @@ public class DataFetcher {
 					}
 					lineReader.readLine();
 				}
-				
-				if(debug) System.out.println("2.5");
-				
+
+				if (debug)
+					System.out.println("2.5");
+
 				hf = new HourlyForecast[timesLen];
 
 				int i = 0;
@@ -214,9 +226,10 @@ public class DataFetcher {
 					lineReader.readLine();
 					i++;
 				}
-				
-				if(debug) System.out.println("2.6");
-				
+
+				if (debug)
+					System.out.println("2.6");
+
 				i = 0;
 				lineReader.skipTo("Probability of Precipitation");
 				lineReader.skipTo("taC");
@@ -235,26 +248,32 @@ public class DataFetcher {
 					lineReader.readLine();
 					lineReader.readLine();
 				}
-				
-				if(debug) System.out.println("2.7");
-				
+
+				if (debug)
+					System.out.println("2.7");
+
 				for (i = 0; i < timesLen; i++) {
 					hf[i] = new HourlyForecast(times[i], temps[i], precips[i]);
 				}
 
-				out.close();
-				fileWriter.close();
-				outFile.delete();
+				if (debug) {
+					out.close();
+					fileWriter.close();
+					outFile.delete();
+				}
 				webStream.close();
-				
-				if(debug) System.out.println("2.8");
-				
+
+				if (debug)
+					System.out.println("2.8");
+
 				return hf;
 
 			} catch (NullPointerException e) {
 				if (tries != 6) {
-					out.close();
-					fileWriter.close();
+					if (debug) {
+						out.close();
+						fileWriter.close();
+					}
 					webStream.close();
 					System.out.println("Reading hourly forecast failed for "
 							+ this.zip + " for day " + dayNumber + ".");
@@ -269,33 +288,40 @@ public class DataFetcher {
 
 	private void getOverallForecast() throws IOException {
 		for (int tries = 0; tries < 7; tries++) {
-			if(debug) System.out.println("1.1");
-			File outFile;
-			FileWriter fileWriter;
-			SimpleDateFormat format = new SimpleDateFormat(
-					"yyyyMMdd'T'kkmmssSSS");
-			outFile = new File("test/test"
-					+ format.format(Calendar.getInstance().getTime())
-					+ "overall.html");
-			fileWriter = new FileWriter(outFile, false);
-			PrintWriter out = new PrintWriter(fileWriter, true);
-			if(debug) System.out.println("1.1.1");
+			if (debug)
+				System.out.println("1.1");
+			File outFile = null;
+			FileWriter fileWriter = null;
+			PrintWriter out = null;
 			String overallURL = MakeURL.overallURL(this.zip);
-			out.println(overallURL);
+			if (debug) {
+				SimpleDateFormat format = new SimpleDateFormat(
+						"yyyyMMdd'T'kkmmssSSS");
+				outFile = new File("test/test"
+						+ format.format(Calendar.getInstance().getTime())
+						+ "overall.html");
+				fileWriter = new FileWriter(outFile, false);
+				out = new PrintWriter(fileWriter, true);
+				if (debug)
+					System.out.println("1.1.1");
+				out.println(overallURL);
+			}
 
-			if(debug) System.out.println("1.2");
-			
+			if (debug)
+				System.out.println("1.2");
+
 			InputStreamReader webStream = null;
 			try {
 				URL url = new URL(overallURL);
 				webStream = new InputStreamReader(url.openStream());
 				LineReader lineReader = new LineReader(webStream, out);
-				
+
 				of1 = new OverallForecast();
 				of3 = new OverallForecast();
-				
-				if(debug) System.out.println("1.3");
-				
+
+				if (debug)
+					System.out.println("1.3");
+
 				lineReader.skipTo("7-Day Weather");
 				lineReader.skipTo("fct_day_" + dayNumber1);
 				lineReader.skipTo("class=\"b");
@@ -306,9 +332,10 @@ public class DataFetcher {
 					this.of1.PoP = Integer.valueOf(stuff.substring(0,
 							stuff.length() - 1));
 				}
-				
-				if(debug) System.out.println("1.4");
-				
+
+				if (debug)
+					System.out.println("1.4");
+
 				lineReader.skipTo("fct_day_" + dayNumber3);
 				lineReader.skipTo("class=\"b");
 				this.of3.high = lineReader.getIntStuff();
@@ -318,19 +345,24 @@ public class DataFetcher {
 					this.of3.PoP = Integer.valueOf(stuff.substring(0,
 							stuff.length() - 1));
 				}
-				
-				if(debug) System.out.println("1.5");
-				
-				out.close();
-				fileWriter.close();
-				outFile.delete();
+
+				if (debug)
+					System.out.println("1.5");
+
+				if (debug) {
+					out.close();
+					fileWriter.close();
+					outFile.delete();
+				}
 				webStream.close();
-				
+
 				return;
 			} catch (NullPointerException e) {
 				if (tries != 6) {
-					out.close();
-					fileWriter.close();
+					if (debug) {
+						out.close();
+						fileWriter.close();
+					}
 					webStream.close();
 					System.out.println("Reading overall forecast failed for "
 							+ this.zip + ".");
@@ -351,15 +383,19 @@ public class DataFetcher {
 
 	private void wundergroundPast(Date date) throws Exception {
 		for (int tries = 0; tries < 7; tries++) {
-			File outfile;
-			FileWriter fileWriter;
-			SimpleDateFormat format = new SimpleDateFormat(
-					"yyyyMMdd'T'kkmmssSSS");
-			outfile = new File("test\\test"
-					+ format.format(Calendar.getInstance().getTime()) + ".html");
-			fileWriter = new FileWriter(outfile, false);
-			PrintWriter out = new PrintWriter(fileWriter, true);
-			out.println(MakeURL.pastWundergroundURL(zip, date));
+			File outfile = null;
+			FileWriter fileWriter = null;
+			PrintWriter out = null;
+			if (debug) {
+				SimpleDateFormat format = new SimpleDateFormat(
+						"yyyyMMdd'T'kkmmssSSS");
+				outfile = new File("test\\test"
+						+ format.format(Calendar.getInstance().getTime())
+						+ ".html");
+				fileWriter = new FileWriter(outfile, false);
+				out = new PrintWriter(fileWriter, true);
+				out.println(MakeURL.pastWundergroundURL(zip, date));
+			}
 			InputStreamReader webStream = null;
 			try {
 
@@ -367,12 +403,15 @@ public class DataFetcher {
 
 				webStream = new InputStreamReader(url.openStream());
 				getPastWData(new LineReader(webStream, out));
-				this.past = new PastData(this.zip, new SimpleDateFormat("yyyy-MM-dd").format(date), this.op, this.hp);
+				this.past = new PastData(this.zip, new SimpleDateFormat(
+						"yyyy-MM-dd").format(date), this.op, this.hp);
 
 				webStream.close();
-				out.close();
-				fileWriter.close();
-				outfile.delete();
+				if (debug) {
+					out.close();
+					fileWriter.close();
+					outfile.delete();
+				}
 				return;
 
 			} catch (NullPointerException e) {
@@ -380,8 +419,10 @@ public class DataFetcher {
 					webStream.close();
 				System.out.println("Reading past weather data failed for "
 						+ this.zip + ".");
-				out.close();
-				fileWriter.close();
+				if (debug) {
+					out.close();
+					fileWriter.close();
+				}
 				Thread.sleep(1000);
 				if (this.op == null) {
 					this.op = new OverallPast();
@@ -395,11 +436,11 @@ public class DataFetcher {
 			this.hp[i] = new HourlyPast(i);
 		}
 		this.op = new OverallPast();
-		
+
 		Float snow = null;
 
 		reader.skipTo("contentData");
-		
+
 		reader.skipTo("<tbody>");
 		reader.readLine();
 		while (reader.line.contains("<tr")) {
@@ -424,7 +465,7 @@ public class DataFetcher {
 			reader.skipTo("/tr");
 			reader.readLine();
 		}
-		
+
 		if ((this.op.precip != null && snow != null)) {
 			this.op.precip = this.op.precip + snow;
 		} else if (this.op.precip != null) {

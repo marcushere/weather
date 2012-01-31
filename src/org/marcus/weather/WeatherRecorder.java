@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class WeatherRecorder {
-	
+
 	private static class EarlyTerminationException extends Exception {
 		private static final long serialVersionUID = 7107342102877398736L;
 	}
@@ -19,7 +19,7 @@ public class WeatherRecorder {
 	private static final String LOG_NAME = "log.txt";
 	private static final String ZIPS_FILE = "zips.txt";
 	private static final String ERROR_NAME = "error.txt";
-	private static final boolean debug = false;
+	private static boolean debug = false;
 
 	public static void main(String[] args) {
 		CheckKeyboard ck = new CheckKeyboard();
@@ -33,6 +33,12 @@ public class WeatherRecorder {
 				} else if (args[i].equals("help")) {
 					System.out
 							.println("Arguments are: -csv to write to csv files");
+				} else if (args[i].equals("-d")) {
+					debug = true;
+				} else {
+					System.out.println("Arguments are:"
+							+ System.lineSeparator()
+							+ " -csv to write to csv files");
 				}
 			}
 		}
@@ -70,7 +76,7 @@ public class WeatherRecorder {
 				FileWriter fileWriter;
 				fileWriter = new FileWriter(LOG_NAME, false);
 				PrintWriter out = new PrintWriter(fileWriter, true);
-				SimpleDateFormat format = getDateFormatter();
+				SimpleDateFormat format = getYMDFormatter();
 				out.print("error " + format.format(new Date()));
 
 				out.close();
@@ -156,9 +162,9 @@ public class WeatherRecorder {
 		if (pieces.length == 2 && pieces[0].equals("ok")) {
 			String now = getYMDFormatter().format(new Date());
 			if (pieces[1].equals(now)) {
-				 return true;
-			} else if (hour > 4) {
-				return false;
+				return true;
+			} else if (hour < 4){
+				return true;
 			}
 		}
 		return false;
@@ -198,7 +204,7 @@ public class WeatherRecorder {
 					line = line + " " + read;
 				}
 			} else if (!lastZip.isEmpty() && !pastLastZip) {
-				if (read.equals(lastZip)){
+				if (read.equals(lastZip)) {
 					pastLastZip = true;
 					line = read;
 				}

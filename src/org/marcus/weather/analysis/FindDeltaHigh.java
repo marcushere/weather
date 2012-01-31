@@ -10,8 +10,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 public class FindDeltaHigh {
 
-	static final String DF_QUERY = "select * from weather.dbo.tempDF order by zip, collected_date, forecast_date, collected_time desc";
-	static final String DA_QUERY = "select * from weather.dbo.tempDA order by zip, collected_date, occurred_date, collected_time desc";
+	static final String DF_QUERY = "select * from weather.dbo.daily_forecast order by zip, collected_date, forecast_date, collected_time desc";
+	static final String DA_QUERY = "select * from weather.dbo.daily_actual order by zip, collected_date, occurred_date, collected_time desc";
 
 	/**
 	 * @param args

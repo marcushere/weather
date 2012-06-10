@@ -12,3 +12,5 @@ clean.bat
 log.txt
 error.txt
 .settings
+errorlevel
+weather

@@ -12,8 +12,8 @@ import java.sql.Statement;
 
 public class ExportTableAsCSV {
 
-	static String query = "select * from weather.dbo.daily_actual";
-	static String filename = "daily_actual.csv";
+	static String query = "select * from weather.dbo.hourly_actual";
+	static String filename = "hourly_actual.csv";
 	static boolean titles = false;
 
 	/**

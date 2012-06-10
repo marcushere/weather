@@ -41,7 +41,7 @@ public class AnalyzePoP {
 		poPValueSet.close();
 		
 		double[] chance = new double[PoPValues.length];
-		double[] pVal = new double[PoPValues.length];
+		double[] brierScore = new double[PoPValues.length];
 		
 		PreparedStatement ps = con.prepareStatement(PoPTest, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		for (i=0; i<PoPValues.length; i++){
@@ -61,10 +61,10 @@ public class AnalyzePoP {
 			}
 			rs.close();
 			chance[i] = (double)rainedNumber/((double)notRained+(double)rainedNumber);
-			pVal[i] = (Math.pow(Double.valueOf(PoPValues[i])/100.0-1.0,2.0)*(double)rainedNumber+Math.pow(Double.valueOf(PoPValues[i])/100.0,2.0)*(double)notRained)/((double)notRained+(double)rainedNumber);
+			brierScore[i] = (Math.pow(Double.valueOf(PoPValues[i])/100.0-1.0,2.0)*(double)rainedNumber+Math.pow(Double.valueOf(PoPValues[i])/100.0,2.0)*(double)notRained)/((double)notRained+(double)rainedNumber);
 		}
 		for (i=0; i<PoPValues.length;i++){
-			System.out.println(PoPValues[i]+", "+Double.toString(chance[i])+", "+Double.toString(pVal[i]));
+			System.out.println(PoPValues[i]+", "+Double.toString(chance[i])+", "+Double.toString(brierScore[i]));
 		}
 	}
 }

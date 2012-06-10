@@ -48,6 +48,7 @@ public class WeatherRecorder {
 			String[] zips = null;
 			try {
 				if (hasRunToday()) {
+					System.out.println("Already run today");
 					System.exit(0);
 				}
 				zips = getZips();
@@ -166,6 +167,8 @@ public class WeatherRecorder {
 			} else if (hour < 4){
 				return true;
 			}
+		} else if (pieces[0].equals("stop")){
+			return true;
 		}
 		return false;
 	}

@@ -322,7 +322,7 @@ public class DataFetcher {
 				if (debug)
 					System.out.println("1.3");
 
-				lineReader.skipTo("7-Day Weather");
+				lineReader.skipTo("10-Day Forecast");
 				lineReader.skipTo("fct_day_" + dayNumber1);
 				lineReader.skipTo("class=\"b");
 				this.of1.high = lineReader.getIntStuff();

@@ -1,4 +1,0 @@
-error 2012-01-30T09:32:04.190 85001
-org.marcus.weather.WeatherRecorder$EarlyTerminationException
-	at org.marcus.weather.WeatherRecorder.main(WeatherRecorder.java:106)
-null

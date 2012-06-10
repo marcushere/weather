@@ -1,7 +1,0 @@
-hourlyPred; 2012-01-02; 2012-01-03; 1; 29.0; 0; 4; 25.0; 0; 7; 23.0; 0; 10; 25.0; 10; 1; 27.0; 10; 4; 25.0; 10; 7; 22.0; 10; 10; 14.0; 0; 
-dailyPred; 2012-01-02; 2012-01-03; 29; 10; 
-hourlyActual; 2012-01-02; 2012-01-01; 0; 39.9;  Clear; 1; 39.9;  Clear; 2; 41.0;  Clear; 3; 42.1;  Clear; 4; 39.9;  Clear; 5; 39.9;  Clear; 6; 39.9;  Clear; 7; 41.0;  Clear; 8; 42.1;  Clear; 9; 45.0;  Clear; 10; 48.0;  Clear; 11; 50.0;  Partly Cloudy; 12; 50.0;  Mostly Cloudy; 13; 51.1;  Scattered Clouds; 14; 51.1;  Scattered Clouds; 15; 48.9;  Mostly Cloudy; 16; 46.9;  Mostly Cloudy; 17; 46.4;  Mostly Cloudy; 18; 46.0;  Mostly Cloudy; 19; 46.4;  Mostly Cloudy; 20; 46.9;  Overcast; 21; 46.4;  Overcast; 22; 46.4;  Light Rain; 23; 46.4;  Overcast; 
-dailyActual; 2012-01-02; 2012-01-01; 52.0; 0.01; 
-hourlyPred; 2012-01-02; 2012-01-05; 1; 22.0; 0; 7; 22.0; 0; 1; 34.0; 10; 7; 31.0; 10; 
-dailyPred; 2012-01-02; 2012-01-05; 36; 10; 
-#finished 2012-01-02T13:24:55.491

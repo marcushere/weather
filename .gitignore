@@ -8,3 +8,7 @@ weather.docx
 *.exe
 database-backup
 CSV
+clean.bat
+log.txt
+error.txt
+.settings

@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class ExportTableAsCSV {
 
 	static String query = "select * from weather.dbo.hourly_actual";
-	static String filename = "hourly_actual.csv";
+	static String filename = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_actual.csv";
 	static boolean titles = false;
 
 	/**

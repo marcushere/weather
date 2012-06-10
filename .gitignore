@@ -4,3 +4,5 @@ bin
 .metadata
 test
 datatest
+weather.docx
+*.exe

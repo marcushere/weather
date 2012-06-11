@@ -1,12 +1,12 @@
 package org.marcus.weather.analysis;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.text.SimpleDateFormat;
 
 public class DetermineDeltaHigh {
 
@@ -28,109 +28,141 @@ public class DetermineDeltaHigh {
 		ResultSet rs = findDupStmt.executeQuery(DF_QUERY);
 		con.setAutoCommit(false);
 
-		rs.next();
-		Integer todayHigh = rs.getInt(5);
-		rs.next();
-		Integer twoDayHigh = rs.getInt(5);
-		String zip = rs.getString(1);
-		Integer diff = null;
-		boolean isNotNull = true;
-		
-		//should add something to check if it really is the next day before assigning a delta in the database
-		//to take care of breaks in the data
+		String zip = null;
+		Integer todayHigh = null;
+		Date currDate = null;
+		Integer twoDayHigh = null;
+		Date currTwoDayDate = null;
+		SimpleDateFormat ymdFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-		while (isNotNull) {
-			if (!rs.next())
-				break;
-			if (!zip.equals(rs.getString(1))) {
+		// should add something to check if it really is the next day before
+		// assigning a delta in the database
+		// to take care of breaks in the data
+
+		while (rs.next()) {
+			// if new zip code...
+			if (zip == null)
 				zip = rs.getString(1);
+			if (!zip.equals(rs.getString(1))) {
+				// if a new zip code, start from the beginning
+				zip = rs.getString(1);
+				todayHigh = null;
+				currDate = null;
+				twoDayHigh = null;
+				currTwoDayDate = null;
+			}
+			if (currDate != null) {
+				String datePlusOneFormatted = ymdFormatter.format(new Date(
+						currDate.getTime() + 86400000));
+				// check to make sure it's actually the next day
+				if (ymdFormatter.format(rs.getDate(4)).equals(
+						datePlusOneFormatted)) {
+					if (todayHigh == null) {
+						// if yesterday's high was null, update delta_high
+						// to
+						// null
+						rs.updateNull(7);
+						todayHigh = rs.getInt(5);
+					} else {
+						// otherwise update delta_high to be the difference
+						rs.updateInt(7, rs.getInt(5) - todayHigh);
+						todayHigh = rs.getInt(5);
+					}
+				} else {
+					// if the date is wrong, pretend it is just another new
+					// day pair
+					todayHigh = rs.getInt(5);
+					rs.updateNull(7);
+				}
+			} else {
+				// if the date is null, pretend it is just another new day
+				// pair
 				todayHigh = rs.getInt(5);
 				rs.updateNull(7);
-				rs.updateRow();
-				rs.next();
+			}
+			// update the date, make changes to the row, and increment rows
+			currDate = rs.getDate(4);
+			rs.updateRow();
+			rs.next();
+			// do the two day part
+			if (currTwoDayDate != null) {
+				String currTwoDayDateFormatted = ymdFormatter.format(new Date(
+						currTwoDayDate.getTime() + 86400000));
+				// check to make sure it's actually the next day
+				if (ymdFormatter.format(rs.getDate(4)).equals(
+						currTwoDayDateFormatted)) {
+					if (twoDayHigh == null) {
+						// if yesterday's high was null, update delta_high
+						// to
+						// null
+						rs.updateNull(7);
+						twoDayHigh = rs.getInt(5);
+					} else {
+						// otherwise update delta_high to be the difference
+						rs.updateInt(7, rs.getInt(5) - twoDayHigh);
+						twoDayHigh = rs.getInt(5);
+					}
+				} else {
+					// if the date is wrong, pretend it is just another new
+					// day
+					// pair
+					twoDayHigh = rs.getInt(5);
+					rs.updateNull(7);
+				}
+			} else {
+				// if the date is null, pretend it is just another new day
+				// pair
 				twoDayHigh = rs.getInt(5);
 				rs.updateNull(7);
-				rs.updateRow();
-				rs.next();
 			}
-			try {
-				if (twoDayHigh == null) {
-					try {
-						twoDayHigh = rs.getInt(5);
-						rs.updateNull(7);
-						rs.updateRow();
-						rs.next();
-						todayHigh = rs.getInt(5);
-						rs.updateNull(7);
-						rs.updateRow();
-						rs.next();
-					} catch (SQLServerException e) {
-						break;
-					}
-				} else {
-					diff = rs.getInt(5) - todayHigh;
-				}
-				if (!rs.wasNull()) {
-					rs.updateInt(7, diff);
-					todayHigh = rs.getInt(5);
-				} else {
-					rs.updateNull(7);
-					todayHigh = null;
-				}
-				rs.updateRow();
-			} catch (NullPointerException e) {
-			}
-			isNotNull = rs.next();
-			if (isNotNull) {
-				try {
-					diff = rs.getInt(5) - twoDayHigh;
-					if (!rs.wasNull()) {
-						rs.updateInt(7, diff);
-						twoDayHigh = rs.getInt(5);
-					} else {
-						rs.updateNull(7);
-						twoDayHigh = null;
-					}
-					rs.updateRow();
-				} catch (NullPointerException e) {
-				}
-
-			}
+			// update the date and row
+			currTwoDayDate = rs.getDate(4);
+			rs.updateRow();
 		}
+		// close and commit
 		rs.close();
 		con.commit();
-
+		// repeat with the daily_actual query
 		rs = findDupStmt.executeQuery(DA_QUERY);
-
-		isNotNull = rs.next();
-		zip = rs.getString(1);
-		todayHigh = rs.getInt(5);
-		isNotNull = rs.next();
-		while (isNotNull) {
-			if (!zip.equalsIgnoreCase(rs.getString(1))) {
-				rs.updateNull(7);
-				rs.updateRow();
+		while (rs.next()) {
+			// if new zip code...
+			if (zip == null)
 				zip = rs.getString(1);
-				isNotNull = rs.next();
+			if (!zip.equals(rs.getString(1))) {
+				// if a new zip code, start from the beginning
+				zip = rs.getString(1);
+				todayHigh = null;
+				currDate = null;
 			}
-			try {
-				if (isNotNull) {
+			if (currDate != null) {
+				String datePlusOneFormatted = ymdFormatter.format(new Date(
+						currDate.getTime() + 86400000));
+				// check to make sure it's actually the next day
+				if (ymdFormatter.format(rs.getDate(4)).equals(
+						datePlusOneFormatted)) {
 					if (todayHigh == null) {
+						// if yesterday's high was null, update delta_high
+						// to null
 						rs.updateNull(7);
-						rs.updateRow();
-						isNotNull = rs.next();
 						todayHigh = rs.getInt(5);
 					} else {
-						diff = rs.getInt(5) - todayHigh;
-						rs.updateInt(7, diff);
-						rs.updateRow();
+						// otherwise update delta_high to be the difference
+						rs.updateInt(7, rs.getInt(5) - todayHigh);
 						todayHigh = rs.getInt(5);
-						if (rs.wasNull()) todayHigh = null;
 					}
+				} else {
+					// if the date is wrong, pretend it is just another new
+					todayHigh = rs.getInt(5);
+					rs.updateNull(7);
 				}
-			} catch (NullPointerException e) {
+			} else {
+				// if the date is null, pretend it is just another new day
+				todayHigh = rs.getInt(5);
+				rs.updateNull(7);
 			}
-			isNotNull = rs.next();
+			// update the date, make changes to the row, and increment rows
+			currDate = rs.getDate(4);
+			rs.updateRow();
 		}
 		con.commit();
 		con.close();

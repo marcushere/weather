@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class DeterminePrecip {
 
-	static String query = "select * from weather.dbo.hourly_actual";
+	static String query = "select * from weather.dbo.hourly_actual where precipitation is null";
 
 	/**
 	 * @param args
@@ -26,6 +26,7 @@ public class DeterminePrecip {
 		con.setAutoCommit(false);
 
 		while (rs.next()) {
+
 			String cond = rs.getString("conditions");
 			try {
 				if (cond.contains("Rain") || cond.contains("Snow")
@@ -36,18 +37,19 @@ public class DeterminePrecip {
 						|| cond.contains("Ice Pellets")
 						|| cond.contains("Wintry Mix")) {
 					rs.updateInt("precipitation", 1);
-					System.out.println("1");
+					System.out.print("1");
 				} else if (rs.getFloat("precip_amount") > 0.0) {
 					rs.updateInt("precipitation", 1);
 				} else if (cond.matches("\\d+")) {
 					rs.updateNull("conditions");
 				} else {
 					rs.updateInt("precipitation", 0);
-					System.out.println("0");
+					// System.out.print("0");
 				}
 				rs.updateRow();
 				if (rs.getRow() % 1000 == 0) {
 					con.commit();
+					System.out.println();
 				}
 			} catch (NullPointerException e) {
 

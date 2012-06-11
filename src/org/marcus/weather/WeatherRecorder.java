@@ -33,12 +33,14 @@ public class WeatherRecorder {
 				} else if (args[i].equals("help")) {
 					System.out
 							.println("Arguments are: -csv to write to csv files");
+					System.exit(0);
 				} else if (args[i].equals("-d")) {
 					debug = true;
 				} else {
 					System.out.println("Arguments are:"
 							+ System.lineSeparator()
 							+ " -csv to write to csv files");
+					System.exit(0);
 				}
 			}
 		}

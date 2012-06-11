@@ -1,26 +1,18 @@
-WeatherRecorder.jar runs with no arguments. It looks for a file in the same
-directory called "zips.txt" to get the zip codes. This file is expected to
-have one zip code per line with no blank lines.
-Each zip code will have a file dedicated to it in the directory "data"
-called "ZIPCODE.txt" which will have all of the data in text form. There
-are four kinds of records for each day of data. Each of the data rows have
-the type followed by the date the data was recorded followed by the date
-it's talking about. The program collects data for the next day and the day
-three days out. Each data field is separated by "; ".
-HourlyPred is the hourly forecast of temperature and precipitation. After the
-forecast date comes the data. It consists of the hour followed by the
-temperature followed by the chance of precipitation.
-DailyPred is the daily forecast. It has the three initial fields followed by
-temperature and precipitation chance.
-HourlyActual and DailyActual follow the same format except that for
-precipitation HA gives the conditions at the hour (eg. cloudy or sunny or
-rainy) and DA gives the amount of precipitation over the day.
-Every time the program runs, it should write a one-line file called "log.txt" in
-the home directory. This will either say "ok" and then the date, or "error" and
-then the date. If the file says "error" the program will also print the stack
-trace in a file called "error.txt" in the same directory. Each time the program
-is launched, it checks to see if it ran successfully that day. If it did not, it
-will run. If it did, it will just quit immediately.
+weatherrecorder.jar runs with the following argument:
 
+java -Djava.library.path="[path to sql server driver]" -jar WeatherRecorder.jar
 
-Correct precip amounts 12/29/11 and after.
+It scans the zip codes in the home directory file called "zips.txt" with one zip code on each line. For each zip code it gets the past and forecast data for hourly and daily information and writes all of it to a SQLServer database.
+
+When the program runs, it will write in the file called "log.txt" in the home directory. If it completed successfuly, it will output in the format "ok [date]" where [date] is the current date in the format yyyy-mm-dd. If it exits early, it will write "error [date] [zip]" where the date is as described earlier and the [zip] is the zip code that it failed on. When run again, the program will check the logfile and start with the zip code that failed the last time. This is to avoid redoing as much as possible. When there is an error, the stack trace along with the exact time and date and the zip code will be appened to the file "error.txt" along with java's comment on the error.
+
+The program will exit with an errorlevel dependent on the location at which the error occured. Almost all exceptions are dealt with in the main class, so all of the "System.exit(n)" statements are in the file WeatherRecorder.java.
+
+In order to force the program to exit early, the user can type "c" at any time and the program will exit with an error on the next zip code.
+
+Command line arguments are:
+	-csv	to write to a csv file
+	-d	to debug (writes out a lot more information)
+	help	to display this information
+
+Normally the program will only write out each zip code as it starts collecting the data for it. If the file run.bat is used to run the program, it will print "finished" when the program exits with status 0.

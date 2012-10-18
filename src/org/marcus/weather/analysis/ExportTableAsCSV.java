@@ -9,11 +9,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExportTableAsCSV {
 
-	static String query = "select * from weather.dbo.hourly_actual";
-	static String filename = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_actual.csv";
+	static String query = "select * from weather.dbo.hourly_forecast";
+	static String filename = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_forecast.csv";
 	static boolean titles = false;
 
 	/**
@@ -45,7 +47,7 @@ public class ExportTableAsCSV {
 			out.println(line);
 			line = "";
 		}
-
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		while (rs.next()) {
 			for (int i = 1; i <= rsmd.getColumnCount(); i++) {
 				try {
@@ -53,6 +55,8 @@ public class ExportTableAsCSV {
 						line = rs.getString(i);
 					} else if (rs.getString(i).equals("null")){
 						line = line + ",";
+					} else if (i==3 || i==4){
+						line = line + "," + sdf.format(new Date(rs.getDate(i).getTime()+3600*24*2*1000));
 					} else {
 						line = line + "," + rs.getString(i);
 					}

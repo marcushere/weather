@@ -8,7 +8,8 @@ import java.sql.Statement;
 
 public class DeterminePrecip {
 
-	static String query = "select * from weather.dbo.hourly_actual where precipitation is null";
+	static String queryHA = "select * from weather.dbo.hourly_actual where precipitation is null";
+	static String queryDA = "select * from weather.dbo.daily_actual where precipitation is null";
 
 	/**
 	 * @param args
@@ -22,7 +23,7 @@ public class DeterminePrecip {
 		Connection con = DriverManager.getConnection(connectionURL);
 		Statement findDupStmt = con.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-		ResultSet rs = findDupStmt.executeQuery(query);
+		ResultSet rs = findDupStmt.executeQuery(queryHA);
 		con.setAutoCommit(false);
 
 		while (rs.next()) {
@@ -53,6 +54,25 @@ public class DeterminePrecip {
 				}
 			} catch (NullPointerException e) {
 
+			}
+		}
+		rs.close();
+		rs = findDupStmt.executeQuery(queryDA);
+		while (rs.next()) {
+			try {
+			if (rs.getFloat("precip_amount") > 0.0) {
+				rs.updateInt("precipitation", 1);
+				System.out.println("1");
+			} else {
+				rs.updateInt("precipitation", 0);
+			}
+			if (rs.getRow() % 1000 == 0) {
+				con.commit();
+				System.out.println();
+			}
+			rs.updateRow();
+			} catch (NullPointerException e){
+				
 			}
 		}
 		rs.close();

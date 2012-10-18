@@ -126,6 +126,13 @@ public class DataFetcher {
 		valid = true;
 	}
 
+	public void loadPast(String zipCode, Date date) throws Exception {
+		zip = zipCode;
+		wundergroundPast(date);
+
+		valid = true;
+	}
+
 	private void wundergroundFuture() throws IOException, InterruptedException {
 		if (debug)
 			System.out.println("1");
@@ -397,10 +404,27 @@ public class DataFetcher {
 				out.println(MakeURL.pastWundergroundURL(zip, date));
 			}
 			InputStreamReader webStream = null;
+			URL url = null;
 			try {
 
-				URL url = new URL(MakeURL.pastWundergroundURL(zip, date));
+				url = new URL(MakeURL.pastWundergroundURL(zip, date));
 
+				webStream = new InputStreamReader(url.openStream());
+				
+				//make sure there's actually data there to get
+				LineReader lr = new LineReader(webStream, out);
+				try {
+					//wunderground says "No daily or hourly history data available" or "No hourly history data available"
+					lr.skipTo("history data available");
+					System.out.println("no history data available for "+this.zip);
+					webStream.close();
+					this.op = null;
+					this.hp = null;
+					return;
+				} catch (NullPointerException e){
+					
+				}
+				
 				webStream = new InputStreamReader(url.openStream());
 				getPastWData(new LineReader(webStream, out));
 				this.past = new PastData(this.zip, new SimpleDateFormat(
@@ -419,6 +443,7 @@ public class DataFetcher {
 					webStream.close();
 				System.out.println("Reading past weather data failed for "
 						+ this.zip + ".");
+				System.out.println(url);
 				if (debug) {
 					out.close();
 					fileWriter.close();

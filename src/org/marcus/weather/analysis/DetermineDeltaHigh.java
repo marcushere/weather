@@ -65,7 +65,9 @@ public class DetermineDeltaHigh {
 						todayHigh = rs.getInt(5);
 					} else {
 						// otherwise update delta_high to be the difference
-						rs.updateInt(7, rs.getInt(5) - todayHigh);
+						final int dHigh = rs.getInt(5) - todayHigh;
+						rs.updateInt(7, dHigh);
+//						System.out.println(dHigh);
 						todayHigh = rs.getInt(5);
 					}
 				} else {
@@ -83,7 +85,7 @@ public class DetermineDeltaHigh {
 			// update the date, make changes to the row, and increment rows
 			currDate = rs.getDate(4);
 			rs.updateRow();
-			rs.next();
+			if (!rs.next()) break;
 			// do the two day part
 			if (currTwoDayDate != null) {
 				String currTwoDayDateFormatted = ymdFormatter.format(new Date(
@@ -99,7 +101,9 @@ public class DetermineDeltaHigh {
 						twoDayHigh = rs.getInt(5);
 					} else {
 						// otherwise update delta_high to be the difference
-						rs.updateInt(7, rs.getInt(5) - twoDayHigh);
+						int dHigh = rs.getInt(5) - twoDayHigh;
+						rs.updateInt(7, dHigh);
+//						System.out.println(dHigh);
 						twoDayHigh = rs.getInt(5);
 					}
 				} else {
@@ -147,7 +151,9 @@ public class DetermineDeltaHigh {
 						todayHigh = rs.getInt(5);
 					} else {
 						// otherwise update delta_high to be the difference
-						rs.updateInt(7, rs.getInt(5) - todayHigh);
+						final int dHigh = rs.getInt(5) - todayHigh;
+						rs.updateInt(7, dHigh);
+//						System.out.println(dHigh);
 						todayHigh = rs.getInt(5);
 					}
 				} else {
@@ -164,6 +170,7 @@ public class DetermineDeltaHigh {
 			currDate = rs.getDate(4);
 			rs.updateRow();
 		}
+		rs.close();
 		con.commit();
 		con.close();
 	}

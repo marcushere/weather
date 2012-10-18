@@ -5,7 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.UnknownHostException;
+import java.nio.Buffer;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +23,8 @@ public class WeatherRecorder {
 	private static final String ZIPS_FILE = "zips.txt";
 	private static final String ERROR_NAME = "error.txt";
 	private static boolean debug = false;
+	private static boolean pastOnly = false;
+	private static Date startDate = null;
 
 	public static void main(String[] args) {
 		CheckKeyboard ck = new CheckKeyboard();
@@ -31,15 +36,30 @@ public class WeatherRecorder {
 				if (args[i].equals("-csv")) {
 					useDB = false;
 				} else if (args[i].equals("help")) {
-					System.out
-							.println("Arguments are: -csv to write to csv files");
+					System.out.println("Arguments are:"
+							+ System.lineSeparator()
+							+ "-csv to write to csv files"
+							+ System.lineSeparator() + "-d to debug");
 					System.exit(0);
 				} else if (args[i].equals("-d")) {
 					debug = true;
+				} else if (args[i].startsWith("-past")) {
+					pastOnly = true;
+					SimpleDateFormat format = getYMDFormatter();
+					try {
+						startDate = format.parse(args[i].substring(5));
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						System.out
+								.println("Date must be in format 'yyyy-mm-dd'");
+						System.exit(0);
+					}
 				} else {
 					System.out.println("Arguments are:"
 							+ System.lineSeparator()
-							+ " -csv to write to csv files");
+							+ " -csv to write to csv files"
+							+ System.lineSeparator() + "-d to debug"
+							+ System.lineSeparator() + "-pastYYYY-MM-DD");
 					System.exit(0);
 				}
 			}
@@ -49,11 +69,15 @@ public class WeatherRecorder {
 		try {
 			String[] zips = null;
 			try {
-				if (hasRunToday()) {
-					System.out.println("Already run today");
-					System.exit(0);
+				if (pastOnly) {
+					zips = getZips();
+				} else {
+					if (hasRunToday()) {
+						System.out.println("Already run today");
+						System.exit(0);
+					}
+					zips = getZips();
 				}
-				zips = getZips();
 			} catch (IOException e) {
 				System.exit(1);
 			}
@@ -94,20 +118,42 @@ public class WeatherRecorder {
 				DataFetcher df = new DataFetcher(debug);
 				for (i = 0; i < zips.length; i++) {
 					System.out.println(zips[i]);
-					df.load(zips[i]);
-					if (df.valid && useDB) {
-						db.storeForecast(df.forecast1);
-						db.storeForecast(df.forecast3);
-						db.storePast(df.past);
-						db.commit();
-					} else if (df.valid && !useDB) {
-						csv.storeForecast(df.forecast1);
-						csv.storeForecast(df.forecast3);
-						csv.storePast(df.past);
-					}
-					if (ck.isStopProgram()) {
-						i++;
-						throw new EarlyTerminationException();
+					if (!pastOnly) {
+						df.load(zips[i]);
+						if (df.valid && useDB) {
+							if (!pastOnly) {
+								db.storeForecast(df.forecast1);
+								db.storeForecast(df.forecast3);
+								db.storePast(df.past);
+							}
+							db.commit();
+						} else if (df.valid && !useDB) {
+							csv.storeForecast(df.forecast1);
+							csv.storeForecast(df.forecast3);
+							csv.storePast(df.past);
+						}
+						if (ck.isStopProgram()) {
+							i++;
+							throw new EarlyTerminationException();
+						}
+					} else {
+						// if pastOnly cycle through the dates up till yesterday
+						Calendar cal = Calendar.getInstance();
+						Date today = cal.getTime();
+						cal.setTime(startDate);
+						while (cal.getTime().before(today)) {
+							Date currentDate = cal.getTime();
+							if (debug)
+								System.out
+										.println(getYMDFormatter().format(
+												currentDate)
+												+ " "
+												+ getYMDFormatter().format(
+														today));
+							df.loadPast(zips[i], currentDate);
+							db.storePast(df.past);
+							cal.setTimeInMillis(cal.getTimeInMillis() + 3600 * 24 * 1000);
+						}
 					}
 				}
 
@@ -166,19 +212,19 @@ public class WeatherRecorder {
 			String now = getYMDFormatter().format(new Date());
 			if (pieces[1].equals(now)) {
 				return true;
-			} else if (hour < 4){
+			} else if (hour < 4) {
 				return true;
 			}
-		} else if (pieces[0].equals("stop")){
+		} else if (pieces[0].equals("stop")) {
 			return true;
 		}
 		return false;
 	}
 
 	private static String[] getZips() throws IOException {
+		String lastZip = "";
 		BufferedReader br = new BufferedReader(new FileReader(LOG_NAME));
 		String line = br.readLine();
-		String lastZip = "";
 		if (line == null) {
 			lastZip = "";
 		} else {

@@ -11,7 +11,7 @@ The program will exit with an errorlevel dependent on the location at which the 
 In order to force the program to exit early, the user can type "c" at any time and the program will exit with an error on the next zip code.
 
 Command line arguments are:
-	-csv	to write to a csv file
+	-csv	to write to a csv file instead of to the database
 	-d	to debug (writes out a lot more information)
 	help	to display this information
 

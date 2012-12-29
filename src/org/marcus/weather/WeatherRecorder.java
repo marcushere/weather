@@ -31,6 +31,7 @@ public class WeatherRecorder {
 		Thread thread = new Thread(ck);
 		thread.start();
 		boolean useDB = true;
+		boolean forceRun = false;
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("-csv")) {
@@ -39,7 +40,9 @@ public class WeatherRecorder {
 					System.out.println("Arguments are:"
 							+ System.lineSeparator()
 							+ "-csv to write to csv files"
-							+ System.lineSeparator() + "-d to debug");
+							+ System.lineSeparator() + "-d to debug"
+							+ System.lineSeparator() + "-pastYYYY-MM-DD"
+							+ System.lineSeparator() + "-f to force run");
 					System.exit(0);
 				} else if (args[i].equals("-d")) {
 					debug = true;
@@ -49,17 +52,19 @@ public class WeatherRecorder {
 					try {
 						startDate = format.parse(args[i].substring(5));
 					} catch (ParseException e) {
-						// TODO Auto-generated catch block
 						System.out
 								.println("Date must be in format 'yyyy-mm-dd'");
 						System.exit(0);
 					}
+				} else if (args[i].equals("-f")){
+					forceRun = true;
 				} else {
 					System.out.println("Arguments are:"
 							+ System.lineSeparator()
 							+ " -csv to write to csv files"
 							+ System.lineSeparator() + "-d to debug"
-							+ System.lineSeparator() + "-pastYYYY-MM-DD");
+							+ System.lineSeparator() + "-pastYYYY-MM-DD"
+							+ System.lineSeparator() + "-f to force run");
 					System.exit(0);
 				}
 			}
@@ -72,7 +77,7 @@ public class WeatherRecorder {
 				if (pastOnly) {
 					zips = getZips();
 				} else {
-					if (hasRunToday()) {
+					if (hasRunToday() && forceRun == false) {
 						System.out.println("Already run today");
 						System.exit(0);
 					}

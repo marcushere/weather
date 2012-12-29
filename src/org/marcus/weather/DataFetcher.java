@@ -104,17 +104,13 @@ public class DataFetcher {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		this.date = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 1);
+		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR)-1;
 		this.date1 = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 2);
+		dayNumber3 = cal.get(Calendar.DAY_OF_YEAR)-1;
 		this.date3 = format.format(cal.getTime());
 		cal = Calendar.getInstance();
 		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
-		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR);
-		if (dayNumber1+2 > 365) {
-			dayNumber3 = ((dayNumber1 + 2) % 365) - 1;
-		} else {
-			dayNumber3 = dayNumber1 + 2;
-		}
 	}
 
 	public DataFetcher(boolean debug) throws Exception {

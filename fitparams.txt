@@ -1,0 +1,13 @@
+set fit errorvariables
+s=1; m=1; a=1; b=1;
+gauss(x)=a*exp(-(x-m)**2/(2*s**2))+b                         
+fit gauss(x) "histogram0-20121123.dat" using 2:1 via s,m,a,b 
+plot 'histogram0-20121123.dat' using 2:1 with steps, gauss(x)
+print(b)
+print(b_err)
+print(a)
+print(a_err)
+print(m)
+print(m_err)
+print(s)
+print(s_err)

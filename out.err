@@ -1,0 +1,551 @@
+
+	G N U P L O T
+	Version 4.6 patchlevel 0    last modified 2012-03-04 
+	Build System: MS-Windows 32 bit 
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2012
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+gnuplot changed the codepage of this console from 437 to 1252 to
+match the graph window. Some characters might only display correctly
+if you change the font to a non-raster type.
+
+Terminal type set to 'windows'
+gnuplot> s=1; m=1; a=1; b=1;
+gnuplot> gauss(x)=a*exp(-(x-m)**2/(2*s**2))+b                         
+gnuplot> fit gauss(x) "histogram0-20121123.dat" using 2:1 via s,m,a,b 
+
+
+ Iteration 0
+ WSSR        : 248086            delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-005
+ lambda	  : 0.531267
+
+initial set of free parameter values
+
+s               = 1
+m               = 1
+a               = 1
+b               = 1
+*/
+
+ Iteration 1
+ WSSR        : 167381            delta(WSSR)/WSSR   : -0.482164
+ delta(WSSR) : -80705.1          limit for stopping : 1e-005
+ lambda	  : 0.531267
+
+resultant parameter values
+
+s               = 11.6355
+m               = -3.29474
+a               = 12.0325
+b               = 26.972
+**/
+
+ Iteration 2
+ WSSR        : 166786            delta(WSSR)/WSSR   : -0.00357123
+ delta(WSSR) : -595.63           limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = 11.5513
+m               = -3.22544
+a               = 12.2786
+b               = 27.1513
+*/
+
+ Iteration 3
+ WSSR        : 166198            delta(WSSR)/WSSR   : -0.00353813
+ delta(WSSR) : -588.028          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = 11.4625
+m               = -3.15603
+a               = 12.5229
+b               = 27.327
+*/
+
+ Iteration 4
+ WSSR        : 165616            delta(WSSR)/WSSR   : -0.00351106
+ delta(WSSR) : -581.488          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = 11.3688
+m               = -3.08655
+a               = 12.7654
+b               = 27.4993
+*/
+
+ Iteration 5
+ WSSR        : 165040            delta(WSSR)/WSSR   : -0.00349029
+ delta(WSSR) : -576.038          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = 11.2703
+m               = -3.01703
+a               = 13.0064
+b               = 27.6681
+/
+
+ Iteration 6
+ WSSR        : 161801            delta(WSSR)/WSSR   : -0.0200164
+ delta(WSSR) : -3238.69          limit for stopping : 1e-005
+ lambda	  : 0.531267
+
+resultant parameter values
+
+s               = -1.68934
+m               = 2.11669
+a               = 27.1331
+b               = 33.09
+/
+
+ Iteration 7
+ WSSR        : 154019            delta(WSSR)/WSSR   : -0.050531
+ delta(WSSR) : -7782.72          limit for stopping : 1e-005
+ lambda	  : 0.0531267
+
+resultant parameter values
+
+s               = -11.1201
+m               = -8.79479
+a               = 49.559
+b               = 25.0644
+***/
+
+ Iteration 8
+ WSSR        : 151168            delta(WSSR)/WSSR   : -0.018858
+ delta(WSSR) : -2850.73          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -11.1107
+m               = -8.09378
+a               = 49.5475
+b               = 25.0091
+*/
+
+ Iteration 9
+ WSSR        : 148421            delta(WSSR)/WSSR   : -0.0185078
+ delta(WSSR) : -2746.94          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -10.9982
+m               = -7.41856
+a               = 49.5445
+b               = 24.9502
+*/
+
+ Iteration 10
+ WSSR        : 145624            delta(WSSR)/WSSR   : -0.019207
+ delta(WSSR) : -2797             limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -10.7943
+m               = -6.76197
+a               = 49.551
+b               = 24.89
+*/
+
+ Iteration 11
+ WSSR        : 142659            delta(WSSR)/WSSR   : -0.0207835
+ delta(WSSR) : -2964.95          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -10.5059
+m               = -6.11877
+a               = 49.5683
+b               = 24.8308
+*/
+
+ Iteration 12
+ WSSR        : 139427            delta(WSSR)/WSSR   : -0.0231801
+ delta(WSSR) : -3231.93          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -10.1364
+m               = -5.48567
+a               = 49.5983
+b               = 24.7751
+*/
+
+ Iteration 13
+ WSSR        : 135842            delta(WSSR)/WSSR   : -0.0263896
+ delta(WSSR) : -3584.83          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -9.68756
+m               = -4.86144
+a               = 49.643
+b               = 24.7255
+*/
+
+ Iteration 14
+ WSSR        : 131837            delta(WSSR)/WSSR   : -0.0303829
+ delta(WSSR) : -4005.58          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -9.16031
+m               = -4.24748
+a               = 49.7051
+b               = 24.6848
+*/
+
+ Iteration 15
+ WSSR        : 127380            delta(WSSR)/WSSR   : -0.0349879
+ delta(WSSR) : -4456.75          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -8.55723
+m               = -3.64862
+a               = 49.7875
+b               = 24.6563
+*/
+
+ Iteration 16
+ WSSR        : 122519            delta(WSSR)/WSSR   : -0.0396723
+ delta(WSSR) : -4860.62          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -7.88547
+m               = -3.07437
+a               = 49.8931
+b               = 24.6438
+*/
+
+ Iteration 17
+ WSSR        : 117443            delta(WSSR)/WSSR   : -0.0432221
+ delta(WSSR) : -5076.14          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -7.16138
+m               = -2.5402
+a               = 50.0246
+b               = 24.6512
+*/
+
+ Iteration 18
+ WSSR        : 112542            delta(WSSR)/WSSR   : -0.0435491
+ delta(WSSR) : -4901.11          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -6.41656
+m               = -2.06797
+a               = 50.1834
+b               = 24.6816
+*/
+
+ Iteration 19
+ WSSR        : 108378            delta(WSSR)/WSSR   : -0.0384254
+ delta(WSSR) : -4164.45          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -5.7023
+m               = -1.6832
+a               = 50.3687
+b               = 24.7366
+*/
+
+ Iteration 20
+ WSSR        : 105436            delta(WSSR)/WSSR   : -0.0279008
+ delta(WSSR) : -2941.75          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -5.08485
+m               = -1.40634
+a               = 50.5765
+b               = 24.8143
+*/
+
+ Iteration 21
+ WSSR        : 103756            delta(WSSR)/WSSR   : -0.0161877
+ delta(WSSR) : -1679.58          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -4.62223
+m               = -1.23873
+a               = 50.8
+b               = 24.9096
+*/
+
+ Iteration 22
+ WSSR        : 102902            delta(WSSR)/WSSR   : -0.00830399
+ delta(WSSR) : -854.495          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -4.32982
+m               = -1.15595
+a               = 51.0318
+b               = 25.0157
+*/
+
+ Iteration 23
+ WSSR        : 102390            delta(WSSR)/WSSR   : -0.00499707
+ delta(WSSR) : -511.651          limit for stopping : 1e-005
+ lambda	  : 5.31267
+
+resultant parameter values
+
+s               = -4.17193
+m               = -1.12193
+a               = 51.2668
+b               = 25.1266
+/
+
+ Iteration 24
+ WSSR        : 92561.3           delta(WSSR)/WSSR   : -0.106187
+ delta(WSSR) : -9828.77          limit for stopping : 1e-005
+ lambda	  : 0.531267
+
+resultant parameter values
+
+s               = -1.86455
+m               = -1.0495
+a               = 70.9153
+b               = 31.7939
+/
+
+ Iteration 25
+ WSSR        : 30291.6           delta(WSSR)/WSSR   : -2.05567
+ delta(WSSR) : -62269.7          limit for stopping : 1e-005
+ lambda	  : 0.0531267
+
+resultant parameter values
+
+s               = -3.93571
+m               = -1.05068
+a               = 201.953
+b               = 10.3233
+/
+
+ Iteration 26
+ WSSR        : 3488.27           delta(WSSR)/WSSR   : -7.68386
+ delta(WSSR) : -26803.4          limit for stopping : 1e-005
+ lambda	  : 0.00531267
+
+resultant parameter values
+
+s               = -2.6015
+m               = -1.10215
+a               = 205.886
+b               = 8.3763
+/
+
+ Iteration 27
+ WSSR        : 2213.42           delta(WSSR)/WSSR   : -0.575965
+ delta(WSSR) : -1274.85          limit for stopping : 1e-005
+ lambda	  : 0.000531267
+
+resultant parameter values
+
+s               = -2.59213
+m               = -1.06504
+a               = 225.628
+b               = 5.1468
+/
+
+ Iteration 28
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : -0.000105096
+ delta(WSSR) : -0.232597         limit for stopping : 1e-005
+ lambda	  : 5.31267e-005
+
+resultant parameter values
+
+s               = -2.59042
+m               = -1.06816
+a               = 225.708
+b               = 5.17622
+/
+
+ Iteration 29
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : -5.93609e-007
+ delta(WSSR) : -0.00131376       limit for stopping : 1e-005
+ lambda	  : 5.31267e-006
+
+resultant parameter values
+
+s               = -2.59025
+m               = -1.06813
+a               = 225.712
+b               = 5.17834
+
+After 29 iterations the fit converged.
+final sum of squares of residuals : 2213.18
+rel. change during last iteration : -5.93609e-007
+
+degrees of freedom    (FIT_NDF)                        : 27
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.05371
+variance of residuals (reduced chisquare) = WSSR/ndf   : 81.9697
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+s               = -2.59025         +/- 0.07717      (2.979%)
+m               = -1.06813         +/- 0.06858      (6.42%)
+a               = 225.712          +/- 5.399        (2.392%)
+b               = 5.17834          +/- 2.181        (42.12%)
+
+
+correlation matrix of the fit parameters:
+
+               s      m      a      b      
+s               1.000 
+m              -0.000  1.000 
+a               0.360 -0.000  1.000 
+b               0.459 -0.000 -0.286  1.000 
+gnuplot> plot 'histogram0-20121123.dat' using 2:1 with steps, gauss(x)s=1; m=1; a=1; b=1;
+                                                                       ^
+         expecting 'unique', 'frequency', 'cumulative', 'cnormal', 'kdensity', 'acsplines', 'csplines', 'bezier' or 'sbezier'
+
+gnuplot> gauss(x)=a*exp(-(x-m)**2/(2*s**2))+b                         
+gnuplot> fit gauss(x) "histogram0-20121123.dat" using 2:1 via s,m,a,b 
+
+
+ Iteration 0
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-005
+ lambda	  : 18.7511
+
+initial set of free parameter values
+
+s               = -2.59025
+m               = -1.06813
+a               = 225.712
+b               = 5.17834
+/
+
+ Iteration 1
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : -3.30779e-008
+ delta(WSSR) : -7.32073e-005     limit for stopping : 1e-005
+ lambda	  : 1.87511
+
+resultant parameter values
+
+s               = -2.59024
+m               = -1.06812
+a               = 225.712
+b               = 5.17836
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 2213.18
+rel. change during last iteration : -3.30779e-008
+
+degrees of freedom    (FIT_NDF)                        : 27
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.05371
+variance of residuals (reduced chisquare) = WSSR/ndf   : 81.9697
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+s               = -2.59024         +/- 0.07717      (2.979%)
+m               = -1.06812         +/- 0.06858      (6.42%)
+a               = 225.712          +/- 5.399        (2.392%)
+b               = 5.17836          +/- 2.181        (42.12%)
+
+
+correlation matrix of the fit parameters:
+
+               s      m      a      b      
+s               1.000 
+m              -0.000  1.000 
+a               0.360 -0.000  1.000 
+b               0.459 -0.000 -0.286  1.000 
+gnuplot> plot 'histogram0-20121123.dat' using 2:1 with steps, gauss(x)s=1; m=1; a=1; b=1;
+                                                                       ^
+         expecting 'unique', 'frequency', 'cumulative', 'cnormal', 'kdensity', 'acsplines', 'csplines', 'bezier' or 'sbezier'
+
+gnuplot> gauss(x)=a*exp(-(x-m)**2/(2*s**2))+b                         
+gnuplot> fit gauss(x) "histogram0-20121123.dat" using 2:1 via s,m,a,b 
+
+
+ Iteration 0
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-005
+ lambda	  : 18.7512
+
+initial set of free parameter values
+
+s               = -2.59024
+m               = -1.06812
+a               = 225.712
+b               = 5.17836
+/
+
+ Iteration 1
+ WSSR        : 2213.18           delta(WSSR)/WSSR   : -4.09423e-009
+ delta(WSSR) : -9.06128e-006     limit for stopping : 1e-005
+ lambda	  : 1.87512
+
+resultant parameter values
+
+s               = -2.59023
+m               = -1.06812
+a               = 225.712
+b               = 5.17838
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 2213.18
+rel. change during last iteration : -4.09423e-009
+
+degrees of freedom    (FIT_NDF)                        : 27
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 9.05371
+variance of residuals (reduced chisquare) = WSSR/ndf   : 81.9697
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+s               = -2.59023         +/- 0.07717      (2.979%)
+m               = -1.06812         +/- 0.06858      (6.42%)
+a               = 225.712          +/- 5.399        (2.392%)
+b               = 5.17838          +/- 2.181        (42.12%)
+
+
+correlation matrix of the fit parameters:
+
+               s      m      a      b      
+s               1.000 
+m              -0.000  1.000 
+a               0.360 -0.000  1.000 
+b               0.459 -0.000 -0.286  1.000 
+gnuplot> plot 'histogram0-20121123.dat' using 2:1 with steps, gauss(x)
+gnuplot> exit

@@ -45,6 +45,7 @@ public class DataFetcher {
 		public void skipTo(String find) throws IOException {
 			while (!line.contains(find)) {
 				readLine();
+				if (out != null) out.println(line);
 			}
 		}
 
@@ -109,7 +110,11 @@ public class DataFetcher {
 		cal = Calendar.getInstance();
 		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
 		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR);
-		dayNumber3 = dayNumber1 + 2;
+		if (dayNumber1+2 > 365) {
+			dayNumber3 = ((dayNumber1 + 2) % 365) - 1;
+		} else {
+			dayNumber3 = dayNumber1 + 2;
+		}
 	}
 
 	public DataFetcher(boolean debug) throws Exception {

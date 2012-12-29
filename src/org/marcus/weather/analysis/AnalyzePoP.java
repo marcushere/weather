@@ -10,9 +10,9 @@ import java.sql.Statement;
 public class AnalyzePoP {
 
 	private static String distinctPoPValsHourly = "select distinct precip_chance from weather.dbo.hourly_forecast order by precip_chance";
-	private static String PoPTestHourly = "use weather select hourly_forecast.zip,hourly_forecast.precip_chance,hourly_actual.conditions,hourly_actual.precipitation,hourly_forecast.collected_date,hourly_forecast.forecast_date from hourly_forecast inner join hourly_actual on hourly_forecast.forecast_date = hourly_actual.occurred_date and hourly_forecast.zip = hourly_actual.zip and hourly_forecast.hour = hourly_actual.hour where hourly_forecast.precip_chance = ? and hourly_actual.precipitation = ?";
+	private static String PoPTestHourly = "use weather select count(*) from hourly_forecast inner join hourly_actual on hourly_forecast.forecast_date = hourly_actual.occurred_date and hourly_forecast.zip = hourly_actual.zip and hourly_forecast.hour = hourly_actual.hour where hourly_forecast.precip_chance = ? and hourly_actual.precipitation = ?";
 	private static String distinctPoPValsDaily = "select distinct precip_chance from weather.dbo.daily_forecast order by precip_chance";
-	private static String PoPTestDaily = "use weather select daily_forecast.zip,daily_forecast.precip_chance,daily_actual.precipitation,daily_forecast.collected_date,daily_forecast.forecast_date from daily_forecast inner join daily_actual on daily_forecast.forecast_date = daily_actual.occurred_date and daily_forecast.zip = daily_actual.zip where daily_forecast.precip_chance = ? and daily_actual.precipitation = ?";
+	private static String PoPTestDaily = "use weather select count(*) from daily_forecast inner join daily_actual on daily_forecast.forecast_date = daily_actual.occurred_date and daily_forecast.zip = daily_actual.zip where daily_forecast.precip_chance = ? and daily_actual.precipitation = ?";
 	
 	/**
 	 * @param args
@@ -50,17 +50,13 @@ public class AnalyzePoP {
 			ps.setString(1, PoPValues[i]);
 			ps.setString(2, "1");
 			ResultSet rs = ps.executeQuery();
-			int rainedNumber = 0;
-			while (rs.next()){
-				rainedNumber = rs.getRow();
-			}
+			rs.next();
+			int rainedNumber = rs.getInt(1);
 			rs.close();
 			ps.setString(2, "0");
 			rs = ps.executeQuery();
-			int notRained = 0;
-			while (rs.next()){
-				notRained = rs.getRow();
-			}
+			rs.next();
+			int notRained = rs.getInt(1);
 			rs.close();
 			chance[i] = (double)rainedNumber/((double)notRained+(double)rainedNumber);
 			brierScore[i] = (Math.pow(Double.valueOf(PoPValues[i])/100.0-1.0,2.0)*(double)rainedNumber+Math.pow(Double.valueOf(PoPValues[i])/100.0,2.0)*(double)notRained)/((double)notRained+(double)rainedNumber);
@@ -95,17 +91,13 @@ public class AnalyzePoP {
 			ps.setString(1, PoPValues[i]);
 			ps.setString(2, "1");
 			ResultSet rs = ps.executeQuery();
-			int rainedNumber = 0;
-			while (rs.next()){
-				rainedNumber = rs.getRow();
-			}
+			rs.next();
+			int rainedNumber = rs.getInt(1);
 			rs.close();
 			ps.setString(2, "0");
 			rs = ps.executeQuery();
-			int notRained = 0;
-			while (rs.next()){
-				notRained = rs.getRow();
-			}
+			rs.next();
+			int notRained = rs.getInt(1);
 			rs.close();
 			chance[i] = (double)rainedNumber/((double)notRained+(double)rainedNumber);
 			brierScore[i] = (Math.pow(Double.valueOf(PoPValues[i])/100.0-1.0,2.0)*(double)rainedNumber+Math.pow(Double.valueOf(PoPValues[i])/100.0,2.0)*(double)notRained)/((double)notRained+(double)rainedNumber);

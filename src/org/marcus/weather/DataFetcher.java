@@ -45,7 +45,8 @@ public class DataFetcher {
 		public void skipTo(String find) throws IOException {
 			while (!line.contains(find)) {
 				readLine();
-				if (out != null) out.println(line);
+				if (out != null)
+					out.println(line);
 			}
 		}
 
@@ -104,10 +105,10 @@ public class DataFetcher {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		this.date = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 1);
-		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR)-1;
+		dayNumber1 = cal.get(Calendar.DAY_OF_YEAR) - 1;
 		this.date1 = format.format(cal.getTime());
 		cal.setTimeInMillis(cal.getTimeInMillis() + DAY_IN_MILLIS * 2);
-		dayNumber3 = cal.get(Calendar.DAY_OF_YEAR)-1;
+		dayNumber3 = cal.get(Calendar.DAY_OF_YEAR) - 1;
 		this.date3 = format.format(cal.getTime());
 		cal = Calendar.getInstance();
 		this.time = new SimpleDateFormat("kk:mm:ss").format(cal.getTime());
@@ -118,13 +119,17 @@ public class DataFetcher {
 		this.debug = debug;
 	}
 
-	public void load(String zipCode) throws IOException, InterruptedException,
-			Exception {
-		zip = zipCode;
-		wundergroundFuture();
-		wundergroundPast();
+	public void load(String zipCode) {
+		try {
+			zip = zipCode;
+			wundergroundFuture();
+			wundergroundPast();
 
-		valid = true;
+			valid = true;
+
+		} catch (Exception e) {
+			valid = false;
+		}
 	}
 
 	public void loadPast(String zipCode, Date date) throws Exception {
@@ -411,21 +416,24 @@ public class DataFetcher {
 				url = new URL(MakeURL.pastWundergroundURL(zip, date));
 
 				webStream = new InputStreamReader(url.openStream());
-				
-				//make sure there's actually data there to get
+
+				// make sure there's actually data there to get
 				LineReader lr = new LineReader(webStream, out);
 				try {
-					//wunderground says "No daily or hourly history data available" or "No hourly history data available"
+					// wunderground says
+					// "No daily or hourly history data available" or
+					// "No hourly history data available"
 					lr.skipTo("history data available");
-					System.out.println("no history data available for "+this.zip);
+					System.out.println("no history data available for "
+							+ this.zip);
 					webStream.close();
 					this.op = null;
 					this.hp = null;
 					return;
-				} catch (NullPointerException e){
-					
+				} catch (NullPointerException e) {
+
 				}
-				
+
 				webStream = new InputStreamReader(url.openStream());
 				getPastWData(new LineReader(webStream, out));
 				this.past = new PastData(this.zip, new SimpleDateFormat(

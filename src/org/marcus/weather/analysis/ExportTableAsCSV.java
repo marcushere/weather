@@ -14,8 +14,15 @@ import java.util.Date;
 
 public class ExportTableAsCSV {
 
-	static String query = "select * from weather.dbo.hourly_forecast";
-	static String filename = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_forecast.csv";
+	static String queryDF = "select * from weather.dbo.daily_forecast";
+	static String filenameDF = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\daily_forecast";
+	static String queryHF = "select * from weather.dbo.hourly_forecast";
+	static String filenameHF = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_forecast";
+	static String queryDA = "select * from weather.dbo.daily_actual";
+	static String filenameDA = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\daily_actual";
+	static String queryHA = "select * from weather.dbo.hourly_actual";
+	static String filenameHA = "C:\\Users\\Marcus\\Documents\\Dropbox\\weather\\data\\hourly_actual";
+	
 	static boolean titles = false;
 
 	/**
@@ -30,16 +37,39 @@ public class ExportTableAsCSV {
 		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		Connection con = DriverManager.getConnection(connectionURL);
 		Statement findDupStmt = con.createStatement();
-		ResultSet rs = findDupStmt.executeQuery(query);
+
+		System.out.println(queryDF);
+		writeFile(findDupStmt, queryDF, addDateAndExt(filenameDF), titles);
+		System.out.println(queryHF);
+		writeFile(findDupStmt, queryHF, addDateAndExt(filenameHF), titles);
+		System.out.println(queryDA);
+		writeFile(findDupStmt, queryDA, addDateAndExt(filenameDA), titles);
+		System.out.println(queryHA);
+		writeFile(findDupStmt, queryHA, addDateAndExt(filenameHA), titles);
+	}
+
+	private static String addDateAndExt(String filename) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return filename+sdf.format(new Date())+".csv";
+	}
+
+	/**
+	 * @param findDupStmt
+	 * @throws SQLException
+	 * @throws IOException
+	 */
+	private static void writeFile(Statement findDupStmt,String sqlquery, String fileName, boolean printTitles) throws SQLException,
+			IOException {
+		ResultSet rs = findDupStmt.executeQuery(sqlquery);
 
 		ResultSetMetaData rsmd = rs.getMetaData();
 
-		FileWriter fileWriter = new FileWriter(filename, false);
+		FileWriter fileWriter = new FileWriter(fileName, false);
 		PrintWriter out = new PrintWriter(fileWriter, true);
 
 		String line = "";
 		
-		if (titles) {
+		if (printTitles) {
 			line = rsmd.getColumnName(1);
 			for (int i = 2; i == rsmd.getColumnCount(); i++) {
 				line = line + "," + rsmd.getColumnName(i);

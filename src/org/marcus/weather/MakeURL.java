@@ -27,8 +27,18 @@ public class MakeURL {
 	public static String overallURL(String zip) throws IOException {
 		String pastWundergroundURL = pastWundergroundURL(zip);
 		URL url1 = new URL(pastWundergroundURL);
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				url1.openStream()));
+		BufferedReader br = null;
+		for (int urlopen = 0; urlopen < 2; urlopen++) { // try opening the
+														// stream twice before
+														// giving up
+			try {
+				br = new BufferedReader(
+						new InputStreamReader(url1.openStream()));
+				break; // stop if successful the first time
+			} catch (Exception e) {
+
+			}
+		}
 		String line = br.readLine();
 		try {
 			while (!line.contains("View Current Conditions")) {
@@ -66,8 +76,18 @@ public class MakeURL {
 		con = makeCon(con);
 		URL url2 = new URL("http://www.wunderground.com"
 				+ con.getHeaderField("location"));
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				url2.openStream()));
+		BufferedReader br = null;
+		for (int urlopen = 0; urlopen < 2; urlopen++) { // try opening the
+														// stream twice before
+														// giving up
+			try {
+				br = new BufferedReader(
+						new InputStreamReader(url2.openStream()));
+				break; // stop if successful the first time
+			} catch (Exception e) {
+
+			}
+		}
 		try {
 			while (!br.readLine().contains("not official NWS values"))
 				;
@@ -77,10 +97,10 @@ public class MakeURL {
 		}
 		String line = br.readLine();
 		int index = line.indexOf("href=\"") + 6;
-		try{
+		try {
 			url = new URL("http://www.wunderground.com"
-				+ line.substring(index, line.lastIndexOf("\">")));
-		} catch(MalformedURLException e){
+					+ line.substring(index, line.lastIndexOf("\">")));
+		} catch (MalformedURLException e) {
 			return "http://www.wunderground.com"
 					+ con.getHeaderField("location");
 		}

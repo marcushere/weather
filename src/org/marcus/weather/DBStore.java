@@ -18,16 +18,15 @@ public class DBStore {
 	private static final String dailyActualTable = "daily_actual";
 	private static final String zipsTable = "zips_collected";
 
-	// query beginnings
 	private static final String selectQuery = "SELECT * FROM weather.dbo.";
 	private static final String insertQuery = "INSERT INTO weather.dbo.";
 	private static final String updateQuery = "UPDATE weather.dbo.";
 
 	// query bodies
-	private static final String hourlyActualQueryBody = " WHERE zip=? AND collected_date=? AND occurred_date=? AND hour=?";
-	private static final String dailyForecastQueryBody = " WHERE zip=? AND collected_date=? AND forecast_date=?";
-	private static final String hourlyForecastQueryBody = " WHERE zip=? AND collected_date=? AND forecast_date=? AND hour=?";
-	private static final String dailyActualQueryBody = " WHERE zip=? AND collected_date=? AND occurred_date=?";
+	private static final String hourlyActualUpdateBody = " SET temp=?, conditions=?, precip_amount=? WHERE zip=? AND collected_date=? AND occurred_date=? AND hour=?";
+	private static final String dailyForecastUpdateBody = " SET high=?, precip_chance=? WHERE zip=? AND collected_date=? AND forecast_date=?";
+	private static final String hourlyForecastUpdateBody = " SET temp=?, precip_chance=? WHERE zip=? AND collected_date=? AND forecast_date=? AND hour=?";
+	private static final String dailyActualUpdateBody = " SET high=?, precip_amount=? WHERE zip=? AND collected_date=? AND occurred_date=?";
 
 	private static final String hourlyActualInsertBody = " (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String dailyForecastInsertBody = " (zip,collected_time,collected_date,forecast_date,high,precip_chance,delta_high) VALUES (?,?,?,?,?,?,?)";
@@ -38,10 +37,10 @@ public class DBStore {
 	private static final String zipsCollectedInsertBody = " (collected_date,zip,tries,successful) VALUES (?,?,?,?)";
 	private static final String zipsCollectedUpdateBody = " SET tries=?, successful=? WHERE collected_date=? AND zip=?";
 
-	private String hourlyActualQuery;
-	private String dailyForecastQuery;
-	private String hourlyForecastQuery;
-	private String dailyActualQuery;
+	private String hourlyActualUpdate;
+	private String dailyForecastUpdate;
+	private String hourlyForecastUpdate;
+	private String dailyActualUpdate;
 
 	private String hourlyActualInsert;
 	private String dailyForecastInsert;
@@ -60,23 +59,23 @@ public class DBStore {
 	private PreparedStatement insertHF;
 	private PreparedStatement insertDF;
 
-	private PreparedStatement overwriteHA;
-	private PreparedStatement overwriteDA;
-	private PreparedStatement overwriteHF;
-	private PreparedStatement overwriteDF;
+	private PreparedStatement updateHA;
+	private PreparedStatement updateDA;
+	private PreparedStatement updateHF;
+	private PreparedStatement updateDF;
 
 	private PreparedStatement selectZC;
 	private PreparedStatement insertZC;
 	private PreparedStatement updateZC;
 
 	private String today;
-	private boolean normalTableNames = false;
-
+	private boolean normalTableNames = true;
+	
 	public DBStore(boolean overwrite, boolean writeToNormalTables) {
 		this.normalTableNames = writeToNormalTables;
 		this.overwrite = overwrite;
 		String filler = "";
-		if (writeToNormalTables) {
+		if (!writeToNormalTables) {
 			filler = "_alt";
 		}
 		init(filler);
@@ -85,21 +84,21 @@ public class DBStore {
 	public DBStore(boolean overwrite) {
 		this.overwrite = overwrite;
 		String filler = "";
-		if (normalTableNames) {
+		if (!normalTableNames) {
 			filler = "_alt";
 		}
 		init(filler);
 	}
 
 	private void init(String filler) {
-		hourlyActualQuery = selectQuery + hourlyActualTable + filler
-				+ hourlyActualQueryBody;
-		dailyForecastQuery = selectQuery + dailyForecastTable + filler
-				+ dailyForecastQueryBody;
-		hourlyForecastQuery = selectQuery + hourlyForecastTable + filler
-				+ hourlyForecastQueryBody;
-		dailyActualQuery = selectQuery + dailyActualTable + filler
-				+ dailyActualQueryBody;
+		hourlyActualUpdate = updateQuery + hourlyActualTable + filler
+				+ hourlyActualUpdateBody;
+		dailyForecastUpdate = updateQuery + dailyForecastTable + filler
+				+ dailyForecastUpdateBody;
+		hourlyForecastUpdate = updateQuery + hourlyForecastTable + filler
+				+ hourlyForecastUpdateBody;
+		dailyActualUpdate = updateQuery + dailyActualTable + filler
+				+ dailyActualUpdateBody;
 
 		hourlyActualInsert = insertQuery + hourlyActualTable + filler
 				+ hourlyActualInsertBody;
@@ -133,13 +132,13 @@ public class DBStore {
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 		insertDF = con.prepareStatement(dailyForecastInsert,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-		overwriteHA = con.prepareStatement(hourlyActualQuery,
+		updateHA = con.prepareStatement(hourlyActualUpdate,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-		overwriteDA = con.prepareStatement(dailyActualQuery,
+		updateDA = con.prepareStatement(dailyActualUpdate,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-		overwriteHF = con.prepareStatement(hourlyForecastQuery,
+		updateHF = con.prepareStatement(hourlyForecastUpdate,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
-		overwriteDF = con.prepareStatement(dailyForecastQuery,
+		updateDF = con.prepareStatement(dailyForecastUpdate,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
 		selectZC = con.prepareStatement(zipsCollectedQuery,
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
@@ -180,19 +179,13 @@ public class DBStore {
 					} catch (Exception e) {
 						if (e.getMessage() != null) {
 							if (e.getMessage().contains("PRIMARY KEY")) {
-								overwriteHF.setObject(1, forecast.zip);
-								overwriteHF.setObject(2, forecast.today);
-								overwriteHF.setObject(3, forecast.forecastDate);
-								overwriteHF.setObject(4,
-										forecast.hourlyForecast[i].hour);
-								ResultSet rs = overwriteHF.executeQuery();
-								rs.next();
-								rs.updateObject("temp",
-										forecast.hourlyForecast[i].temp);
-								rs.updateObject("precip_chance",
-										forecast.hourlyForecast[i].PoP);
-								rs.updateRow();
-								rs.close();
+								updateHF.setObject(3, forecast.zip);
+								updateHF.setObject(4, forecast.today);
+								updateHF.setObject(5, forecast.forecastDate);
+								updateHF.setObject(6, forecast.hourlyForecast[i].hour);
+								updateHF.setObject(1, forecast.hourlyForecast[i].temp);
+								updateHF.setObject(2, forecast.hourlyForecast[i].PoP);
+								updateHF.executeUpdate();
 							} else if (e instanceof NullPointerException) {
 
 							} else {
@@ -225,16 +218,12 @@ public class DBStore {
 			} catch (Exception e) {
 				if (e.getMessage() != null) {
 					if (e.getMessage().contains("PRIMARY KEY")) {
-						overwriteDF.setObject(1, forecast.zip);
-						overwriteDF.setObject(2, forecast.today);
-						overwriteDF.setObject(3, forecast.forecastDate);
-						ResultSet rs = overwriteDF.executeQuery();
-						rs.next();
-						rs.updateObject("high", forecast.overallForecast.high);
-						rs.updateObject("precip_chance",
-								forecast.overallForecast.PoP);
-						rs.updateRow();
-						rs.close();
+						updateDF.setObject(3, forecast.zip);
+						updateDF.setObject(4, forecast.today);
+						updateDF.setObject(5, forecast.forecastDate);
+						updateDF.setObject(1, forecast.overallForecast.high);
+						updateDF.setObject(2, forecast.overallForecast.PoP);
+						updateDF.executeUpdate();
 					} else if (e.getClass().equals(new NullPointerException())) {
 
 					} else {
@@ -279,20 +268,14 @@ public class DBStore {
 					} catch (Exception e) {
 						if (e.getMessage() != null) {
 							if (e.getMessage().contains("PRIMARY KEY")) {
-								overwriteHA.setObject(1, past.zip);
-								overwriteHA.setObject(2, past.today);
-								overwriteHA.setObject(3, past.occurredDate);
-								overwriteHA.setObject(4,
-										past.hourlyPast[i].hour);
-								ResultSet rs = overwriteHA.executeQuery();
-								rs.next();
-								rs.updateObject("temp", past.hourlyPast[i].temp);
-								rs.updateObject("conditions",
-										past.hourlyPast[i].conditions);
-								rs.updateObject("precip_amount",
-										past.hourlyPast[i].precip);
-								rs.updateRow();
-								rs.close();
+								updateHA.setObject(4, past.zip);
+								updateHA.setObject(5, past.today);
+								updateHA.setObject(6, past.occurredDate);
+								updateHA.setObject(7, past.hourlyPast[i].hour);
+								updateHA.setObject(1, past.hourlyPast[i].temp);
+								updateHA.setObject(2, past.hourlyPast[i].conditions);
+								updateHA.setObject(3, past.hourlyPast[i].precip);
+								updateHA.executeUpdate();
 							} else if (e.getClass().equals(
 									new NullPointerException())) {
 
@@ -327,16 +310,12 @@ public class DBStore {
 			} catch (Exception e) {
 				if (e.getMessage() != null) {
 					if (e.getMessage().contains("PRIMARY KEY")) {
-						overwriteDA.setObject(1, past.zip);
-						overwriteDA.setObject(2, past.today);
-						overwriteDA.setObject(3, past.occurredDate);
-						ResultSet rs = overwriteDA.executeQuery();
-						rs.next();
-						rs.updateObject("high", past.overallPast.high);
-						rs.updateObject("precip_amount",
-								past.overallPast.precip);
-						rs.updateRow();
-						rs.close();
+						updateDA.setObject(3, past.zip);
+						updateDA.setObject(4, past.today);
+						updateDA.setObject(5, past.occurredDate);
+						updateDA.setObject(1, past.overallPast.high);
+						updateDA.setObject(2, past.overallPast.precip);
+						updateDA.executeUpdate();
 					} else if (e.getClass().equals(new NullPointerException())) {
 
 					} else {
@@ -381,7 +360,12 @@ public class DBStore {
 				tries = rs.getInt(3) + 1;
 			}
 		} catch (Exception e) {
-
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		try {
 			if (tries == 1) {
@@ -391,15 +375,15 @@ public class DBStore {
 				insertZC.setInt(4, succ);
 				insertZC.executeUpdate();
 			} else {
-				insertZC.setString(1, today);
-				insertZC.setString(2, zip);
-				insertZC.setInt(3, tries);
-				insertZC.setInt(4, succ);
-				insertZC.executeUpdate();
+				updateZC.setString(3, today);
+				updateZC.setString(4, zip);
+				updateZC.setObject(1, tries);
+				updateZC.setObject(2, succ);
+				updateZC.executeUpdate();
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			if (e.getMessage() != null) {
-				if (e.getClass().equals(new NullPointerException())) {
+				if (e.getClass().equals((new NullPointerException()).getClass())){
 
 				} else {
 					throw e;

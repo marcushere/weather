@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class WeatherRecorder {
 
@@ -24,19 +25,21 @@ public class WeatherRecorder {
 		private static final long serialVersionUID = 7107342102877398736L;
 	}
 
-	private static final String LOG_NAME = "log.txt";
+	private static String LOG_NAME = "log";
 	private static final String ZIPS_FILE = "zips.txt";
 	private static final String ERROR_NAME = "error.txt";
-	private static int verbosity = 1;
-	private static boolean debug = false;
+	private static int numThreads = 1;
 	private static boolean pastOnly = false;
-	private static boolean writeToDB = true;
+	private static boolean simRun = false;
 	private static Date startDate = null;
+
+	public static int verbosity = 1;
+	public static boolean debug = false;
 
 	private static boolean useDB = true;
 	private static boolean forceRun = false;
 	private static boolean ignoreLog = false;
-	
+
 	private static boolean anyFails = false;
 
 	public static void main(String[] args) {
@@ -47,22 +50,8 @@ public class WeatherRecorder {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("-csv")) {
 					useDB = false;
-				} else if (args[i].equals("help")) {
-					System.out
-							.println("Arguments are:"
-									+ System.lineSeparator()
-									+ "-csv to write to csv files"
-									+ System.lineSeparator()
-									+ "-d[#] to debug with verbosity level #"
-									+ System.lineSeparator()
-									+ "-pastYYYY-MM-DD"
-									+ System.lineSeparator()
-									+ "-f to force run"
-									+ System.lineSeparator()
-									+ "-i to ignore run restrictions"
-									+ System.lineSeparator()
-									+ "-s to simulate run (writing to alternate tables)");
-					System.exit(0);
+				} else if (args[i].equals("-help")) {
+					printHelpMessage();
 				} else if (args[i].startsWith("-d")) {
 					debug = true;
 					if (args[i].length() > 2) {
@@ -85,61 +74,68 @@ public class WeatherRecorder {
 					}
 				} else if (args[i].equals("-f")) {
 					forceRun = true;
+					ignoreLog = true;
 				} else if (args[i].equals("-s")) {
-					writeToDB = false;
+					simRun = true;
 				} else if (args[i].equals("-i")) {
 					ignoreLog = true;
+				} else if (args[i].startsWith("-t")) {
+					if (args[i].length() > 2) {
+						numThreads = Integer.parseInt(args[i].substring(2));
+					} else {
+						numThreads = 8;
+					}
 				} else {
-					System.out
-							.println("Arguments are:"
-									+ System.lineSeparator()
-									+ " -csv to write to csv files"
-									+ System.lineSeparator()
-									+ "-d[#] to debug with verbosity level #"
-									+ System.lineSeparator()
-									+ "-pastYYYY-MM-DD"
-									+ System.lineSeparator()
-									+ "-f to force run"
-									+ System.lineSeparator()
-									+ "-i to ignore run restrictions"
-									+ System.lineSeparator()
-									+ "-s to simulate run (writing to alternate tables)");
-					System.exit(0);
+					printHelpMessage();
 				}
 			}
 		}
 
+		if (simRun) {
+			LOG_NAME = LOG_NAME + "_alt.txt";
+		} else {
+			LOG_NAME = LOG_NAME + ".txt";
+		}
+
 		if (verbosity > 0) {
 			if (forceRun) {
-				System.out.println("WR.main(1/8.1/4) Forced run");
+				System.out.println("WR.main(1/8.1/5) Forced run");
 			} else {
-				System.out.println("WR.main(1/8.1/4) Normal run");
+				System.out.println("WR.main(1/8.1/5) Normal run");
 			}
 			if (useDB) {
-				System.out.println("WR.main(1/8.2/4) Using database");
-				if (writeToDB) {
+				System.out.println("WR.main(1/8.2/5.1/2) Using database");
+				if (!simRun) {
 					System.out
-							.println("WR.main(1/8.2/4.1/1) Writing to standard table in database");
+							.println("WR.main(1/8.2/5.2/2) Writing to standard table in database");
 				} else {
 					System.out
-							.println("WR.mail(1/8.2/4.1/1) Writing to alternate table in database");
+							.println("WR.mail(1/8.2/5.2/2) Writing to alternate table in database");
 				}
 			} else {
-				System.out.println("WR.main(1/8.2/4) Writing to CSV");
+				System.out.println("WR.main(1/8.2/5) Writing to CSV");
 			}
 			if (pastOnly) {
 				System.out
-						.println("WR.main(1/8.3/4) Collecting past data starting at "
+						.println("WR.main(1/8.3/5) Collecting past data starting at "
 								+ getYMDFormatter().format(startDate));
 			} else {
 				System.out
-						.println("WR.main(1/8.3/4) Collecting today's data only");
+						.println("WR.main(1/8.3/5) Collecting today's data only");
 			}
 			if (!ignoreLog) {
-				System.out.println("WR.main(1/8.4/4) Obeying run restrictions");
+				System.out.println("WR.main(1/8.4/5) Obeying run restrictions");
 			} else {
 				System.out
-						.println("WR.main(1/8.4/4) Ignoring run restrictions");
+						.println("WR.main(1/8.4/5) Ignoring run restrictions");
+			}
+			if (numThreads==1){
+				System.out
+				.println("WR.main(1/8.5/5) Running with only one thread");
+			} else {
+				System.out
+				.println("WR.main(1/8.5/5) Multithreaded with numThreads = "
+						+ numThreads);
 			}
 		}
 
@@ -185,9 +181,14 @@ public class WeatherRecorder {
 				System.out
 						.println("WR.main(3/8) Zip code retrieval finished, creating storage object");
 
+			if (!zips.values().contains(0) && !forceRun) {
+				System.out.println("WR.main(check/8)All zips completed today");
+				finish();
+			}
+
 			DBStore db = null;
 			if (useDB)
-				db = new DBStore(forceRun, !writeToDB); // tell the database
+				db = new DBStore(forceRun, !simRun); // tell the database
 														// object whether or not
 														// to overwrite existing
 														// rows
@@ -226,14 +227,25 @@ public class WeatherRecorder {
 				System.out
 						.println("WR.main(4/8.1/2) Storage object ready, beginning to collect and store data...");
 
-			String currentZip = "";
+			Iterator<Entry<String, Integer>> iter = zips.entrySet().iterator();
 
-			DataFetcher df = null;
+			Thread[] zipHandlerThreads = new Thread[numThreads];
 			try { // create the DataFetcher object
 				if (debug)
 					System.out
-							.println("WR.main(4/8.2/2 Creating DataFetcher object...");
-				df = new DataFetcher(false);
+							.println("WR.main(4/8.2/20 Initializing zipHandlerThread objects...");
+				for (int i = 0; i < zipHandlerThreads.length; i++) {
+					if (debug)
+						System.out.println("WR.main(5/8) Creating thread " + i
+								+ 1 + "/" + zipHandlerThreads.length);
+					if (useDB) {
+						zipHandlerThreads[i] = new Thread(new ZipHandler(db,
+								iter, i));
+					} else {
+						zipHandlerThreads[i] = new Thread(new ZipHandler(csv,
+								iter, i));
+					}
+				}
 			} catch (Exception e) {
 				FileWriter fileWriter;
 				try {
@@ -264,165 +276,37 @@ public class WeatherRecorder {
 			}
 			try {
 				// start collecting datas
-				Iterator<String> iter = zips.keySet().iterator();
-				int zipNumber = 1;
-				int totalZips = zips.size();
-				while (iter.hasNext()) {
-					currentZip = iter.next();
-					if (!currentZip.equals(Integer.parseInt("1"))) {
-						if (!pastOnly) { // do this if doing a normal daily data
-											// collection
-							if (verbosity < 2) {
-								System.out.println(currentZip + " ("
-										+ zipNumber + "/" + totalZips + ")");
-							} else { // level 3 message
-								System.out
-										.println("WR.main(5/8) Collecting data for "
-												+ currentZip
-												+ " ("
-												+ zipNumber
-												+ "/" + totalZips + ")");
-							}
-							df.load(currentZip); // get the data
-							if (useDB) { // for if the database is being used
-								if (df.valid) { // for when the collection was
-												// successful
-									if (verbosity > 2)
-										System.out
-												.println("WR.main(5/8.1/5) Storing data for "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									if (verbosity > 3)
-										System.out
-												.println("WR.main(5/8.2/5) Storing forecast1 for "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									db.storeForecast(df.forecast1);
-									if (verbosity > 3)
-										System.out
-												.println("WR.main(5/8.3/5) Storing forecast2 for "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									db.storeForecast(df.forecast3);
-									if (verbosity > 3)
-										System.out
-												.println("WR.main(5/8.4/5) Storing history data for "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									db.storePast(df.past);
-									if (verbosity > 3)
-										System.out
-												.println("WR.main(5/8.5/5) Updating success for "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									db.updateZipSuccess(currentZip);
-								} else if (!df.valid) { // for when the
-														// collection
-														// was unsuccessful
-									if (debug)
-										System.out
-												.println("WR.main(5/8.1/1) Fail on "
-														+ currentZip
-														+ " ("
-														+ zipNumber
-														+ "/"
-														+ totalZips + ")");
-									db.updateZipFail(currentZip);
-									anyFails = true;
-								}
-								if (verbosity > 3)
-									System.out
-											.println("WR.main(5/8.6/6) Attempting commit");
-								db.commit();
-							} else if (df.valid && !useDB) { // if using csv
-								if (verbosity > 2)
-									System.out
-											.println("WR.main(5/8.1/4) Storing data for "
-													+ currentZip
-													+ " ("
-													+ zipNumber
-													+ "/"
-													+ totalZips + ")");
-								if (verbosity > 3)
-									System.out
-											.println("WR.main(5/8.2/4) Storing forecast1 for "
-													+ currentZip
-													+ " ("
-													+ zipNumber
-													+ "/"
-													+ totalZips + ")");
-								csv.storeForecast(df.forecast1);
-								if (verbosity > 3)
-									System.out
-											.println("WR.main(5/8.3/4) Storing forecast2 for "
-													+ currentZip
-													+ " ("
-													+ zipNumber
-													+ "/"
-													+ totalZips + ")");
-								csv.storeForecast(df.forecast3);
-								if (verbosity > 3)
-									System.out
-											.println("WR.main(5/8.4/4) Storing history data for "
-													+ currentZip
-													+ " ("
-													+ zipNumber
-													+ "/"
-													+ totalZips + ")");
-								csv.storePast(df.past);
-							}
-							if (ck.isStopProgram()) { // if user requested early
-														// termination
-								while (iter.hasNext()) {
-									currentZip = (String) iter.next();
-									db.updateZipFail(currentZip + " ("
-											+ zipNumber + "/" + totalZips + ")");
-									anyFails = true;
-								}
-								throw new EarlyTerminationException();
-							}
-						} else {
-							// if pastOnly cycle through the dates up till
-							// yesterday
-							// (not working)
-							System.out.println(currentZip);
-							Calendar cal = Calendar.getInstance();
-							Date today = cal.getTime();
-							cal.setTime(startDate);
-							while (cal.getTime().before(today)) {
-								Date currentDate = cal.getTime();
-								if (debug)
-									System.out.println(getYMDFormatter()
-											.format(currentDate)
-											+ " "
-											+ getYMDFormatter().format(today));
-								df.loadPast(currentZip, currentDate);
-								db.storePast(df.past);
-								cal.setTimeInMillis(cal.getTimeInMillis() + 3600 * 24 * 1000);
+				for (int i = 0; i < zipHandlerThreads.length; i++) {
+					if (debug)
+						System.out.println("WR.main(5/8) Starting thread" + i
+								+ "/" + zipHandlerThreads.length);
+					zipHandlerThreads[i].start();
+				}
+
+				boolean stillRunning = true;
+
+				while (stillRunning) {
+					stillRunning = false;
+					for (int i = 0; i < zipHandlerThreads.length; i++) {
+						if (zipHandlerThreads[i].isAlive()) {
+							stillRunning = true;
+							zipHandlerThreads[i]
+									.join(4000 / zipHandlerThreads.length);
+						}
+					}
+
+					if (ck.isStopProgram()) { // if user requested early
+												// termination
+						synchronized (iter) {
+							while (iter.hasNext()) {
+								String currentZip = iter.next().getKey();
+								db.updateZipFail(currentZip);
+								anyFails = true;
 							}
 						}
-					} else {
-						if (verbosity > 3)
-							System.out.println("WR.main(5/8) skipping "
-									+ currentZip + " (" + zipNumber + "/"
-									+ totalZips + ")");
+						throw new EarlyTerminationException();
 					}
-					zipNumber++;
+					Thread.sleep(1000);
 				}
 
 				if (debug && anyFails) {
@@ -438,29 +322,8 @@ public class WeatherRecorder {
 							.println("WR.main(6/8.1/1) Closing database connection");
 				if (useDB)
 					db.close();
-				FileWriter fileWriter = new FileWriter(LOG_NAME, false);
-				PrintWriter out = new PrintWriter(fileWriter, true);
-				if (anyFails) {
-					out.print("error " + getYMDFormatter().format(new Date()));
-					if (debug)
-						System.out.println("WR.main(7/8) Logfile output:"
-								+ System.lineSeparator() + "   error "
-								+ getYMDFormatter().format(new Date()));
-				} else {
-					out.print("ok " + getYMDFormatter().format(new Date()));
-					if (debug)
-						System.out.println("WR.main(7/8) Logfile output:"
-								+ System.lineSeparator() + "   ok "
-								+ getYMDFormatter().format(new Date()));
-				}
 
-				out.close();
-				fileWriter.close();
-
-				if (debug)
-					System.out
-							.println("WR.main(8/8) Passing exit code 0 (successful run)");
-				System.exit(0);
+				finish();
 			} catch (Exception e) {
 				FileWriter fileWriter;
 				SimpleDateFormat format = getYMDFormatter();
@@ -494,8 +357,7 @@ public class WeatherRecorder {
 				}
 				if (debug)
 					System.out
-							.println("WR.main(unk) Passing exit code 3, unknown exception on zip "
-									+ currentZip);
+							.println("WR.main(unk) Passing exit code 3, unknown exception");
 				System.exit(3);
 			}
 		} catch (IOException e) {
@@ -508,6 +370,61 @@ public class WeatherRecorder {
 			System.exit(4);
 		}
 
+	}
+
+	/**
+	 * @throws IOException
+	 *             Prints the log file and a debug message if appropriate
+	 * 
+	 */
+	private static void finish() throws IOException {
+		FileWriter fileWriter = new FileWriter(LOG_NAME, false);
+		PrintWriter out = new PrintWriter(fileWriter, true);
+		if (anyFails) {
+			out.print("error " + getYMDFormatter().format(new Date()));
+			if (debug)
+				System.out.println("WR.main(7/8) Logfile output:"
+						+ System.lineSeparator() + "   error "
+						+ getYMDFormatter().format(new Date()));
+		} else {
+			out.print("ok " + getYMDFormatter().format(new Date()));
+			if (debug)
+				System.out.println("WR.main(7/8) Logfile output:"
+						+ System.lineSeparator() + "   ok "
+						+ getYMDFormatter().format(new Date()));
+		}
+
+		out.close();
+		fileWriter.close();
+
+		if (debug)
+			System.out
+					.println("WR.main(8/8) Passing exit code 0 (successful run)");
+		System.exit(0);
+	}
+
+	/**
+	 * 
+	 */
+	private static void printHelpMessage() {
+		System.out
+				.println("Arguments are:"
+						+ System.lineSeparator()
+						+ "-csv to write to csv files"
+						+ System.lineSeparator()
+						+ "-d[#] to debug with verbosity level #"
+						// + System.lineSeparator() + "-pastYYYY-MM-DD"
+						+ System.lineSeparator()
+						+ "-f to force run with all zips, forces -i"
+						+ System.lineSeparator()
+						+ "-i to ignore run restrictions"
+						+ System.lineSeparator()
+						+ "-s to simulate run (writing to alternate tables)"
+						+ System.lineSeparator()
+						+ "-t[#] to multithread the data aquaisition (default 8 threads)"
+						+ System.lineSeparator()
+						+ "-help to display this help message");
+		System.exit(0);
 	}
 
 	private static boolean finishedToday() throws IOException {
@@ -580,7 +497,7 @@ public class WeatherRecorder {
 				System.out.println(">WR.getZips(2/3.2/2) Executing query");
 
 			String filler = "";
-			if (!writeToDB)
+			if (simRun)
 				filler = "_alt";
 			PreparedStatement ps = con
 					.prepareStatement("SELECT * FROM weather.dbo.zips_collected"
@@ -683,8 +600,12 @@ public class WeatherRecorder {
 		fileWriter.close();
 	}
 
-	public static void setFail(){
+	public synchronized static void setFail() {
 		anyFails = true;
 	}
-	
+
+	public static boolean isForceRun() {
+		return forceRun;
+	}
+
 }

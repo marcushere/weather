@@ -1,4 +1,4 @@
-weatherrecorder.jar runs with the following argument:
+WeatherRecorder.jar runs with the following argument:
 
 java -Djava.library.path="[path to sql server driver]" -jar WeatherRecorder.jar
 
@@ -11,8 +11,13 @@ The program will exit with an errorlevel dependent on the location at which the 
 In order to force the program to exit early, the user can type "c" at any time and the program will exit with an error on the next zip code.
 
 Command line arguments are:
-	-csv	to write to a csv file instead of to the database
-	-d	to debug (writes out a lot more information)
-	help	to display this information
+	-csv to write to csv files
+	-d[#] to debug with verbosity level #
+	-pastYYYY-MM-DD
+	-f to force run
+	-i to ignore run restrictions
+	-s to simulate run (writing to alternate tables)
+	-t[#] to multithread the data aquaisition (default 8 threads)
+	-help to display this help message
 
 Normally the program will only write out each zip code as it starts collecting the data for it. If the file run.bat is used to run the program, it will print "finished" when the program exits with status 0.

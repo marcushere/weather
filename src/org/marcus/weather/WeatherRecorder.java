@@ -83,7 +83,7 @@ public class WeatherRecorder {
 					if (args[i].length() > 2) {
 						numThreads = Integer.parseInt(args[i].substring(2));
 					} else {
-						numThreads = 8;
+						numThreads = 4;
 					}
 				} else {
 					printHelpMessage();
@@ -421,7 +421,7 @@ public class WeatherRecorder {
 						+ System.lineSeparator()
 						+ "-s to simulate run (writing to alternate tables)"
 						+ System.lineSeparator()
-						+ "-t[#] to multithread the data aquaisition (default 8 threads)"
+						+ "-t[#] to multithread the data aquaisition (default 4 threads)"
 						+ System.lineSeparator()
 						+ "-help to display this help message");
 		System.exit(0);

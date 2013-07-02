@@ -17,7 +17,7 @@ Command line arguments are:
 	-f to force run
 	-i to ignore run restrictions
 	-s to simulate run (writing to alternate tables)
-	-t[#] to multithread the data aquaisition (default 8 threads)
+	-t[#] to multithread the data aquaisition (default 4 threads)
 	-help to display this help message
 
 Normally the program will only write out each zip code as it starts collecting the data for it. If the file run.bat is used to run the program, it will print "finished" when the program exits with status 0.

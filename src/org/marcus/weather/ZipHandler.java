@@ -8,89 +8,72 @@ public class ZipHandler implements Runnable {
 	DataFetcher df = null;
 	DBStore db = null;
 	Iterator<Entry<String, Integer>> iter = null;
-	boolean useDB = true;
 	private Entry<String, Integer> currentZipEntry;
 	final int id;
 	private final WeatherRecorder wr;
-	CSVStore csv = null;
+	private final Config config;
 
-	public ZipHandler(DBStore db, Iterator<Entry<String, Integer>> iter, int id, WeatherRecorder wr)
-			throws Exception {
+	public ZipHandler(DBStore db, Iterator<Entry<String, Integer>> iter,
+			int id, WeatherRecorder wr, Config config) throws Exception {
 		df = new DataFetcher(false);
 		this.db = db;
 		this.iter = iter;
 		this.id = id;
 		this.wr = wr;
-	}
-
-	public ZipHandler(CSVStore csv, Iterator<Entry<String, Integer>> iter,
-			int id, WeatherRecorder wr) throws Exception {
-		df = new DataFetcher(false);
-		this.csv = csv;
-		this.iter = iter;
-		this.id = id;
-		this.wr = wr;
+		this.config = config;
 	}
 
 	@Override
 	public void run() {
-		wr.getWw().threadInit(id);
-		while (true) {
-			while (true) {
-				synchronized (iter) {
-					if (iter.hasNext()) {
-						currentZipEntry = iter.next();
-							if (!wr.getWw().isForceRun()) {
-								System.out.println("Thread " + id + " "
-										+ currentZipEntry);
-							} else {
-								wr.getWw().threadOutMessage(currentZipEntry + " (forced)", id, 4);
-						}
-						if (1 != currentZipEntry.getValue()
-								|| wr.getWw().isForceRun()) {
-							break;
-						}
-					} else {
-						wr.getWw().threadOutMessage("Finished", id, 4);
-						return;
-					}
-				}
-			}
-
-			df.load(currentZipEntry.getKey());
-
-			try {
-				if (df.valid && useDB) {
-					synchronized (db) {
-						db.storeForecast(df.forecast1);
-						db.storeForecast(df.forecast3);
-						db.storePast(df.past);
-						db.updateZipSuccess(currentZipEntry.getKey());
-					}
-				} else if (useDB) {
-					synchronized (db) {
-						db.updateZipFail(currentZipEntry.getKey());
-					}
+		for (;;) {
+			synchronized (iter) {
+				if (iter.hasNext()) {
+					currentZipEntry = iter.next();
 				} else {
-					synchronized (csv) {
-						csv.storeForecast(df.forecast1);
-						csv.storeForecast(df.forecast3);
-						csv.storePast(df.past);
-					}
+					wr.getWw().threadOutMessage("Finished", id, 4);
+					return;
 				}
-				synchronized (db) {
-					db.commit();
-				}
-			} catch (Exception e) {
-				wr.setFail();
-				wr.getWw().threadOutMessage(currentZipEntry+" failed", id, 2);
 			}
-			if (Thread.interrupted()) {
-				break;
+			// Report what's happening
+			if (!config.isForceRun()) {
+				wr.getWw().threadOutMessage(" " + currentZipEntry, id, 4);
+			} else {
+				wr.getWw().threadOutMessage(currentZipEntry + " (forced)", id,
+						4);
+			}
+			// If already run, loop back and find a new zip
+			if (1 != currentZipEntry.getValue() || config.isForceRun()) {
+				// Load data
+				df.load(currentZipEntry.getKey());
+
+				// Write data
+				try {
+					synchronized (db) {
+						if (df.valid) {
+							db.storeForecast(df.forecast1);
+							db.storeForecast(df.forecast3);
+							db.storePast(df.past);
+							db.updateZipSuccess(currentZipEntry.getKey());
+
+						} else {
+							// Update a failure to load data
+							db.updateZipFail(currentZipEntry.getKey());
+						}
+
+						// Commit
+						db.commit();
+					}
+				} catch (Exception e) {
+					wr.setFail();
+					wr.getWw().threadOutMessage(currentZipEntry + " failed",
+							id, 2);
+				}
+				if (Thread.interrupted() || config.isStopProgram()) {
+					break;
+				}
 			}
 		}
 		wr.getWw().threadOutMessage("Finished", id, 3);
-		wr.getWw().threadFinished(id);
 	}
 
 	public synchronized boolean isAlive() {

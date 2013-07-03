@@ -15,6 +15,7 @@ log.txt
 error.txt
 .settings
 errorlevel
-weather
 error.txt
 /nbproject/private/
+*.properties
+*.mf

@@ -11,52 +11,47 @@ public class ZipHandler implements Runnable {
 	boolean useDB = true;
 	private Entry<String, Integer> currentZipEntry;
 	final int id;
-	private final WeatherWrapper ww;
-
+	private final WeatherRecorder wr;
 	CSVStore csv = null;
 
-	public ZipHandler(DBStore db, Iterator<Entry<String, Integer>> iter, int id, WeatherWrapper ww)
+	public ZipHandler(DBStore db, Iterator<Entry<String, Integer>> iter, int id, WeatherRecorder wr)
 			throws Exception {
 		df = new DataFetcher(false);
 		this.db = db;
 		this.iter = iter;
 		this.id = id;
-		this.ww = ww;
+		this.wr = wr;
 	}
 
 	public ZipHandler(CSVStore csv, Iterator<Entry<String, Integer>> iter,
-			int id, WeatherWrapper ww) throws Exception {
+			int id, WeatherRecorder wr) throws Exception {
 		df = new DataFetcher(false);
 		this.csv = csv;
 		this.iter = iter;
 		this.id = id;
-		this.ww = ww;
+		this.wr = wr;
 	}
 
 	@Override
 	public void run() {
+		wr.getWw().threadInit(id);
 		while (true) {
 			while (true) {
 				synchronized (iter) {
 					if (iter.hasNext()) {
 						currentZipEntry = iter.next();
-						if (WeatherRecorder.debug) {
-							if (!WeatherRecorder.isForceRun()) {
+							if (!wr.getWw().isForceRun()) {
 								System.out.println("Thread " + id + " "
 										+ currentZipEntry);
 							} else {
-								System.out.println("Thread " + id + " "
-										+ currentZipEntry + " (forced)");
-							}
+								wr.getWw().threadOutMessage(currentZipEntry + " (forced)", id, 4);
 						}
 						if (1 != currentZipEntry.getValue()
-								|| WeatherRecorder.isForceRun()) {
+								|| wr.getWw().isForceRun()) {
 							break;
 						}
 					} else {
-						if (WeatherRecorder.debug)
-							System.out.println(">ZipHandler.run(1/1) Thread " + id
-									+ " has finished");
+						wr.getWw().threadOutMessage("Finished", id, 4);
 						return;
 					}
 				}
@@ -87,18 +82,15 @@ public class ZipHandler implements Runnable {
 					db.commit();
 				}
 			} catch (Exception e) {
-				WeatherRecorder.setFail();
-				if (WeatherRecorder.debug)
-					System.out.println("Thread " + id + " " + currentZipEntry
-							+ " failed");
+				wr.setFail();
+				wr.getWw().threadOutMessage(currentZipEntry+" failed", id, 2);
 			}
 			if (Thread.interrupted()) {
 				break;
 			}
 		}
-		if (WeatherRecorder.debug)
-			System.out.println(">ZipHandler.run(1/1) Thread " + id
-					+ " has finished");
+		wr.getWw().threadOutMessage("Finished", id, 3);
+		wr.getWw().threadFinished(id);
 	}
 
 	public synchronized boolean isAlive() {

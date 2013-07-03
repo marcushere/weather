@@ -9,12 +9,12 @@ import java.util.List;
 
 public class CheckKeyboard implements Runnable {
 	
-	private List<Thread> threadList = new ArrayList<Thread>();
-
+	private final WeatherTerm wt;
+	
 	private volatile boolean stopProgram = false;
 
-	public synchronized boolean isStopProgram() {
-		return stopProgram;
+	public CheckKeyboard(WeatherTerm weatherTerm) {
+		wt = weatherTerm;
 	}
 
 	private synchronized void setStopProgram(boolean stop) {
@@ -31,17 +31,9 @@ public class CheckKeyboard implements Runnable {
 		} catch (IOException e) {
 		}
 		if (line.equalsIgnoreCase("c")){
-			setStopProgram(true);
-			System.out.println("quitting...");
-			Iterator<Thread> iter = threadList.iterator();
-			while (iter.hasNext()){
-				(iter.next()).interrupt();
-			}
+			wt.stopProgram();
+			wt.mainOutMessage("quitting...",0);
 		}
-	}
-	
-	public void addThread(Thread t){
-		threadList.add(t);
 	}
 
 }

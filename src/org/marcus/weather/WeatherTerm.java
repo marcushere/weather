@@ -7,27 +7,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class WeatherTerm extends WeatherWrapper {
-
-	private int numThreads;
-	private boolean pastOnly;
-	private boolean simRun;
-	private Date startDate;
-
-	private int verbosity;
-	private boolean debug;
-
-	private boolean useDB;
-	private boolean forceRun;
-	private boolean ignoreLog;
-	private String LOG_NAME = "log.txt";
 
 	/**
 	 * @param args
 	 */
 	public WeatherTerm(String[] args) {
 
+		LOG_NAME = "log.txt";
+		
 		// parse the arguments
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
@@ -47,7 +37,7 @@ public class WeatherTerm extends WeatherWrapper {
 									+ verbosity);
 				} else if (args[i].startsWith("-past")) {
 					pastOnly = true;
-					SimpleDateFormat format = getYMDFormatter();
+					SimpleDateFormat format = super.getYMDFormatter();
 					try {
 						startDate = format.parse(args[i].substring(5));
 					} catch (ParseException e) {
@@ -58,6 +48,7 @@ public class WeatherTerm extends WeatherWrapper {
 					ignoreLog = true;
 				} else if (args[i].equals("-s")) {
 					simRun = true;
+					LOG_NAME = "log_alt.txt";
 				} else if (args[i].equals("-i")) {
 					ignoreLog = true;
 				} else if (args[i].startsWith("-t")) {
@@ -66,6 +57,10 @@ public class WeatherTerm extends WeatherWrapper {
 					} else {
 						numThreads = 4;
 					}
+				} else if (args[i].equals("--term")) {
+
+				} else if (args[i].isEmpty()) {
+
 				} else {
 					printHelpMessage();
 				}
@@ -91,7 +86,7 @@ public class WeatherTerm extends WeatherWrapper {
 		}
 		if (pastOnly) {
 			mainOutMessage("WT> Collecting past data starting at "
-					+ getYMDFormatter().format(startDate), 1);
+					+ super.getYMDFormatter().format(startDate), 1);
 		} else {
 			mainOutMessage("WT> Collecting today's data only", 1);
 		}
@@ -106,28 +101,34 @@ public class WeatherTerm extends WeatherWrapper {
 			mainOutMessage("WT> Multithreaded with numThreads = " + numThreads,
 					1);
 		}
+
+		threads = new LinkedList<Integer>();
+		wr = new WeatherRecorder(this);
 	}
 
 	/**
+	 * @throws IOException
 	 * 
 	 */
-	public void run() {
+	public void run() throws IOException {
 		try {
-			if(!ignoreLog&&!finishedToday()){
-				
-			}else{
+			if (ignoreLog) {
+
+			} else if (finishedToday()){
 				mainOutMessage("Already finished today", 1);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			exceptionHandler(e, 1,
+					"WT.run> Unknown error, probably a problem reading logfile");
 		}
-		
-		CheckKeyboard ck = new CheckKeyboard();
+
+		CheckKeyboard ck = new CheckKeyboard(this);
 		Thread thread = new Thread(ck);
 		thread.start();
+
+		wr.run();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -145,7 +146,7 @@ public class WeatherTerm extends WeatherWrapper {
 
 		String[] pieces = line.split(" ");
 		if (pieces.length == 2 && pieces[0].equals("ok")) {
-			String now = getYMDFormatter().format(new Date());
+			String now = super.getYMDFormatter().format(new Date());
 			if (pieces[1].equals(now)) {
 				return true;
 			}
@@ -160,85 +161,18 @@ public class WeatherTerm extends WeatherWrapper {
 	 *      int)
 	 */
 	public synchronized void mainOutMessage(String str, int errorlevel) {
-		if(errorlevel<=verbosity) System.out.println(str);
+		if (errorlevel <= verbosity)
+			System.out.println(str);
 	}
 
 	/**
 	 * @see org.marcus.weather.WeatherWrapper#threadOutMessage(java.lang.String,
 	 *      int, int)
 	 */
-	public synchronized void threadOutMessage(String str, int threadID, int errorlevel) {
-		if(errorlevel<=verbosity)System.out.println("Thread "+threadID+"> " +str);
-	}
-	
-	/**
-	 * @return the numThreads
-	 */
-	public synchronized int getNumThreads() {
-		return numThreads;
-	}
-
-	/**
-	 * @return the pastOnly
-	 */
-	public synchronized boolean isPastOnly() {
-		return pastOnly;
-	}
-
-	/**
-	 * @return the simRun
-	 */
-	public synchronized boolean isSimRun() {
-		return simRun;
-	}
-
-	/**
-	 * @return the startDate
-	 */
-	public synchronized Date getStartDate() {
-		return startDate;
-	}
-
-	/**
-	 * @return the verbosity
-	 */
-	public synchronized int getVerbosity() {
-		return verbosity;
-	}
-
-	/**
-	 * @return the debug
-	 */
-	public synchronized boolean isDebug() {
-		return debug;
-	}
-
-	/**
-	 * @return the useDB
-	 */
-	public synchronized boolean isUseDB() {
-		return useDB;
-	}
-
-	/**
-	 * @return the forceRun
-	 */
-	public synchronized boolean isForceRun() {
-		return forceRun;
-	}
-
-	/**
-	 * @return the ignoreLog
-	 */
-	public synchronized boolean isIgnoreLog() {
-		return ignoreLog;
-	}
-
-	/**
-	 * @return the lOG_NAME
-	 */
-	public synchronized String getLOG_NAME() {
-		return LOG_NAME;
+	public synchronized void threadOutMessage(String str, int threadID,
+			int errorlevel) {
+		if (errorlevel <= verbosity)
+			System.out.println("Thread " + threadID + "> " + str);
 	}
 
 	private static void printHelpMessage() {

@@ -1,6 +1,6 @@
 package org.marcus.weather;
 
-import java.util.Date;
+import java.io.IOException;
 
 public class WeatherCmd {
 
@@ -15,13 +15,21 @@ public class WeatherCmd {
 			for (int i = 0; i < args.length; i++) {
 				if (args[i].equals("--term")) {
 					runTerminal = true;
-				} else {
-					runTerminal = false;
 				}
 			}
 		}
-		
-		ww = new WeatherTerm(args);
-		
+
+		if (runTerminal) {
+			ww = new WeatherTerm(args);
+		} else {
+			// ww = new WeatherGUI(args);
+		}
+
+		try {
+			ww.run();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

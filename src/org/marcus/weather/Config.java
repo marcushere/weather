@@ -82,6 +82,7 @@ public class Config {
 		// otherwise, look at the log file
 		BufferedReader br = new BufferedReader(new FileReader(LOG_NAME));
 		String line = br.readLine();
+		br.close();
 		if (line == null) {
 			return false;
 		}

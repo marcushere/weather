@@ -1,7 +1,10 @@
 package org.marcus.weather.process;
 
+<<<<<<< HEAD
 import java.io.IOException;
 
+=======
+>>>>>>> origin/dev
 import org.marcus.weather.WeatherTerm;
 
 public class UpdateDB {
@@ -10,6 +13,7 @@ public class UpdateDB {
 	private boolean failed = false;
 
 	public UpdateDB(WeatherTerm weatherTerm) {
+<<<<<<< HEAD
 		this.wt = weatherTerm;
 	}
 
@@ -36,10 +40,36 @@ public class UpdateDB {
 		}
 
 		wt.finish();
+=======
+		wt = weatherTerm;
+	}
+
+	public void run() {
+		try {
+			DetermineDeltaHigh ddh = new DetermineDeltaHigh(wt, 1);
+			DeterminePrecip dp = new DeterminePrecip(wt, 2);
+
+			Thread ddhThread = new Thread(ddh);
+			Thread dpThread = new Thread(dp);
+			ddhThread.start();
+			dpThread.start();
+			
+			while (ddhThread.isAlive()||dpThread.isAlive()){
+				Thread.sleep(1000);
+			}
+			
+			wt.finish();
+		} catch (Exception e) {
+			failed = true;
+		}
+>>>>>>> origin/dev
 	}
 
 	public boolean isFailed() {
 		return failed;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
 }

@@ -1,5 +1,7 @@
 package org.marcus.weather;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -70,7 +72,7 @@ public class DBStore {
 
 	private String today;
 	private boolean normalTableNames = true;
-	
+
 	public DBStore(boolean overwrite, boolean writeToNormalTables) {
 		this.normalTableNames = writeToNormalTables;
 		this.overwrite = overwrite;
@@ -117,11 +119,18 @@ public class DBStore {
 				+ zipsCollectedUpdateBody;
 	}
 
-	public void open() throws ClassNotFoundException, SQLException {
+	public void open() throws ClassNotFoundException, SQLException,
+			UnknownHostException {
 		if (overwrite == null)
 			overwrite = false;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+<<<<<<< HEAD
 		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+=======
+		String connectionURL = "jdbc:sqlserver://"
+				+ InetAddress.getLocalHost().getHostName()
+				+ "\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+>>>>>>> origin/dev
 		con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 		insertHA = con.prepareStatement(hourlyActualInsert,
@@ -151,7 +160,8 @@ public class DBStore {
 				.getInstance()).getTimeInMillis());
 	}
 
-	public synchronized void storeForecast(ForecastData forecast) throws Exception {
+	public synchronized void storeForecast(ForecastData forecast)
+			throws Exception {
 		if (forecast.hourlyForecast != null) {
 
 			if (forecast.hourlyForecast != null) {
@@ -182,9 +192,12 @@ public class DBStore {
 								updateHF.setObject(3, forecast.zip);
 								updateHF.setObject(4, forecast.today);
 								updateHF.setObject(5, forecast.forecastDate);
-								updateHF.setObject(6, forecast.hourlyForecast[i].hour);
-								updateHF.setObject(1, forecast.hourlyForecast[i].temp);
-								updateHF.setObject(2, forecast.hourlyForecast[i].PoP);
+								updateHF.setObject(6,
+										forecast.hourlyForecast[i].hour);
+								updateHF.setObject(1,
+										forecast.hourlyForecast[i].temp);
+								updateHF.setObject(2,
+										forecast.hourlyForecast[i].PoP);
 								updateHF.executeUpdate();
 							} else if (e instanceof NullPointerException) {
 
@@ -273,7 +286,8 @@ public class DBStore {
 								updateHA.setObject(6, past.occurredDate);
 								updateHA.setObject(7, past.hourlyPast[i].hour);
 								updateHA.setObject(1, past.hourlyPast[i].temp);
-								updateHA.setObject(2, past.hourlyPast[i].conditions);
+								updateHA.setObject(2,
+										past.hourlyPast[i].conditions);
 								updateHA.setObject(3, past.hourlyPast[i].precip);
 								updateHA.executeUpdate();
 							} else if (e.getClass().equals(
@@ -383,7 +397,8 @@ public class DBStore {
 			}
 		} catch (Exception e) {
 			if (e.getMessage() != null) {
-				if (e.getClass().equals((new NullPointerException()).getClass())){
+				if (e.getClass()
+						.equals((new NullPointerException()).getClass())) {
 
 				} else {
 					throw e;

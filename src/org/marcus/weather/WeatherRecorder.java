@@ -3,6 +3,7 @@ package org.marcus.weather;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -172,7 +173,7 @@ public class WeatherRecorder {
 					if (zipHandlerThreads[i].isAlive()) {
 						stillRunning = true;
 						zipHandlerThreads[i]
-								.join(4000 / zipHandlerThreads.length);
+								.join(2000 / zipHandlerThreads.length);
 					}
 				}
 
@@ -268,7 +269,13 @@ public class WeatherRecorder {
 				(Calendar.getInstance()).getTimeInMillis());
 		Connection con;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+<<<<<<< HEAD
 		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+=======
+		String connectionURL = "jdbc:sqlserver://"
+				+ InetAddress.getLocalHost().getHostName()
+				+ "\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+>>>>>>> origin/dev
 		con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 

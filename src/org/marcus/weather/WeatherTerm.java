@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import org.marcus.weather.ops.UpdateDB;
+import org.marcus.weather.process.UpdateDB;
 
 public class WeatherTerm implements WeatherUI {
 

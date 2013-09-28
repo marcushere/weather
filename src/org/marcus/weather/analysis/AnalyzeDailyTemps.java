@@ -1,9 +1,5 @@
 package org.marcus.weather.analysis;
 
-import java.awt.Component;
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,15 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 
-import javax.swing.JFrame;
-
-import com.panayotis.gnuplot.JavaPlot;
-import com.panayotis.gnuplot.dataset.FileDataSet;
-import com.panayotis.gnuplot.plot.FitResults;
-import com.panayotis.gnuplot.terminal.SVGTerminal;
-import com.panayotis.iodebug.Debug;
+import org.marcus.weather.process.Utils;
 
 public class AnalyzeDailyTemps {
 
@@ -172,17 +161,17 @@ public class AnalyzeDailyTemps {
 		// TODO: only make a histogram if distinct high count>6, otherwise find
 		// the statistics manually
 
-		JFrame f = new JFrame();
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// Make the plot
-		JavaPlot plot = new JavaPlot();
-		plot.getDebugger().setLevel(Debug.VERBOSE);
-		SVGTerminal svg = new SVGTerminal();
-		plot.setTerminal(svg);
-		plot.setPersist(true);
-//		plot.addPlot("'" + filename + "'" + " using 1:xticlabels(2)",
-//				"title");
-		plot.newFitGraph();
+//		JFrame f = new JFrame();
+//		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		// Make the plot
+//		JavaPlot plot = new JavaPlot();
+//		plot.getDebugger().setLevel(Debug.VERBOSE);
+//		SVGTerminal svg = new SVGTerminal();
+//		plot.setTerminal(svg);
+//		plot.setPersist(true);
+////		plot.addPlot("'" + filename + "'" + " using 1:xticlabels(2)",
+////				"title");
+//		plot.newFitGraph();
 		for (int i = 0; i < higherrors.length; i++) {
 			try (PreparedStatement ps = con
 					.prepareStatement(highErrorHistogram);
@@ -205,9 +194,9 @@ public class AnalyzeDailyTemps {
 				Utils.printResultSet(filename, ps.executeQuery(),
 						"Histogram output for high_error=" + higherrors[i]
 								+ " failed.", true);
-				@SuppressWarnings("unused")
-				FileDataSet dataset = new FileDataSet(new File(filename));
-				plot.addFit(dataset, "a*exp(-(x-m)**2/(2*s**2))", "x,a,m,s".split(","), 1, "f"+Integer.toString(higherrors[i]).replace("-","n")+"i");
+//				@SuppressWarnings("unused")
+//				FileDataSet dataset = new FileDataSet(new File(filename));
+//				plot.addFit(dataset, "a*exp(-(x-m)**2/(2*s**2))", "x,a,m,s".split(","), 1, "f"+Integer.toString(higherrors[i]).replace("-","n")+"i");
 				
 
 //				try {
@@ -229,11 +218,11 @@ public class AnalyzeDailyTemps {
 				e.printStackTrace();
 			}
 		}
-		/* Do the actual fitting */
-		plot.plot();
-		/* Get and print out the fit results */
-		final HashMap<String, FitResults> collectedFitResults = plot.getCollectedFitResults();
-		printCollectedFitResults(collectedFitResults);
+//		/* Do the actual fitting */
+//		plot.plot();
+//		/* Get and print out the fit results */
+//		final HashMap<String, FitResults> collectedFitResults = plot.getCollectedFitResults();
+//		printCollectedFitResults(collectedFitResults);
 
 		System.out.println("finished");
 	}
@@ -241,14 +230,14 @@ public class AnalyzeDailyTemps {
 	/**
 	 * @param collectedFitResults
 	 */
-	private static void printCollectedFitResults(
-			final HashMap<String, FitResults> collectedFitResults) {
-		for (String key : collectedFitResults.keySet()){
-			System.out.println(key+":");
-			for (String innerKey : collectedFitResults.get(key).keySet()) {
-				System.out.println("  "+innerKey+":");
-				System.out.println("     "+collectedFitResults.get(key).get(innerKey)[0]+"   "+collectedFitResults.get(key).get(innerKey)[1]);
-			}
-		}
-	}
+//	private static void printCollectedFitResults(
+//			final HashMap<String, FitResults> collectedFitResults) {
+//		for (String key : collectedFitResults.keySet()){
+//			System.out.println(key+":");
+//			for (String innerKey : collectedFitResults.get(key).keySet()) {
+//				System.out.println("  "+innerKey+":");
+//				System.out.println("     "+collectedFitResults.get(key).get(innerKey)[0]+"   "+collectedFitResults.get(key).get(innerKey)[1]);
+//			}
+//		}
+//	}
 }

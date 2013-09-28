@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class WeatherCMD {
+public class WeatherCmd {
 
 	/**
 	 * @param args
@@ -15,9 +15,9 @@ public class WeatherCMD {
 
 		try {
 			if (config.isRunTerminal()) {
-				new WeatherTerm(config).run();
+				new WeatherTerm(config).startUI();
 			} else {
-				// ww = new WeatherGUI(args);
+				new WeatherGUI().startUI();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -29,7 +29,7 @@ public class WeatherCMD {
 		Config config = new Config();
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
-				if (args[i].equals("-help")) {
+				if (args[i].startsWith("-h")) {
 					printHelpMessage();
 				} else if (args[i].startsWith("-d")) {
 					config.setDebug(true);
@@ -64,12 +64,20 @@ public class WeatherCMD {
 					} else {
 						config.setNumThreads(4);
 					}
-				} else if (args[i].equals("--term")) {
-
+				} else if (args[i].equals("--update")) {
+					config.setRunTerminal(true);
+					config.setUpdate(true);
+					config.setForceRun(true);
+					config.setIgnoreLog(true);
 				} else if (args[i].isEmpty()) {
 
 				} else {
 					printHelpMessage();
+				}
+				if (config.isUpdate()
+						&& (config.isSimRun() || config.isPastOnly())) {
+					printHelpMessage();
+					System.exit(0);
 				}
 			}
 		}
@@ -80,14 +88,16 @@ public class WeatherCMD {
 		System.out
 				.println("Arguments are:"
 						+ System.lineSeparator()
-						+ "-csv to write to csv files"
-						+ System.lineSeparator()
+						// + "-csv to write to csv files"
+						// + System.lineSeparator()
 						+ "-d[#] to debug with verbosity level #"
 						// + System.lineSeparator() + "-pastYYYY-MM-DD"
 						+ System.lineSeparator()
 						+ "-f to force run with all zips, forces -i"
 						+ System.lineSeparator()
 						+ "-i to ignore run restrictions"
+						+ System.lineSeparator()
+						+ "--update to execute updates to the database, does not work with -s, forces -i, -f"
 						+ System.lineSeparator()
 						+ "-s to simulate run (writing to alternate tables)"
 						+ System.lineSeparator()

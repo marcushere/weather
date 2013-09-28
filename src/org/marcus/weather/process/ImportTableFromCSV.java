@@ -1,4 +1,4 @@
-package org.marcus.weather.analysis;
+package org.marcus.weather.process;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

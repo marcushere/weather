@@ -1,4 +1,4 @@
-package org.marcus.weather.analysis;
+package org.marcus.weather.process;
 
 import org.marcus.weather.MakeURL;
 

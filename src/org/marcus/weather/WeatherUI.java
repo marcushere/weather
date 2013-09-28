@@ -3,6 +3,8 @@ package org.marcus.weather;
 import java.io.IOException;
 
 public interface WeatherUI {
+	
+	public void startUI() throws IOException;
 
 	public void mainOutMessage(String str, int errorlevel);
 

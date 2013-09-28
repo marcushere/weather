@@ -19,7 +19,7 @@ public class WeatherCMD {
 			} else {
 				// ww = new WeatherGUI(args);
 			}
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 
@@ -29,8 +29,9 @@ public class WeatherCMD {
 		Config config = new Config();
 		if (args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
-				if (args[i].equals("-help")) {
+				if (args[i].equals("-h")) {
 					printHelpMessage();
+					System.exit(0);
 				} else if (args[i].startsWith("-d")) {
 					config.setDebug(true);
 					if (args[i].length() > 2) {
@@ -66,10 +67,19 @@ public class WeatherCMD {
 					}
 				} else if (args[i].equals("--term")) {
 
+				}else if(args[i].equals("--update")){
+					config.setForceRun(true);
+					config.setIgnoreLog(true);
+					config.setUpdate(true);
 				} else if (args[i].isEmpty()) {
 
 				} else {
 					printHelpMessage();
+					System.exit(0);
+				}
+				if(config.isUpdate()&&(config.isSimRun()||config.isPastOnly())){
+					printHelpMessage();
+					System.exit(0);
 				}
 			}
 		}

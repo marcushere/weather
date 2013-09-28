@@ -1,4 +1,4 @@
-package org.marcus.weather.analysis;
+package org.marcus.weather.ops;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -23,7 +23,7 @@ public class ImportTableFromCSV {
 	static String HFfilename = "C:\\src\\java\\weather\\weather\\CSV\\HourlyForecast.csv";
 	static String DAfilename = "C:\\src\\java\\weather\\weather\\CSV\\DailyActual.csv";
 	static String DFfilename = "C:\\src\\java\\weather\\weather\\CSV\\DailyForecast.csv";
-	private static final boolean titles = false;
+//	private static final boolean titles = false;
 
 	/**
 	 * @param args
@@ -38,7 +38,7 @@ public class ImportTableFromCSV {
 			InterruptedException {
 		DBStore db = new DBStore(overwriteDatabase);
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		Connection con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 		PreparedStatement insertHA = con

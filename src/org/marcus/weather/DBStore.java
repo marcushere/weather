@@ -121,7 +121,7 @@ public class DBStore {
 		if (overwrite == null)
 			overwrite = false;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 		insertHA = con.prepareStatement(hourlyActualInsert,

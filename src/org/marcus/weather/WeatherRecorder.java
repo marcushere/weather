@@ -253,6 +253,7 @@ public class WeatherRecorder {
 			wui.mainOutMessage("WR.getZips> File line:\"" + read + "\"", 5);
 			read = br.readLine();
 		}
+		br.close();
 
 		if (config.isForceRun()) {
 			wui.mainOutMessage(
@@ -267,7 +268,7 @@ public class WeatherRecorder {
 				(Calendar.getInstance()).getTimeInMillis());
 		Connection con;
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
 

@@ -1,4 +1,4 @@
-package org.marcus.weather.analysis;
+package org.marcus.weather.process;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class ExportTableAsCSV {
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException, IOException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		Connection con = DriverManager.getConnection(connectionURL);
 		Statement findDupStmt = con.createStatement();
 

@@ -20,6 +20,7 @@ public class Config {
 	private String LOG_NAME = "log.txt";
 	boolean runTerminal = false;
 	public volatile boolean stopProgram = false;
+	private boolean update = false;
 
 	public static final String ERROR_NAME = "error.txt";
 
@@ -34,36 +35,42 @@ public class Config {
 	 */
 	public void outputConfig(WeatherUI wui) {
 		// give messages saying run conditions
-		if (debug){
-			wui.mainOutMessage("WT> Debug level "+verbosity, 1);
+		if (debug) {
+			wui.mainOutMessage("WT> Debug level " + verbosity, 1);
 		}
-		if (forceRun) {
-			wui.mainOutMessage("WT> Forced run", 1);
+		if (update) {
+			wui.mainOutMessage("WT> Updating database", 1);
 		} else {
-			wui.mainOutMessage("WT> Normal run", 1);
-		}
-		if (!simRun) {
-			wui.mainOutMessage("WT> Writing to standard table in database", 1);
-		} else {
-			wui.mainOutMessage("WT> Writing to alternate table in database", 1);
-			LOG_NAME = LOG_NAME + ".sim";
-		}
-		if (pastOnly) {
-			wui.mainOutMessage("WT> Collecting past data starting at "
-					+ getYMDFormatter().format(startDate), 1);
-		} else {
-			wui.mainOutMessage("WT> Collecting today's data only", 1);
-		}
-		if (!ignoreLog) {
-			wui.mainOutMessage("WT> Obeying run restrictions", 1);
-		} else {
-			wui.mainOutMessage("WT> Ignoring run restrictions", 1);
+			if (forceRun) {
+				wui.mainOutMessage("WT> Forced run", 1);
+			} else {
+				wui.mainOutMessage("WT> Normal run", 1);
+			}
+			if (!simRun) {
+				wui.mainOutMessage("WT> Writing to standard table in database",
+						1);
+			} else {
+				wui.mainOutMessage(
+						"WT> Writing to alternate table in database", 1);
+				LOG_NAME = LOG_NAME + ".sim";
+			}
+			if (pastOnly) {
+				wui.mainOutMessage("WT> Collecting past data starting at "
+						+ getYMDFormatter().format(startDate), 1);
+			} else {
+				wui.mainOutMessage("WT> Collecting today's data only", 1);
+			}
+			if (!ignoreLog) {
+				wui.mainOutMessage("WT> Obeying run restrictions", 1);
+			} else {
+				wui.mainOutMessage("WT> Ignoring run restrictions", 1);
+			}
 		}
 		if (numThreads == 1) {
-			wui.mainOutMessage("WT> Running with only one thread", 1);
+			wui.mainOutMessage("WT> Running with only one thread", 4);
 		} else {
 			wui.mainOutMessage("WT> Multithreaded with numThreads = "
-					+ numThreads, 1);
+					+ numThreads, 4);
 		}
 	}
 
@@ -75,10 +82,11 @@ public class Config {
 		// otherwise, look at the log file
 		BufferedReader br = new BufferedReader(new FileReader(LOG_NAME));
 		String line = br.readLine();
+		br.close();
 		if (line == null) {
 			return false;
 		}
-	
+
 		String[] pieces = line.split(" ");
 		if (pieces.length == 2 && pieces[0].equals("ok")) {
 			String now = getYMDFormatter().format(new Date());
@@ -185,5 +193,13 @@ public class Config {
 	public void setStopProgram(boolean setStopProgram) {
 		this.stopProgram = setStopProgram;
 	}
-	
+
+	public boolean isUpdate() {
+		return update;
+	}
+
+	public void setUpdate(boolean update) {
+		this.update = update;
+	}
+
 }

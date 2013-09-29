@@ -1,4 +1,4 @@
-package org.marcus.weather.analysis;
+package org.marcus.weather.process;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

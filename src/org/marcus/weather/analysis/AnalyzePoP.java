@@ -21,7 +21,7 @@ public class AnalyzePoP {
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		String connectionURL = "jdbc:sqlserver://MARCUSHANPC\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
+		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		Connection con = DriverManager.getConnection(connectionURL);
 		Statement stmt = con.createStatement();
 		ResultSet poPValueSet = stmt.executeQuery(distinctPoPValsHourly);

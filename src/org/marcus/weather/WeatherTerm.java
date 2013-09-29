@@ -22,7 +22,7 @@ public class WeatherTerm implements WeatherUI {
 		}
 	}
 
-	public void startUI() throws IOException {
+	public void run() throws IOException {
 		config.outputConfig(this);
 		try {
 			if (config.isIgnoreLog()) {

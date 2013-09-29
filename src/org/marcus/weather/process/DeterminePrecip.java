@@ -69,7 +69,7 @@ public class DeterminePrecip implements Runnable {
 						pps = pps + "0 ";
 					}
 					rs.updateRow();
-					if (rs.getRow() % 1000 == 0) {
+					if (rs.getRow() % 500 == 0) {
 						con.commit();
 						if (!pps.isEmpty())
 							wt.threadOutMessage(pps, tID, 3);
@@ -80,6 +80,29 @@ public class DeterminePrecip implements Runnable {
 							con.close();
 							return;
 						}
+					}
+				} catch (NullPointerException e) {
+
+				}
+			}
+			rs.close();
+			con.commit();
+			if (!pps.isEmpty())
+				wt.threadOutMessage(pps, tID, 3);
+			pps = "";
+			if (wt.isStop()) {
+				con.close();
+				return;
+			}
+			rs = findDupStmt.executeQuery(queryDA);
+			while (rs.next()) {
+				try {
+					if (rs.getFloat("precip_amount") > 0.0) {
+						rs.updateInt("precipitation", 1);
+						pps = pps + "1 ";
+					} else {
+						rs.updateInt("precipitation", 0);
+						pps = pps + "0 ";
 					}
 					rs.updateRow();
 					if (rs.getRow() % 500 == 0) {
@@ -99,62 +122,10 @@ public class DeterminePrecip implements Runnable {
 			}
 			rs.close();
 			con.commit();
+			con.close();
 			if (!pps.isEmpty())
 				wt.threadOutMessage(pps, tID, 3);
-			pps = "";
-			if (wt.isStop()) {
-				wt.threadOutMessage(pps, tID, 2);
-				pps = "";
-				rs.close();
-				if (wt.isStop()) {
-					con.commit();
-					con.close();
-					return;
-				}
-				rs = findDupStmt.executeQuery(queryDA);
-				while (rs.next()) {
-					try {
-						if (rs.getFloat("precip_amount") > 0.0) {
-							rs.updateInt("precipitation", 1);
-							pps = pps + "1 ";
-						} else {
-							rs.updateInt("precipitation", 0);
-							pps = pps + "0 ";
-						}
-						if (rs.getRow() % 1000 == 0) {
-							con.commit();
-							if (!pps.isEmpty())
-								wt.threadOutMessage(pps, tID, 3);
-							pps = "";
-							if (wt.isStop()) {
-							} else {
-								rs.updateInt("precipitation", 0);
-								pps = pps + "0 ";
-							}
-							if (rs.getRow() % 500 == 0) {
-								con.commit();
-								wt.threadOutMessage(pps, tID, 2);
-								pps = "";
-								if (wt.isStop()) {
-									rs.close();
-									con.commit();
-									con.close();
-									return;
-								}
-							}
-							rs.updateRow();
-						}
-					} catch (NullPointerException e) {
-
-					}
-				}
-				rs.close();
-				con.commit();
-				con.close();
-				if (!pps.isEmpty())
-					wt.threadOutMessage(pps, tID, 3);
-				wt.threadOutMessage("precip thread finished", tID, 3);
-			}
+			wt.threadOutMessage("precip thread finished", tID, 3);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

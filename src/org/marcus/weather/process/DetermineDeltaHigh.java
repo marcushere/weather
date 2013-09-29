@@ -59,13 +59,12 @@ public class DetermineDeltaHigh implements Runnable{
 				}
 				rs.updateRow();
 				i++;
-				if (i % 1000 == 0) {
+				if (i % 500 == 0) {
 					con.commit();
 					wt.threadOutMessage(dhs, 1, 2);
 					dhs = "";
 					if (wt.isStop()){
 						rs.close();
-						con.commit();
 						con.close();
 						return;
 					}

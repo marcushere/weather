@@ -12,7 +12,7 @@ public class UpdateDB {
 		this.wt = weatherTerm;
 	}
 
-	public void run() {
+	public void run() throws IOException {
 		try {
 			DetermineDeltaHigh ddh = new DetermineDeltaHigh(wt, 1);
 			DeterminePrecip dp = new DeterminePrecip(wt, 2);
@@ -27,7 +27,7 @@ public class UpdateDB {
 			}
 
 			wt.finish();
-		} catch (Exception e) {
+		} catch (InterruptedException e) {
 			failed = true;
 		}
 	}

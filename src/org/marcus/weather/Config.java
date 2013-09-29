@@ -36,7 +36,6 @@ public class Config {
 	public void outputConfig(WeatherUI wui) {
 		// give messages saying run conditions
 		if (debug) {
-<<<<<<< HEAD
 			wui.mainOutMessage("WT> Debug level " + verbosity, 1);
 		}
 		if (update) {
@@ -53,29 +52,10 @@ public class Config {
 			} else {
 				wui.mainOutMessage(
 						"WT> Writing to alternate table in database", 1);
-=======
-			wui.mainOutMessage("WT> Debug level " + verbosity, 4);
-		}
-		if (update) {
-			wui.mainOutMessage("WT> Executing updates to database only", 4);
-		} else {
-			if (forceRun) {
-				wui.mainOutMessage("WT> Forced run", 4);
-			} else {
-				wui.mainOutMessage("WT> Normal run", 4);
-			}
-			if (!simRun) {
-				wui.mainOutMessage("WT> Writing to standard table in database",
-						4);
-			} else {
-				wui.mainOutMessage(
-						"WT> Writing to alternate table in database", 4);
->>>>>>> origin/dev
 				LOG_NAME = LOG_NAME + ".sim";
 			}
 			if (pastOnly) {
 				wui.mainOutMessage("WT> Collecting past data starting at "
-<<<<<<< HEAD
 						+ getYMDFormatter().format(startDate), 1);
 			} else {
 				wui.mainOutMessage("WT> Collecting today's data only", 1);
@@ -84,16 +64,6 @@ public class Config {
 				wui.mainOutMessage("WT> Obeying run restrictions", 1);
 			} else {
 				wui.mainOutMessage("WT> Ignoring run restrictions", 1);
-=======
-						+ getYMDFormatter().format(startDate), 4);
-			} else {
-				wui.mainOutMessage("WT> Collecting today's data only", 4);
-			}
-			if (!ignoreLog) {
-				wui.mainOutMessage("WT> Obeying run restrictions", 4);
-			} else {
-				wui.mainOutMessage("WT> Ignoring run restrictions", 4);
->>>>>>> origin/dev
 			}
 		}
 		if (numThreads == 1) {
@@ -216,14 +186,6 @@ public class Config {
 		LOG_NAME = lOG_NAME;
 	}
 
-	public boolean isUpdate() {
-		return update;
-	}
-
-	public void setUpdate(boolean update) {
-		this.update = update;
-	}
-
 	public boolean isStopProgram() {
 		return stopProgram;
 	}
@@ -232,22 +194,12 @@ public class Config {
 		this.stopProgram = setStopProgram;
 	}
 
-<<<<<<< HEAD
-	/**
-	 * @return the update
-	 */
 	public boolean isUpdate() {
 		return update;
 	}
 
-	/**
-	 * @param update
-	 *            the update to set
-	 */
 	public void setUpdate(boolean update) {
 		this.update = update;
 	}
 
-=======
->>>>>>> origin/dev
 }

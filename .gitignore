@@ -17,3 +17,4 @@ bin
 *.sql
 errorlevel
 error.txt
+clean.bat

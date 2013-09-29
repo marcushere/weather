@@ -3,7 +3,6 @@
 .classpath
 test
 lib
-org
 datatest
 database-backup
 CSV

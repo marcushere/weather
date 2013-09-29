@@ -136,6 +136,7 @@ public class WeatherRecorder {
 	public static boolean updatedToday() throws Exception {
 		BufferedReader br = new BufferedReader(new FileReader(LOG_NAME));
 		String line = br.readLine();
+		br.close();
 		if (line == null) {
 			return false;
 		}
@@ -161,6 +162,7 @@ public class WeatherRecorder {
 			line = line + " " + read;
 			read = br.readLine();
 		}
+		br.close();
 		return line.split(" ");
 		// return (new String("02901 02108")).split(" ");
 	}

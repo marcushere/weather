@@ -9,15 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import org.marcus.weather.DBStore;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 public class ImportTableFromCSV {
 
-	private static final boolean overwriteDatabase = true;
+//	private static final boolean overwriteDatabase = true;
 	
 	static String HAfilename = "C:\\src\\java\\weather\\weather\\CSV\\HourlyActual.csv";
 	static String HFfilename = "C:\\src\\java\\weather\\weather\\CSV\\HourlyForecast.csv";
@@ -36,22 +33,22 @@ public class ImportTableFromCSV {
 	public static void main(String[] args) throws IOException,
 			ClassNotFoundException, SQLException, ParseException,
 			InterruptedException {
-		DBStore db = new DBStore(overwriteDatabase);
+//		DBStore db = new DBStore(overwriteDatabase);
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String connectionURL = "jdbc:sqlserver://FRENUM\\SQLEXPRESS;integratedSecurity=true;databaseName=weather;";
 		Connection con = DriverManager.getConnection(connectionURL);
 		con.setAutoCommit(false);
-		PreparedStatement insertHA = con
-				.prepareStatement("INSERT INTO weather.dbo.hourly_actual (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		PreparedStatement insertDA = con
-				.prepareStatement("INSERT INTO weather.dbo.daily_actual (zip,collected_time,collected_date,occurred_date,high,precip_amount,delta_high) VALUES (?,?,?,?,?,?,?)");
-		PreparedStatement insertHF = con
-				.prepareStatement("INSERT INTO weather.dbo.hourly_forecast (zip,collected_time,collected_date,forecast_date,hour,temp,precip_chance) VALUES (?,?,?,?,?,?,?)");
+//		PreparedStatement insertHA = con
+//				.prepareStatement("INSERT INTO weather.dbo.hourly_actual (zip,collected_time,collected_date,occurred_date,hour,temp,conditions,precip_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+//		PreparedStatement insertDA = con
+//				.prepareStatement("INSERT INTO weather.dbo.daily_actual (zip,collected_time,collected_date,occurred_date,high,precip_amount,delta_high) VALUES (?,?,?,?,?,?,?)");
+//		PreparedStatement insertHF = con
+//				.prepareStatement("INSERT INTO weather.dbo.hourly_forecast (zip,collected_time,collected_date,forecast_date,hour,temp,precip_chance) VALUES (?,?,?,?,?,?,?)");
 		PreparedStatement insertDF = con
 				.prepareStatement("INSERT INTO weather.dbo.daily_forecast (zip,collected_time,collected_date,forecast_date,high,precip_chance,delta_high) VALUES (?,?,?,?,?,?,?)");
 
-		SimpleDateFormat timeFormat = new SimpleDateFormat("kk:mm:ss");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat timeFormat = new SimpleDateFormat("kk:mm:ss");
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		// Hourly actual
 		// BufferedReader br = new BufferedReader(new FileReader(HAfilename));
@@ -173,6 +170,7 @@ public class ImportTableFromCSV {
 		// daily forecast
 		BufferedReader br = new BufferedReader(new FileReader(DFfilename));
 		String line = br.readLine();
+		br.close();
 		int n = 0;
 		while (line != null) {
 			System.out.println(line);

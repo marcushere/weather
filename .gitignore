@@ -17,3 +17,5 @@ bin
 errorlevel
 error.txt
 clean.bat
+*$*
+*@*
